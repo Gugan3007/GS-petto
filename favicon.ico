@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #FF6B9D, #4ECDC4);
+        }
+        .emoji {
+            font-size: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="emoji">🐾</div>
+</body>
+</html>

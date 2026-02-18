@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔔 Notifications - Petto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .notifications-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .notifications-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .notifications-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--black);
+        }
+
+        .notifications-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-action {
+            padding: 10px 16px;
+            border: 1px solid var(--light-gray);
+            background: white;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-action:hover {
+            background: var(--light-gray);
+        }
+
+        .notifications-filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--light-gray);
+            background: white;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            color: var(--dark-gray);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .notifications-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .notification-item {
+            padding: 20px;
+            background: white;
+            border: 1px solid var(--light-gray);
+            border-bottom: none;
+            display: flex;
+            gap: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .notification-item:last-child {
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .notification-item:hover {
+            background: #f9fafb;
+        }
+
+        .notification-item.unread {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .notification-item.unread::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary);
+        }
+
+        .notification-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .notification-item.message .notification-icon {
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .notification-item.inquiry .notification-icon {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .notification-item.review .notification-icon {
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .notification-item.offer .notification-icon {
+            background: rgba(236, 72, 153, 0.1);
+        }
+
+        .notification-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .notification-title {
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 6px;
+        }
+
+        .notification-description {
+            font-size: 14px;
+            color: var(--dark-gray);
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .notification-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notification-time {
+            font-size: 12px;
+            color: var(--dark-gray);
+        }
+
+        .notification-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .notification-action-btn {
+            padding: 6px 12px;
+            border: 1px solid var(--light-gray);
+            background: white;
+            border-radius: var(--radius-md);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notification-action-btn:hover {
+            background: var(--light-gray);
+        }
+
+        .notification-action-btn.primary {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .notification-action-btn.primary:hover {
+            opacity: 0.9;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .empty-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--black);
+        }
+
+        .empty-description {
+            color: var(--dark-gray);
+            margin-bottom: 24px;
+        }
+
+        .preferences-section {
+            background: white;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            margin-top: 32px;
+        }
+
+        .preferences-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .preference-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .preference-item:last-child {
+            border-bottom: none;
+        }
+
+        .preference-label {
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 4px;
+        }
+
+        .preference-description {
+            font-size: 13px;
+            color: var(--dark-gray);
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 24px;
+            background: #d1d5db;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: var(--primary);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch.active::after {
+            left: 26px;
+        }
+
+        @media (max-width: 768px) {
+            .notifications-container {
+                padding: 20px;
+            }
+
+            .notifications-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .notification-item {
+                padding: 16px;
+            }
+
+            .notification-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="background-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-paw">🐾</span>
+                <span class="logo-name">Petto</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">🏠 Home</a>
+                <a href="browse.html" class="nav-link">🔍 Browse</a>
+                <a href="profile.html" class="nav-link">👤 Profile</a>
+                <a href="chat.html" class="nav-link">💬 Messages</a>
+                <a href="#logout" class="nav-link login-btn" onclick="alert('Logged out!'); window.location.href='index.html';">🚪 Logout</a>
+            </div>
+            <div class="mobile-menu-toggle">☰</div>
+        </div>
+    </nav>
+
+    <div class="notifications-container">
+        <div class="notifications-header">
+            <h1 class="notifications-title">🔔 Notifications</h1>
+            <div class="notifications-actions">
+                <button class="btn-action" onclick="markAllRead()">Mark all as read</button>
+                <button class="btn-action" onclick="clearAll()">Clear all</button>
+            </div>
+        </div>
+
+        <div class="notifications-filters">
+            <button class="filter-btn active" onclick="filterNotifications('all')">All</button>
+            <button class="filter-btn" onclick="filterNotifications('message')">💬 Messages</button>
+            <button class="filter-btn" onclick="filterNotifications('inquiry')">❓ Inquiries</button>
+            <button class="filter-btn" onclick="filterNotifications('review')">⭐ Reviews</button>
+            <button class="filter-btn" onclick="filterNotifications('offer')">💰 Offers</button>
+            <button class="filter-btn" onclick="filterNotifications('alert')">⚠️ Alerts</button>
+        </div>
+
+        <div class="notifications-list" id="notificationsList">
+            <!-- Message Notification -->
+            <div class="notification-item unread" data-type="message">
+                <div class="notification-icon">💬</div>
+                <div class="notification-content">
+                    <div class="notification-title">New message from Priya Sharma</div>
+                    <div class="notification-description">Is Max still available for adoption?</div>
+                    <div class="notification-meta">
+                        <div class="notification-time">2 minutes ago</div>
+                        <div class="notification-actions">
+                            <button class="notification-action-btn">View</button>
+                            <button class="notification-action-btn primary">Reply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inquiry Notification -->
+            <div class="notification-item unread" data-type="inquiry">
+                <div class="notification-icon">❓</div>
+                <div class="notification-content">
+                    <div class="notification-title">New inquiry on your ad "Max - Golden Retriever"</div>
+                    <div class="notification-description">Arjun Verma asked about health certificates and vaccination status</div>
+                    <div class="notification-meta">
+                        <div class="notification-time">15 minutes ago</div>
+                        <div class="notification-actions">
+                            <button class="notification-action-btn">View Ad</button>
+                            <button class="notification-action-btn primary">Reply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review Notification -->
+            <div class="notification-item" data-type="review">
+                <div class="notification-icon">⭐</div>
+                <div class="notification-content">
+                    <div class="notification-title">Positive review from Kumar Patel</div>
+                    <div class="notification-description">5⭐ "Great seller! Max is healthy and friendly. Highly recommend!"</div>
+                    <div class="notification-meta">
+                        <div class="notification-time">1 hour ago</div>
+                        <div class="notification-actions">
+                            <button class="notification-action-btn">View Review</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Price Drop Notification -->
+            <div class="notification-item" data-type="alert">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Price drop alert for "Bella - Persian Cat"</div>
+                    <div class="notification-description">A cat similar to your saved pet dropped in price: ₹14,000 → ₹12,500</div>
+                    <div class="notification-meta">
+                        <div class="notification-time">3 hours ago</div>
+                        <div class="notification-actions">
+                            <button class="notification-action-btn">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Purchase Offer -->
+            <div class="notification-item" data-type="offer">
+                <div class="notification-icon">💰</div>
+                <div class="notification-content">
+                    <div class="notification-title">Offer received for "Max - Golden Retriever"</div>
+                    <div class="notification-description">Neha Patel offered ₹23,000 for your pet (Asking: ₹25,000)</div>
+                    <div class="notification-meta">
+                        <div class="notification-time">5 hours ago</div>
+                        <div class="notification-actions">
+                            <button class="notification-action-btn">Decline</button>
+                            <button class="notification-action-btn primary">Negotiate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ad Expiring Soon -->
+            <div class="notification-item" data-type="alert">
+                <div class="notification-icon">⚠️</div>
+                <div class="notification-content">
+                    <div class="notification-title">Ad expiring soon: "Bella - Persian Cat"</div>
+                    <div class="notification-description">Your ad will expire in 3 days. Renew it to keep it visible</div>
+                    <div class="notification-meta">
+                        <div class="notification-time">1 day ago</div>
+                        <div class="notification-actions">
+                            <button class="notification-action-btn">Renew Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favorite Pet Available -->
+            <div class="notification-item" data-type="alert">
+                <div class="notification-icon">❤️</div>
+                <div class="notification-content">
+                    <div class="notification-title">A pet similar to your favorites is now available</div>
+                    <div class="notification-description">"Rocky - Labrador Mix" just listed in your area - ₹20,000</div>
+                    <div class="notification-meta">
+                        <div class="notification-time">2 days ago</div>
+                        <div class="notification-actions">
+                            <button class="notification-action-btn">View Pet</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Badge -->
+            <div class="notification-item" data-type="alert">
+                <div class="notification-icon">✓</div>
+                <div class="notification-content">
+                    <div class="notification-title">You've earned the "Good Seller" badge! 🏅</div>
+                    <div class="notification-description">Your consistent positive reviews qualify you for special seller benefits</div>
+                    <div class="notification-meta">
+                        <div class="notification-time">3 days ago</div>
+                        <div class="notification-actions">
+                            <button class="notification-action-btn primary">View Benefits</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification Preferences -->
+        <div class="preferences-section">
+            <h3 class="preferences-title">🔧 Notification Preferences</h3>
+            
+            <div class="preference-item">
+                <div>
+                    <div class="preference-label">📨 Email Notifications</div>
+                    <div class="preference-description">Receive email alerts for important updates</div>
+                </div>
+                <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
+            </div>
+
+            <div class="preference-item">
+                <div>
+                    <div class="preference-label">📱 Push Notifications</div>
+                    <div class="preference-description">Get alerts on your phone in real-time</div>
+                </div>
+                <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
+            </div>
+
+            <div class="preference-item">
+                <div>
+                    <div class="preference-label">💬 Message Notifications</div>
+                    <div class="preference-description">Get notified when you receive new messages</div>
+                </div>
+                <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
+            </div>
+
+            <div class="preference-item">
+                <div>
+                    <div class="preference-label">❓ Inquiry Notifications</div>
+                    <div class="preference-description">Get notified when someone inquires about your ads</div>
+                </div>
+                <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
+            </div>
+
+            <div class="preference-item">
+                <div>
+                    <div class="preference-label">🔖 Price Drop Alerts</div>
+                    <div class="preference-description">Be alerted when saved pets' prices drop</div>
+                </div>
+                <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
+            </div>
+
+            <div class="preference-item">
+                <div>
+                    <div class="preference-label">⭐ Review Notifications</div>
+                    <div class="preference-description">Get notified about new reviews and ratings</div>
+                </div>
+                <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="js/canvas-background.js"></script>
+    <script>
+        function filterNotifications(type) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const items = document.querySelectorAll('.notification-item');
+            items.forEach(item => {
+                if (type === 'all' || item.dataset.type === type) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function markAllRead() {
+            document.querySelectorAll('.notification-item.unread').forEach(item => {
+                item.classList.remove('unread');
+            });
+            alert('All notifications marked as read!');
+        }
+
+        function clearAll() {
+            if (confirm('Are you sure you want to clear all notifications?')) {
+                document.getElementById('notificationsList').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">🔔</div>
+                        <div class="empty-title">No notifications</div>
+                        <div class="empty-description">You're all caught up! Check back later for updates</div>
+                    </div>
+                `;
+            }
+        }
+
+        function toggleNotification(element) {
+            element.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

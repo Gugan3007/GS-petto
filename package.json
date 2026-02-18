@@ -1,0 +1,24 @@
+{
+  "name": "petto-by-gs",
+  "version": "1.0.0",
+  "description": "A Complete Pet Marketplace & Adoption Platform",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npm run start",
+    "serve": "http-server -p 3100 -c-1",
+    "start": "http-server -p 3100 -c-1",
+    "server": "http-server -p 3000 -c-1",
+    "server:3100": "http-server -p 3100 -c-1",
+    "build": "echo 'Production build ready'"
+  },
+  "keywords": ["pets", "marketplace", "adoption", "animals"],
+  "author": "GS",
+  "license": "MIT",
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "framer-motion": "^10.18.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

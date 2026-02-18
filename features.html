@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Features - Petto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .features-hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .features-title {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--black);
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-subtitle {
+            font-size: 18px;
+            color: var(--dark-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-section {
+            margin-bottom: 60px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .section-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .feature-name {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--black);
+        }
+
+        .feature-description {
+            font-size: 14px;
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .feature-badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            padding: 4px 8px;
+            border-radius: var(--radius-md);
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+
+        .feature-badge.pro {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--accent);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 1px solid var(--light-gray);
+            margin-top: 24px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .comparison-table th {
+            background: var(--light-gray);
+            font-weight: 700;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .checkmark {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .timeline-marker {
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin-top: 6px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 4px;
+        }
+
+        .timeline-description {
+            font-size: 14px;
+            color: var(--dark-gray);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 60px 40px;
+            border-radius: var(--radius-2xl);
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .cta-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .cta-description {
+            font-size: 16px;
+            margin-bottom: 24px;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .cta-btn.primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .cta-btn.primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .cta-btn.secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .features-container {
+                padding: 20px;
+            }
+
+            .features-title {
+                font-size: 28px;
+            }
+
+            .section-header {
+                flex-wrap: wrap;
+            }
+
+            .cta-section {
+                padding: 40px 24px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="background-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-paw">🐾</span>
+                <span class="logo-name">Petto</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">🏠 Home</a>
+                <a href="browse.html" class="nav-link">🔍 Browse</a>
+                <a href="post-ad.html" class="nav-link">📝 Post Ad</a>
+                <a href="login.html" class="nav-link login-btn">🔐 Login</a>
+            </div>
+            <div class="mobile-menu-toggle">☰</div>
+        </div>
+    </nav>
+
+    <div class="features-container">
+        <!-- Hero -->
+        <div class="features-hero">
+            <h1 class="features-title">✨ Petto Features</h1>
+            <p class="features-subtitle">A complete pet marketplace with OLX-scale features for buying, selling, and adopting pets</p>
+        </div>
+
+        <!-- Feature Section 1: User Accounts -->
+        <div class="feature-section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <div class="section-title">👤 User Accounts & Security</div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-name">Phone Verification</div>
+                    <div class="feature-description">Secure OTP-based phone number verification with SMS delivery</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📧</div>
+                    <div class="feature-name">Email Login</div>
+                    <div class="feature-description">Traditional email and password authentication</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <div class="feature-name">Social Login</div>
+                    <div class="feature-description">Quick sign-up via Google and Apple accounts</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✓</div>
+                    <div class="feature-name">Verification Badge</div>
+                    <div class="feature-description">Earn trust with verified account badge</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Section 2: Posting Ads -->
+        <div class="feature-section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <div class="section-title">📝 Posting Ads & Content Management</div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧙</div>
+                    <div class="feature-name">Multi-Step Wizard</div>
+                    <div class="feature-description">Guided 4-step ad creation process for easy listing</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🐾</div>
+                    <div class="feature-name">Pet Details</div>
+                    <div class="feature-description">Comprehensive pet information collection (type, breed, age, health)</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-name">Price Management</div>
+                    <div class="feature-description">Set prices, enable negotiations, manage special offers</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <div class="feature-name">Ad Management</div>
+                    <div class="feature-description">Renew, edit, deactivate, and manage all your listings</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Section 3: Media -->
+        <div class="feature-section">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <div class="section-title">🖼️ Image & Media Management</div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📸</div>
+                    <div class="feature-name">Photo Upload</div>
+                    <div class="feature-description">Upload and organize multiple pet photos</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎥</div>
+                    <div class="feature-name">Video Support <span class="feature-badge pro">PRO</span></div>
+                    <div class="feature-description">Add videos to showcase your pet in action</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✏️</div>
+                    <div class="feature-name">Photo Editor</div>
+                    <div class="feature-description">Crop, rotate, and enhance your pet photos</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🖱️</div>
+                    <div class="feature-name">Drag & Drop</div>
+                    <div class="feature-description">Easy drag-and-drop interface for uploads</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Section 4: Search & Discovery -->
+        <div class="feature-section">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <div class="section-title">🔍 Search, Filter & Discovery</div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔎</div>
+                    <div class="feature-name">Advanced Search</div>
+                    <div class="feature-description">Search by pet name, breed, location, price range</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-name">Smart Filters</div>
+                    <div class="feature-description">Filter by type, age, gender, price, seller rating</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <div class="feature-name">Location Search</div>
+                    <div class="feature-description">Find pets near you with location-based filtering</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <div class="feature-name">Smart Sorting</div>
+                    <div class="feature-description">Sort by newest, price, popularity, or rating</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Section 5: Chat -->
+        <div class="feature-section">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <div class="section-title">💬 In-App Chat & Messaging</div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <div class="feature-name">Real-Time Chat</div>
+                    <div class="feature-description">Instant messaging with buyers and sellers</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📎</div>
+                    <div class="feature-name">File Sharing</div>
+                    <div class="feature-description">Share photos and documents in conversations</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👀</div>
+                    <div class="feature-name">Read Status</div>
+                    <div class="feature-description">See when messages are read</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚫</div>
+                    <div class="feature-name">Block Users</div>
+                    <div class="feature-description">Block problematic buyers or sellers</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Section 6-10 in compact view -->
+        <div class="feature-section">
+            <div class="section-header">
+                <div class="section-number">6-10</div>
+                <div class="section-title">📍 Location • ❤️ Favorites • 🔔 Notifications • 📊 Analytics • 💰 Monetization</div>
+            </div>
+            <div class="two-column">
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <div class="feature-name">Location & Maps</div>
+                    <div class="feature-description">View pets on map, filter by area, set location preferences</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">❤️</div>
+                    <div class="feature-name">Favorites & Saved</div>
+                    <div class="feature-description">Save favorite pets and searches for later</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <div class="feature-name">Smart Notifications</div>
+                    <div class="feature-description">Alerts for messages, inquiries, price drops, ad expiry</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-name">Seller Analytics</div>
+                    <div class="feature-description">Track views, inquiries, conversion rates, top performers</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-name">Premium Plans</div>
+                    <div class="feature-description">Free, Pro, and Business subscription tiers</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-name">Boost Features</div>
+                    <div class="feature-description">Boost to top, featured badge, extra photos, video</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Section 11-12 -->
+        <div class="feature-section">
+            <div class="section-header">
+                <div class="section-number">11-12</div>
+                <div class="section-title">🛡️ Safety & Trust • 👑 Admin Panel</div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <div class="feature-name">Rating System</div>
+                    <div class="feature-description">5-star ratings with written reviews</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏅</div>
+                    <div class="feature-name">Trust Badges</div>
+                    <div class="feature-description">Verified, Good Seller, and Top Rated badges</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <div class="feature-name">Ad Moderation</div>
+                    <div class="feature-description">Review and approve pet listings for quality</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚨</div>
+                    <div class="feature-name">Report System</div>
+                    <div class="feature-description">Report fraudulent or problematic listings</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <div class="feature-name">User Management</div>
+                    <div class="feature-description">Admin tools to verify, approve, or suspend users</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <div class="feature-name">Admin Analytics</div>
+                    <div class="feature-description">Platform insights, user trends, revenue data</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pet-Specific Features -->
+        <div class="feature-section">
+            <div class="section-header">
+                <div class="section-number">🐾</div>
+                <div class="section-title">Pet-Specific Features</div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🐶</div>
+                    <div class="feature-name">Multi-Pet Support</div>
+                    <div class="feature-description">Dogs, cats, birds, rabbits, fish, and more</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧬</div>
+                    <div class="feature-name">Breed Database</div>
+                    <div class="feature-description">Comprehensive breed information and characteristics</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💉</div>
+                    <div class="feature-name">Health Tracking</div>
+                    <div class="feature-description">Vaccination certificates and health records</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">❤️</div>
+                    <div class="feature-name">Adoption Program</div>
+                    <div class="feature-description">Partner with NGOs for pet adoption</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <div class="feature-name">Pet Safety Tips</div>
+                    <div class="feature-description">Guides for pet care, health, and safety</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <div class="feature-name">Success Stories</div>
+                    <div class="feature-description">Adoption testimonials and pet success stories</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subscription Comparison -->
+        <div class="feature-section">
+            <div class="section-title" style="margin-bottom: 24px;">💎 Subscription Plans Comparison</div>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Free</th>
+                        <th>Pro</th>
+                        <th>Business</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ads per month</td>
+                        <td>5</td>
+                        <td>50</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td class="checkmark">Free</td>
+                        <td>₹999/mo</td>
+                        <td>₹4,999/mo</td>
+                    </tr>
+                    <tr>
+                        <td>Photos per ad</td>
+                        <td>10</td>
+                        <td>20+</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td>Video upload</td>
+                        <td>—</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Verified badge</td>
+                        <td>—</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Priority support</td>
+                        <td>—</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Analytics</td>
+                        <td>Basic</td>
+                        <td>Advanced</td>
+                        <td>Full</td>
+                    </tr>
+                    <tr>
+                        <td>Boost to top</td>
+                        <td>—</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Featured badge</td>
+                        <td>—</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Dedicated manager</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2 class="cta-title">Ready to Get Started?</h2>
+            <p class="cta-description">Join thousands of pet lovers buying, selling, and adopting on Petto</p>
+            <div class="cta-buttons">
+                <button class="cta-btn primary" onclick="window.location.href='browse.html'">Explore Pets 🔍</button>
+                <button class="cta-btn primary" onclick="window.location.href='post-ad.html'">Post Your Pet 📝</button>
+                <button class="cta-btn secondary" onclick="window.location.href='adoption.html'">Adopt ❤️</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="js/canvas-background.js"></script>
+</body>
+</html>

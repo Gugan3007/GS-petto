@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adopt a Pet - Petto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/cinematic.css?v=20251220">
+    <link rel="stylesheet" href="css/advanced-effects.css?v=20251220">
+</head>
+<body>
+    <canvas id="background-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <svg class="nav-logo-icon" viewBox="0 0 24 24" width="28" height="28"><path d="M6 6c1.1 0 2-0.9 2-2s-0.9-2-2-2-2 0.9-2 2 0.9 2 2 2zm12 0c1.1 0 2-0.9 2-2s-0.9-2-2-2-2 0.9-2 2 0.9 2 2 2zm-6 6c1.1 0 2-0.9 2-2s-0.9-2-2-2-2 0.9-2 2 0.9 2 2 2z" fill="currentColor"/></svg>
+                <span class="logo-name">Petto</span>
+            </div>
+            <div class="nav-search">
+                <input type="text" placeholder="Search pets, breeds, accessories..." class="search-input">
+                <button class="search-btn"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M10 2C5.6 2 2 5.6 2 10s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm6 13l5.3 5.3-1.4 1.4-5.3-5.3" fill="currentColor"/></svg></button>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="adoption.html" class="nav-link adoption-link">Adoption</a>
+                <a href="#sell" class="nav-link">Sell Pet</a>
+                <a href="#login" class="nav-link login-btn">Sign In</a>
+            </div>
+            <div class="mobile-menu-toggle"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" fill="currentColor"/></svg></div>
+        </div>
+    </nav>
+
+    <!-- Adoption Hero -->
+    <section class="hero-section" style="background: linear-gradient(135deg, #FFE5E5 0%, #FFF0F0 100%); border-radius: 0 0 50px 50px;">
+        <div class="hero-content" style="text-align: center; margin: 0 auto;">
+            <h1 class="hero-title" style="text-align: center;">
+                Give a Pet a<br>
+                <span class="gradient-text">Forever Home</span>
+            </h1>
+            <p class="hero-subtitle" style="text-align: center; max-width: 600px; margin: 0 auto 32px;">
+                Adopt, don't shop! Thousands of loving pets are waiting for their second chance at happiness.
+            </p>
+            <div class="stats" style="display: flex; gap: 48px; justify-content: center; margin-top: 40px;">
+                <div>
+                    <h3 style="font-size: 48px; color: var(--adoption); margin-bottom: 8px;">500+</h3>
+                    <p style="color: var(--dark-gray);">Pets Adopted</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 48px; color: var(--adoption); margin-bottom: 8px;">150+</h3>
+                    <p style="color: var(--dark-gray);">Happy Families</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 48px; color: var(--adoption); margin-bottom: 8px;">50+</h3>
+                    <p style="color: var(--dark-gray);">NGO Partners</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How Adoption Works -->
+    <section style="max-width: 1400px; margin: 80px auto; padding: 0 24px;">
+        <h2 class="section-title">How Adoption Works</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; margin-top: 48px;">
+            <div style="text-align: center; padding: 32px; background: white; border-radius: 24px; box-shadow: var(--shadow-sm);">
+                <div style="font-size: 64px; margin-bottom: 16px;">&nbsp;</div>
+                <h3 style="font-size: 20px; margin-bottom: 12px;">1. Browse Pets</h3>
+                <p style="color: var(--dark-gray);">Explore our adoption listings and find your perfect match</p>
+            </div>
+            <div style="text-align: center; padding: 32px; background: white; border-radius: 24px; box-shadow: var(--shadow-sm);">
+                <div style="font-size: 64px; margin-bottom: 16px;">&nbsp;</div>
+                <h3 style="font-size: 20px; margin-bottom: 12px;">2. Apply</h3>
+                <p style="color: var(--dark-gray);">Fill out an adoption application form</p>
+            </div>
+            <div style="text-align: center; padding: 32px; background: white; border-radius: 24px; box-shadow: var(--shadow-sm);">
+                <div style="font-size: 64px; margin-bottom: 16px;">&nbsp;</div>
+                <h3 style="font-size: 20px; margin-bottom: 12px;">3. Meet & Greet</h3>
+                <p style="color: var(--dark-gray);">Visit the pet and connect with the owner/NGO</p>
+            </div>
+            <div style="text-align: center; padding: 32px; background: white; border-radius: 24px; box-shadow: var(--shadow-sm);">
+                <div style="font-size: 64px; margin-bottom: 16px;">🏠</div>
+                <h3 style="font-size: 20px; margin-bottom: 12px;">4. Adopt</h3>
+                <p style="color: var(--dark-gray);">Complete the process and take your new friend home!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Available for Adoption -->
+    <section class="featured-section">
+        <h2 class="section-title">💚 Available for Adoption</h2>
+        <div class="pets-grid" id="adoption-pets-grid">
+            <!-- Adoption pets will be loaded here -->
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section style="max-width: 1400px; margin: 80px auto; padding: 64px 48px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 32px;">
+        <h2 style="font-size: 42px; color: white; text-align: center; margin-bottom: 48px;">💫 Success Stories</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
+            <div style="background: rgba(255, 255, 255, 0.95); padding: 32px; border-radius: 24px;">
+                <div style="font-size: 48px; margin-bottom: 16px;">👨‍👩‍👧</div>
+                <p style="font-size: 16px; line-height: 1.6; margin-bottom: 16px;">"We adopted Rocky from Petto and he's become part of our family. Best decision ever!"</p>
+                <p style="font-weight: 600;">- Sharma Family, Mumbai</p>
+            </div>
+            <div style="background: rgba(255, 255, 255, 0.95); padding: 32px; border-radius: 24px;">
+                <div style="font-size: 48px; margin-bottom: 16px;">❤️</div>
+                <p style="font-size: 16px; line-height: 1.6; margin-bottom: 16px;">"Luna was a rescue and now she's the most loving cat. Thank you Petto for making this possible!"</p>
+                <p style="font-weight: 600;">- Priya, Bangalore</p>
+            </div>
+            <div style="background: rgba(255, 255, 255, 0.95); padding: 32px; border-radius: 24px;">
+                <div style="font-size: 48px; margin-bottom: 16px;">🌟</div>
+                <p style="font-size: 16px; line-height: 1.6; margin-bottom: 16px;">"Adopted Bruno through Petto. The process was smooth and we got full support from the NGO."</p>
+                <p style="font-weight: 600;">- Rahul, Delhi</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🐾 Petto</h3>
+                <p>Making pet adoption safe, simple, and joyful.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#safety">Safety Tips</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#dogs">Dogs</a></li>
+                    <li><a href="#cats">Cats</a></li>
+                    <li><a href="#birds">Birds</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#" class="social-icon" title="Facebook">
+                        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M19 3H5c-1.1 0-2 0.9-2 2v14c0 1.1 0.9 2 2 2h7v-7h-2v-2h2V9.5C12 7.6 13.1 6 15.3 6c0.6 0 1.1 0 1.7 0.1v2h-1.2c-0.9 0-1 0.4-1 1v1.3h2l-0.3 2h-1.7V21h3c1.1 0 2-0.9 2-2V5c0-1.1-0.9-2-2-2z" fill="currentColor"/></svg>
+                    </a>
+                    <a href="#" class="social-icon" title="Instagram">
+                        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 2.163c3.204 0 3.584 0.012 4.85 0.07 1.366 0.062 2.633 0.313 3.608 1.288 0.975 0.975 1.226 2.242 1.288 3.608 0.058 1.266 0.07 1.646 0.07 4.85s-0.012 3.584-0.07 4.85c-0.062 1.366-0.313 2.633-1.288 3.608-0.975 0.975-2.242 1.226-3.608 1.288-1.266 0.058-1.646 0.07-4.85 0.07s-3.584-0.012-4.85-0.07c-1.366-0.062-2.633-0.313-3.608-1.288-0.975-0.975-1.226-2.242-1.288-3.608-0.058-1.266-0.07-1.646-0.07-4.85s0.012-3.584 0.07-4.85c0.062-1.366 0.313-2.633 1.288-3.608 0.975-0.975 2.242-1.226 3.608-1.288 1.266-0.058 1.646-0.07 4.85-0.07zM12 0C8.741 0 8.333 0.014 7.053 0.072 5.773 0.132 4.893 0.382 4.15 1.125 3.407 1.868 3.157 2.748 3.097 4.028 3.039 5.308 3.025 5.716 3.025 9c0 3.284 0.014 3.692 0.072 4.972 0.06 1.28 0.31 2.16 1.053 2.903 0.743 0.743 1.623 0.993 2.903 1.053 1.28 0.058 1.688 0.072 4.972 0.072s3.692-0.014 4.972-0.072c1.28-0.06 2.16-0.31 2.903-1.053 0.743-0.743 0.993-1.623 1.053-2.903 0.058-1.28 0.072-1.688 0.072-4.972s-0.014-3.692-0.072-4.972c-0.06-1.28-0.31-2.16-1.053-2.903-0.743-0.743-1.623-0.993-2.903-1.053C15.333 0.014 14.925 0 12 0z" fill="currentColor"/></svg>
+                    </a>
+                    <a href="#" class="social-icon" title="Twitter">
+                        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 9-0.5 11-4.5a4.35 4.35 0 00.75-4z" fill="currentColor"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Petto by GS. Transparent. Audited. Trustworthy.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/utilities.js"></script>
+    <script src="js/canvas-background.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/scroll-storytelling.js"></script>
+    <script src="js/microinteractions.js"></script>
+    <script>
+        // Load adoption pets
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('adoption-pets-grid');
+            
+            petData.adoption.forEach(pet => {
+                const card = createPetCard(pet);
+                grid.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>

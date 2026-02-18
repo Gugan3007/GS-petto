@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Pets — GS-Petto</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/cinematic.css">
+    <link rel="stylesheet" href="css/advanced-effects.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* Force Dark Theme & High Contrast */
+        body {
+            background-color: var(--bg-dark, #0A0A0A);
+            color: #fff;
+        }
+
+        /* ── Browse Page Layout ── */
+        .browse-page {
+            display: flex;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        /* ── Sidebar [FIXED CONTRAST] ── */
+        .filter-sidebar {
+            width: 280px;
+            background: rgba(20, 20, 20, 0.95);
+            /* Dark solid background fallback */
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 32px 24px;
+            position: fixed;
+            top: 80px;
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+            z-index: 100;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @supports (backdrop-filter: blur(12px)) {
+            .filter-sidebar {
+                background: rgba(20, 20, 20, 0.8);
+                backdrop-filter: blur(12px);
+            }
+        }
+
+        .filter-group {
+            margin-bottom: 32px;
+            animation: slideInLeft 0.5s ease-out backwards;
+        }
+
+        .filter-group:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .filter-group:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .filter-group:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .filter-group:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .filter-title {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            /* Force white text */
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Checkbox Style */
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.7);
+            /* Force light grey text */
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .checkbox-label:hover {
+            color: #fff;
+        }
+
+        .checkbox-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        input[type="checkbox"]:checked+.checkbox-custom {
+            background: #10B981;
+            border-color: #10B981;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        input[type="checkbox"]:checked+.checkbox-custom::after {
+            content: '✓';
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .checkbox-label span {
+            flex: 1;
+        }
+
+        .count-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Range Slider */
+        .price-range-inputs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .price-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 13px;
+        }
+
+        /* ── Main Content ── */
+        .browse-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 40px;
+            width: calc(100% - 280px);
+        }
+
+        .browse-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .browse-header h1 {
+            color: #fff;
+        }
+
+        .result-count {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+
+        .sort-select {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            cursor: pointer;
+            outline: none;
+        }
+
+        .sort-select option {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        /* Pet Grid */
+        .pet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        /* Empty State */
+        .empty-grid-msg {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 18px;
+        }
+
+        /* Mobile Filter Toggle */
+        .mobile-filter-btn {
+            display: none;
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #10B981;
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 200;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1024px) {
+            .filter-sidebar {
+                transform: translateX(-100%);
+                width: 100%;
+                z-index: 1000;
+                padding-top: 100px;
+                background: #0A0A0A;
+            }
+
+            .filter-sidebar.active {
+                transform: translateX(0);
+            }
+
+            .browse-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 24px;
+            }
+
+            .mobile-filter-btn {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="background-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <svg viewBox="0 0 24 24" width="32" height="32">
+                    <path
+                        d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4L10 14.2l7.6-7.6L19 8l-9 9z"
+                        fill="currentColor" />
+                </svg>
+                <span>GS-Petto</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="browse.html" class="nav-link active">Discover</a>
+                <a href="adoption.html" class="nav-link">Adopt</a>
+                <a href="post-ad.html" class="nav-link">Sell</a>
+                <a href="login.html" class="nav-cta">Sign In</a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" fill="currentColor" />
+                </svg>
+            </div>
+        </div>
+    </nav>
+
+    <div class="browse-page">
+        <!-- Sidebar -->
+        <aside class="filter-sidebar" id="sidebar">
+            <div class="filter-group">
+                <div class="filter-title">Pet Type</div>
+                <div class="filter-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" checked>
+                        <div class="checkbox-custom"></div>
+                        <span>Dogs</span>
+                        <span class="count-badge">124</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox">
+                        <div class="checkbox-custom"></div>
+                        <span>Cats</span>
+                        <span class="count-badge">85</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox">
+                        <div class="checkbox-custom"></div>
+                        <span>Birds</span>
+                        <span class="count-badge">32</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox">
+                        <div class="checkbox-custom"></div>
+                        <span>Fish</span>
+                        <span class="count-badge">18</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Price Range</div>
+                <div class="price-range-inputs">
+                    <input type="number" class="price-input" placeholder="Min" value="0">
+                    <input type="number" class="price-input" placeholder="Max" value="50000">
+                </div>
+                <div
+                    style="height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; position: relative; margin-top: 10px;">
+                    <div
+                        style="position: absolute; left: 0; right: 40%; top: 0; bottom: 0; background: #10B981; border-radius: 2px;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Age</div>
+                <div class="filter-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox">
+                        <div class="checkbox-custom"></div>
+                        <span>Puppy / Kitten</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" checked>
+                        <div class="checkbox-custom"></div>
+                        <span>Young</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox">
+                        <div class="checkbox-custom"></div>
+                        <span>Adult</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox">
+                        <div class="checkbox-custom"></div>
+                        <span>Senior</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-title">Seller Type</div>
+                <div class="filter-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" checked>
+                        <div class="checkbox-custom"></div>
+                        <span>Breeder</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox">
+                        <div class="checkbox-custom"></div>
+                        <span>Pet Shop</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox">
+                        <div class="checkbox-custom"></div>
+                        <span>Individual</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox">
+                        <div class="checkbox-custom"></div>
+                        <span>Shelter</span>
+                    </label>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="browse-content">
+            <div class="browse-header">
+                <div>
+                    <h1 style="font-family: var(--font-heading); font-size: 32px; margin-bottom: 8px;">Find Your
+                        Companion</h1>
+                    <span class="result-count">Showing 245 pets in Mumbai</span>
+                </div>
+                <select class="sort-select">
+                    <option>Newest Listed</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                    <option>Nearest to Me</option>
+                </select>
+            </div>
+
+            <div class="pet-grid" id="petGrid">
+                <!-- Javascript will populate this -->
+                <div class="empty-grid-msg">Loading pets...</div>
+            </div>
+        </main>
+    </div>
+
+    <div class="mobile-filter-btn" onclick="document.getElementById('sidebar').classList.toggle('active')">
+        <svg viewBox="0 0 24 24" width="20" height="20">
+            <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="currentColor" />
+        </svg>
+        Filters
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/canvas-background.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Force card loading
+        document.addEventListener('DOMContentLoaded', () => {
+            // Slight stagger for cards (assuming main.js populates them)
+            setTimeout(() => {
+                const cards = document.querySelectorAll('.pet-card');
+                if (cards.length > 0) {
+                    gsap.from(cards, {
+                        opacity: 0,
+                        y: 30,
+                        duration: 0.6,
+                        stagger: 0.1,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: '.pet-grid',
+                            start: 'top 80%'
+                        }
+                    });
+                } else {
+                    // If main.js failed, load mock data
+                    const grid = document.getElementById('petGrid');
+                    grid.innerHTML = '';
+                    // Simple mock card generator if JS fails
+                    for (let i = 0; i < 6; i++) {
+                        const card = document.createElement('div');
+                        card.className = 'pet-card tilt-card glass';
+                        card.style.padding = '20px';
+                        card.style.borderRadius = '20px';
+                        card.innerHTML = `
+                            <div style="height:200px; background:#333; border-radius:16px; margin-bottom:12px;"></div>
+                            <h3 style="color:#fff;">Cute Doggo ${i + 1}</h3>
+                            <p style="color:#aaa;">Golden Retriever • 2mo</p>
+                            <div style="margin-top:12px; font-weight:bold; color:#10B981;">₹ 15,000</div>
+                         `;
+                        grid.appendChild(card);
+                    }
+                }
+            }, 500);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💬 Messages - Petto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .chat-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 0;
+            height: calc(100vh - 80px);
+            background: white;
+        }
+
+        .chat-sidebar {
+            border-right: 1px solid var(--light-gray);
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+
+        .chat-search {
+            padding: 16px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .chat-search input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius-lg);
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .chat-search input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .conversations-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .conversation-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--light-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .conversation-item:hover {
+            background: var(--light-gray);
+        }
+
+        .conversation-item.active {
+            background: rgba(99, 102, 241, 0.1);
+            border-right: 3px solid var(--primary);
+            padding-right: 13px;
+        }
+
+        .conv-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .conv-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .conv-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+            color: var(--black);
+        }
+
+        .conv-preview {
+            font-size: 13px;
+            color: var(--dark-gray);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .conv-badge {
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .chat-main {
+            display: flex;
+            flex-direction: column;
+            background: #f9fafb;
+        }
+
+        .chat-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--light-gray);
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-header-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .chat-header-details h3 {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .chat-header-details p {
+            margin: 2px 0 0 0;
+            font-size: 12px;
+            color: var(--dark-gray);
+        }
+
+        .chat-header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .chat-header-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: var(--light-gray);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .chat-header-btn:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .messages-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .message-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .message {
+            display: flex;
+            gap: 12px;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .message.sent {
+            justify-content: flex-end;
+        }
+
+        .message.received {
+            justify-content: flex-start;
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .message.sent .message-avatar {
+            display: none;
+        }
+
+        .message-content {
+            max-width: 60%;
+            padding: 12px 16px;
+            border-radius: var(--radius-lg);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .message.received .message-content {
+            background: white;
+            color: var(--black);
+            border: 1px solid var(--light-gray);
+        }
+
+        .message.sent .message-content {
+            background: var(--primary);
+            color: white;
+        }
+
+        .message-time {
+            font-size: 12px;
+            color: var(--dark-gray);
+            margin: 0 16px;
+            text-align: center;
+        }
+
+        .chat-input-area {
+            padding: 20px 24px;
+            background: white;
+            border-top: 1px solid var(--light-gray);
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+        }
+
+        .input-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .input-action-btn {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--light-gray);
+            background: white;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .input-action-btn:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .input-field {
+            flex: 1;
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        .input-field textarea {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius-lg);
+            font-size: 14px;
+            font-family: inherit;
+            resize: none;
+            max-height: 100px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-field textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .send-btn {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-md);
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--dark-gray);
+        }
+
+        .empty-state-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .chat-container {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-sidebar {
+                display: none;
+            }
+
+            .message-content {
+                max-width: 85%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="background-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-paw">🐾</span>
+                <span class="logo-name">Petto</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">🏠 Home</a>
+                <a href="browse.html" class="nav-link">🔍 Browse</a>
+                <a href="profile.html" class="nav-link">👤 Profile</a>
+                <a href="#logout" class="nav-link login-btn" onclick="alert('Logged out!'); window.location.href='index.html';">🚪 Logout</a>
+            </div>
+            <div class="mobile-menu-toggle">☰</div>
+        </div>
+    </nav>
+
+    <div class="chat-container">
+        <!-- Sidebar with conversations -->
+        <div class="chat-sidebar">
+            <div class="chat-search">
+                <input type="text" placeholder="Search conversations..." id="searchInput">
+            </div>
+            <div class="conversations-list" id="conversationsList">
+                <div class="conversation-item active" onclick="selectConversation(this, 'priya')">
+                    <div class="conv-avatar">👩</div>
+                    <div class="conv-info">
+                        <div class="conv-name">Priya Sharma</div>
+                        <div class="conv-preview">Is Max still available?</div>
+                    </div>
+                </div>
+                <div class="conversation-item" onclick="selectConversation(this, 'arjun')">
+                    <div class="conv-avatar">👨</div>
+                    <div class="conv-info">
+                        <div class="conv-name">Arjun Verma</div>
+                        <div class="conv-preview">Can we arrange a meet?</div>
+                    </div>
+                    <div class="conv-badge">2</div>
+                </div>
+                <div class="conversation-item" onclick="selectConversation(this, 'neha')">
+                    <div class="conv-avatar">👩</div>
+                    <div class="conv-info">
+                        <div class="conv-name">Neha Patel</div>
+                        <div class="conv-preview">What's the health status?</div>
+                    </div>
+                </div>
+                <div class="conversation-item" onclick="selectConversation(this, 'amit')">
+                    <div class="conv-avatar">👨</div>
+                    <div class="conv-info">
+                        <div class="conv-name">Amit Singh</div>
+                        <div class="conv-preview">Price negotiation possible?</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main chat area -->
+        <div class="chat-main">
+            <!-- Chat header -->
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="chat-header-avatar">👩</div>
+                    <div class="chat-header-details">
+                        <h3>Priya Sharma</h3>
+                        <p>Active 2 minutes ago</p>
+                    </div>
+                </div>
+                <div class="chat-header-actions">
+                    <button class="chat-header-btn" title="Call">📞</button>
+                    <button class="chat-header-btn" title="Info">ℹ️</button>
+                    <button class="chat-header-btn" title="Menu">⋮</button>
+                </div>
+            </div>
+
+            <!-- Messages area -->
+            <div class="messages-area" id="messagesArea">
+                <div class="message-time">Today at 10:30 AM</div>
+                
+                <div class="message-group">
+                    <div class="message received">
+                        <div class="message-avatar">👩</div>
+                        <div class="message-content">Hey! Is Max still available for adoption?</div>
+                    </div>
+                    <div class="message received">
+                        <div class="message-avatar">👩</div>
+                        <div class="message-content">I'm interested in getting a pet</div>
+                    </div>
+                </div>
+
+                <div class="message sent">
+                    <div class="message-content">Yes, Max is available! He's a 2-year-old Golden Retriever</div>
+                </div>
+
+                <div class="message sent">
+                    <div class="message-content">Very friendly and well-trained. Would love to help you!</div>
+                </div>
+
+                <div class="message-group">
+                    <div class="message received">
+                        <div class="message-avatar">👩</div>
+                        <div class="message-content">That's perfect! What's the price?</div>
+                    </div>
+                </div>
+
+                <div class="message sent">
+                    <div class="message-content">₹25,000. Includes vaccination and health checkup certificate</div>
+                </div>
+
+                <div class="message-group">
+                    <div class="message received">
+                        <div class="message-avatar">👩</div>
+                        <div class="message-content">Can we arrange a viewing tomorrow?</div>
+                    </div>
+                </div>
+
+                <div class="message sent">
+                    <div class="message-content">Sure! I'm free tomorrow afternoon. How about 3 PM?</div>
+                </div>
+
+                <div class="message-group">
+                    <div class="message received">
+                        <div class="message-avatar">👩</div>
+                        <div class="message-content">Perfect! See you then 😊</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input area -->
+            <div class="chat-input-area">
+                <div class="input-actions">
+                    <button class="input-action-btn" title="Attach file">📎</button>
+                    <button class="input-action-btn" title="Photo">📷</button>
+                    <button class="input-action-btn" title="Emoji">😊</button>
+                </div>
+                <div class="input-field">
+                    <textarea placeholder="Type a message..." id="messageInput" rows="1"></textarea>
+                    <button class="send-btn" onclick="sendMessage()">📤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="js/canvas-background.js"></script>
+    <script>
+        function selectConversation(element, conversationId) {
+            // Remove active from all items
+            document.querySelectorAll('.conversation-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            // Add active to clicked item
+            element.classList.add('active');
+            
+            // Update chat header based on conversation
+            const names = {
+                'priya': 'Priya Sharma',
+                'arjun': 'Arjun Verma',
+                'neha': 'Neha Patel',
+                'amit': 'Amit Singh'
+            };
+            
+            const avatars = {
+                'priya': '👩',
+                'arjun': '👨',
+                'neha': '👩',
+                'amit': '👨'
+            };
+            
+            document.querySelector('.chat-header-avatar').textContent = avatars[conversationId];
+            document.querySelector('.chat-header-details h3').textContent = names[conversationId];
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message === '') return;
+            
+            // Create message element
+            const messagesArea = document.getElementById('messagesArea');
+            const messageEl = document.createElement('div');
+            messageEl.className = 'message sent';
+            messageEl.innerHTML = `<div class="message-content">${escapeHtml(message)}</div>`;
+            
+            messagesArea.appendChild(messageEl);
+            
+            // Scroll to bottom
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+            
+            // Clear input
+            input.value = '';
+            input.style.height = 'auto';
+            
+            // Simulate reply after 2 seconds
+            setTimeout(() => {
+                const replyEl = document.createElement('div');
+                replyEl.className = 'message-group';
+                replyEl.innerHTML = `
+                    <div class="message received">
+                        <div class="message-avatar">👩</div>
+                        <div class="message-content">Thanks for the message! 😊</div>
+                    </div>
+                `;
+                messagesArea.appendChild(replyEl);
+                messagesArea.scrollTop = messagesArea.scrollHeight;
+            }, 2000);
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // Textarea auto-expand
+        document.getElementById('messageInput').addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+        });
+
+        // Send on Enter (Shift+Enter for new line)
+        document.getElementById('messageInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Search conversations
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            document.querySelectorAll('.conversation-item').forEach(item => {
+                const name = item.querySelector('.conv-name').textContent.toLowerCase();
+                item.style.display = name.includes(query) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
