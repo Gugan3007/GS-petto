@@ -2,664 +2,1334 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ Features - Petto</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="GS-Petto features for verified pet listings, safer conversations, adoption workflows, seller growth, and platform moderation.">
+    <title>GS-Petto Features</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
+
     <style>
-        .features-container {
-            max-width: 1200px;
+        :root {
+            --feature-ink: #10242b;
+            --feature-muted: #627177;
+            --feature-line: rgba(16, 36, 43, 0.1);
+            --feature-paper: #fffaf8;
+            --feature-mint: #e8f6f2;
+            --feature-coral: #ff6f61;
+            --feature-teal: #004e64;
+            --feature-gold: #e9a93f;
+            --feature-radius: 8px;
+        }
+
+        body {
+            background:
+                linear-gradient(180deg, #fffaf8 0%, #ffffff 42%, #f6fbfa 100%);
+            color: var(--feature-ink);
+        }
+
+        .features-page {
+            overflow: hidden;
+        }
+
+        .features-shell {
+            width: min(1180px, calc(100% - 48px));
             margin: 0 auto;
-            padding: 40px;
         }
 
         .features-hero {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .features-title {
-            font-size: 40px;
-            font-weight: 800;
-            color: var(--black);
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .features-subtitle {
-            font-size: 18px;
-            color: var(--dark-gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .feature-section {
-            margin-bottom: 60px;
-        }
-
-        .section-header {
-            display: flex;
+            min-height: auto;
+            padding: 118px 0 54px;
+            display: grid;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 32px;
         }
 
-        .section-number {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .section-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--black);
-        }
-
-        .features-grid {
+        .hero-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: minmax(0, 0.92fr) minmax(480px, 1.08fr);
+            gap: 52px;
+            align-items: center;
         }
 
-        .feature-card {
-            background: white;
-            border: 1px solid var(--light-gray);
-            border-radius: var(--radius-xl);
-            padding: 24px;
-            transition: all 0.3s ease;
+        .hero-copy h1 {
+            font-size: clamp(48px, 6vw, 92px);
+            line-height: 0.92;
+            letter-spacing: 0;
+            margin: 0 0 24px;
+            max-width: 680px;
         }
 
-        .feature-card:hover {
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
-            transform: translateY(-4px);
+        .hero-copy p {
+            color: var(--feature-muted);
+            font-size: 18px;
+            line-height: 1.75;
+            max-width: 610px;
+            margin: 0 0 30px;
         }
 
-        .feature-icon {
-            font-size: 40px;
-            margin-bottom: 16px;
-        }
-
-        .feature-name {
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--black);
-        }
-
-        .feature-description {
-            font-size: 14px;
-            color: var(--dark-gray);
-            line-height: 1.6;
-        }
-
-        .feature-badge {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary);
-            padding: 4px 8px;
-            border-radius: var(--radius-md);
-            font-size: 11px;
-            font-weight: 600;
-            margin-top: 12px;
-        }
-
-        .feature-badge.pro {
-            background: rgba(245, 158, 11, 0.1);
-            color: var(--accent);
-        }
-
-        .two-column {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-        }
-
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            border: 1px solid var(--light-gray);
-            margin-top: 24px;
-        }
-
-        .comparison-table th,
-        .comparison-table td {
-            padding: 16px;
-            text-align: left;
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        .comparison-table th {
-            background: var(--light-gray);
-            font-weight: 700;
-        }
-
-        .comparison-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .checkmark {
-            color: var(--secondary);
-            font-weight: 700;
-        }
-
-        .timeline {
-            position: relative;
-            padding: 20px 0;
-        }
-
-        .timeline-item {
+        .hero-actions {
             display: flex;
-            gap: 24px;
-            margin-bottom: 32px;
-            position: relative;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 38px;
         }
 
-        .timeline-marker {
-            width: 12px;
-            height: 12px;
-            background: var(--primary);
-            border-radius: 50%;
-            margin-top: 6px;
-            flex-shrink: 0;
+        .feature-button {
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-radius: var(--feature-radius);
+            border: 1px solid transparent;
+            padding: 0 20px;
+            font-size: 15px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+        }
+
+        .feature-button svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .feature-button.primary {
+            color: #fff;
+            background: var(--feature-teal);
+            box-shadow: 0 16px 34px rgba(0, 78, 100, 0.18);
+        }
+
+        .feature-button.secondary {
+            color: var(--feature-teal);
+            background: #fff;
+            border-color: var(--feature-line);
+        }
+
+        .feature-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .mobile-local-menu {
+            display: none;
+            width: 38px;
+            height: 38px;
+            margin-left: 6px;
+            border-radius: 8px;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border: 1px solid var(--feature-line);
+            color: var(--feature-ink);
+        }
+
+        .mobile-local-menu svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .proof-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            max-width: 610px;
+        }
+
+        .proof-item {
+            border-top: 1px solid var(--feature-line);
+            padding-top: 14px;
+        }
+
+        .proof-item strong {
+            display: block;
+            color: var(--feature-ink);
+            font-size: 22px;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .proof-item span {
+            color: var(--feature-muted);
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .product-stage {
+            position: relative;
+            min-height: 620px;
+            overflow: visible;
+        }
+
+        .pet-orbit {
+            position: absolute;
+            inset: 28px 20px auto auto;
+            width: 390px;
+            aspect-ratio: 1;
+            border-radius: 48% 52% 46% 54%;
+            background: linear-gradient(135deg, #fce6df 0%, #e0f3ef 100%);
+            display: grid;
+            place-items: end center;
+            overflow: hidden;
+            box-shadow: 0 36px 90px rgba(16, 36, 43, 0.16);
+        }
+
+        .pet-orbit img {
+            width: 92%;
+            max-height: 92%;
+            object-fit: contain;
+            filter: drop-shadow(0 22px 28px rgba(16, 36, 43, 0.18));
+        }
+
+        .app-panel {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.82);
+            border-radius: var(--feature-radius);
+            box-shadow: 0 24px 70px rgba(16, 36, 43, 0.13);
+            backdrop-filter: blur(18px);
+        }
+
+        .listing-panel {
+            left: 0;
+            top: 76px;
+            width: 310px;
+            padding: 14px;
+        }
+
+        .listing-card {
+            display: grid;
+            grid-template-columns: 84px 1fr;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .listing-card img {
+            width: 84px;
+            height: 84px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: #f5e7df;
+        }
+
+        .listing-card h3,
+        .chat-panel h3,
+        .moderation-panel h3 {
+            font-size: 15px;
+            margin: 0 0 6px;
+            letter-spacing: 0;
+        }
+
+        .listing-card p,
+        .moderation-panel p {
+            margin: 0;
+            color: var(--feature-muted);
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .status-line {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .status-line span {
+            height: 8px;
+            border-radius: 99px;
+            background: #dcebe7;
+            flex: 1;
+        }
+
+        .status-line span:first-child {
+            background: var(--feature-coral);
+        }
+
+        .chat-panel {
+            right: 8px;
+            top: 378px;
+            width: 286px;
+            padding: 16px;
+        }
+
+        .message {
+            width: fit-content;
+            max-width: 92%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .message.in {
+            background: #eef7f5;
+            color: var(--feature-teal);
+        }
+
+        .message.out {
+            margin-left: auto;
+            background: var(--feature-coral);
+            color: #fff;
+        }
+
+        .moderation-panel {
+            left: 44px;
+            bottom: 36px;
+            width: 332px;
+            padding: 18px;
+        }
+
+        .moderation-row {
+            display: grid;
+            grid-template-columns: 34px 1fr auto;
+            gap: 10px;
+            align-items: center;
+            margin-top: 16px;
+        }
+
+        .mini-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            color: var(--feature-teal);
+            background: var(--feature-mint);
+        }
+
+        .moderation-row strong {
+            display: block;
+            font-size: 12px;
+        }
+
+        .moderation-row span,
+        .moderation-score {
+            color: var(--feature-muted);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .feature-command-strip {
+            margin-top: -18px;
             position: relative;
             z-index: 2;
         }
 
-        .timeline-content {
-            flex: 1;
+        .command-inner {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1px;
+            background: var(--feature-line);
+            border: 1px solid var(--feature-line);
+            border-radius: var(--feature-radius);
+            overflow: hidden;
+            box-shadow: 0 20px 54px rgba(16, 36, 43, 0.08);
         }
 
-        .timeline-title {
-            font-weight: 700;
-            color: var(--black);
-            margin-bottom: 4px;
-        }
-
-        .timeline-description {
-            font-size: 14px;
-            color: var(--dark-gray);
-        }
-
-        .cta-section {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 60px 40px;
-            border-radius: var(--radius-2xl);
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        .cta-title {
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-
-        .cta-description {
-            font-size: 16px;
-            margin-bottom: 24px;
-            opacity: 0.95;
-        }
-
-        .cta-buttons {
+        .command-item {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 22px;
             display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
         }
 
-        .cta-btn {
-            padding: 14px 28px;
-            border: none;
-            border-radius: var(--radius-lg);
+        .command-item svg,
+        .feature-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--feature-coral);
+        }
+
+        .command-item strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .command-item span {
+            color: var(--feature-muted);
+            font-size: 12px;
             font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        }
+
+        .feature-section {
+            padding: 108px 0;
+        }
+
+        .section-heading {
+            max-width: 760px;
+            margin-bottom: 42px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(34px, 4vw, 58px);
+            line-height: 1;
+            letter-spacing: 0;
+            margin: 0 0 16px;
+        }
+
+        .section-heading p {
+            color: var(--feature-muted);
+            font-size: 17px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            border: 1px solid var(--feature-line);
+            border-radius: var(--feature-radius);
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .story-card {
+            padding: 30px;
+            min-height: 330px;
+            border-right: 1px solid var(--feature-line);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .story-card:last-child {
+            border-right: 0;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background: #fff3ef;
+            display: grid;
+            place-items: center;
+            margin-bottom: 24px;
+        }
+
+        .story-card h3 {
+            font-size: 26px;
+            letter-spacing: 0;
+            margin: 0 0 12px;
+        }
+
+        .story-card p {
+            color: var(--feature-muted);
             font-size: 15px;
+            line-height: 1.65;
+            margin: 0;
         }
 
-        .cta-btn.primary {
-            background: white;
-            color: var(--primary);
+        .feature-list {
+            display: grid;
+            gap: 10px;
+            margin-top: 26px;
+            color: var(--feature-ink);
+            font-size: 13px;
+            font-weight: 800;
         }
 
-        .cta-btn.primary:hover {
-            transform: translateY(-2px);
+        .feature-list span {
+            display: flex;
+            align-items: center;
+            gap: 9px;
         }
 
-        .cta-btn.secondary {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid white;
+        .feature-list span::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 99px;
+            background: var(--feature-coral);
         }
 
-        .cta-btn.secondary:hover {
-            background: rgba(255, 255, 255, 0.3);
+        .workflow-section {
+            background: linear-gradient(180deg, #f4fbf9 0%, #ffffff 100%);
         }
 
-        @media (max-width: 768px) {
-            .features-container {
-                padding: 20px;
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: 0.82fr 1.18fr;
+            gap: 34px;
+            align-items: start;
+        }
+
+        .workflow-copy {
+            position: sticky;
+            top: 104px;
+        }
+
+        .workflow-stack {
+            display: grid;
+            gap: 16px;
+        }
+
+        .workflow-row {
+            display: grid;
+            grid-template-columns: 72px 1fr auto;
+            gap: 18px;
+            align-items: center;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid var(--feature-line);
+            border-radius: var(--feature-radius);
+            box-shadow: 0 12px 34px rgba(16, 36, 43, 0.05);
+        }
+
+        .workflow-number {
+            width: 52px;
+            height: 52px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            color: #fff;
+            background: var(--feature-teal);
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .workflow-row h3 {
+            margin: 0 0 6px;
+            font-size: 20px;
+            letter-spacing: 0;
+        }
+
+        .workflow-row p {
+            margin: 0;
+            color: var(--feature-muted);
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        .workflow-tag {
+            color: var(--feature-coral);
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .toolkit-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 18px;
+        }
+
+        .toolkit-board,
+        .plans-board {
+            border-radius: var(--feature-radius);
+            border: 1px solid var(--feature-line);
+            background: #fff;
+            overflow: hidden;
+            box-shadow: 0 24px 70px rgba(16, 36, 43, 0.08);
+        }
+
+        .toolkit-board {
+            min-height: 560px;
+            display: grid;
+            grid-template-rows: auto 1fr;
+        }
+
+        .board-header {
+            min-height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 0 22px;
+            border-bottom: 1px solid var(--feature-line);
+        }
+
+        .board-title {
+            font-size: 15px;
+            font-weight: 900;
+        }
+
+        .board-tabs {
+            display: flex;
+            gap: 8px;
+        }
+
+        .board-tabs span {
+            border: 1px solid var(--feature-line);
+            border-radius: 8px;
+            padding: 8px 10px;
+            color: var(--feature-muted);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .board-tabs span:first-child {
+            color: #fff;
+            border-color: var(--feature-teal);
+            background: var(--feature-teal);
+        }
+
+        .toolkit-body {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+        }
+
+        .toolkit-sidebar {
+            border-right: 1px solid var(--feature-line);
+            padding: 18px;
+            background: #fbfdfc;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            border-radius: 8px;
+            color: var(--feature-muted);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .sidebar-link.active {
+            color: var(--feature-teal);
+            background: var(--feature-mint);
+        }
+
+        .analytics-view {
+            padding: 20px;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .metric {
+            border: 1px solid var(--feature-line);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .metric span {
+            color: var(--feature-muted);
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .metric strong {
+            display: block;
+            font-size: 27px;
+            margin-top: 8px;
+        }
+
+        .chart {
+            height: 210px;
+            border: 1px solid var(--feature-line);
+            border-radius: 8px;
+            background:
+                linear-gradient(to top, rgba(0, 78, 100, 0.08) 0 1px, transparent 1px 100%),
+                linear-gradient(135deg, rgba(255, 111, 97, 0.18), rgba(0, 78, 100, 0.06));
+            background-size: 100% 42px, auto;
+            display: flex;
+            align-items: end;
+            gap: 13px;
+            padding: 18px;
+        }
+
+        .chart span {
+            flex: 1;
+            min-width: 14px;
+            border-radius: 8px 8px 0 0;
+            background: var(--feature-teal);
+        }
+
+        .chart span:nth-child(2n) {
+            background: var(--feature-coral);
+        }
+
+        .insight-list {
+            display: grid;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .insight-row {
+            display: grid;
+            grid-template-columns: 40px 1fr auto;
+            gap: 12px;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid var(--feature-line);
+            border-radius: 8px;
+        }
+
+        .insight-row img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .insight-row strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .insight-row span {
+            color: var(--feature-muted);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .plans-board {
+            padding: 24px;
+            min-height: 560px;
+        }
+
+        .plan-card {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--feature-line);
+        }
+
+        .plan-card:last-child {
+            border-bottom: 0;
+        }
+
+        .plan-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .plan-top h3 {
+            font-size: 22px;
+            margin: 0;
+            letter-spacing: 0;
+        }
+
+        .price {
+            color: var(--feature-teal);
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .plan-card p {
+            color: var(--feature-muted);
+            font-size: 14px;
+            margin: 0 0 14px;
+            line-height: 1.6;
+        }
+
+        .plan-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .plan-features span {
+            border: 1px solid var(--feature-line);
+            border-radius: 8px;
+            padding: 8px 10px;
+            color: var(--feature-muted);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .safety-band {
+            background: var(--feature-teal);
+            color: #fff;
+        }
+
+        .safety-band .section-heading h2,
+        .safety-band .section-heading p {
+            color: #fff;
+        }
+
+        .safety-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: var(--feature-radius);
+            overflow: hidden;
+        }
+
+        .safety-item {
+            min-height: 220px;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .safety-item svg {
+            width: 28px;
+            height: 28px;
+            color: #ffb4aa;
+            margin-bottom: 26px;
+        }
+
+        .safety-item h3 {
+            color: #fff;
+            font-size: 20px;
+            margin: 0 0 10px;
+            letter-spacing: 0;
+        }
+
+        .safety-item p {
+            color: rgba(255, 255, 255, 0.78);
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .final-cta {
+            padding: 112px 0;
+            text-align: center;
+        }
+
+        .final-cta-inner {
+            width: min(900px, 100%);
+            margin: 0 auto;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(38px, 5vw, 74px);
+            line-height: 0.98;
+            letter-spacing: 0;
+            margin: 0 0 20px;
+        }
+
+        .final-cta p {
+            color: var(--feature-muted);
+            font-size: 17px;
+            line-height: 1.7;
+            margin: 0 auto 30px;
+            max-width: 650px;
+        }
+
+        .final-cta .hero-actions {
+            justify-content: center;
+            margin: 0;
+        }
+
+        @media (max-width: 1040px) {
+            .features-hero {
+                padding-top: 104px;
             }
 
-            .features-title {
-                font-size: 28px;
+            .hero-grid,
+            .workflow-grid,
+            .toolkit-grid {
+                grid-template-columns: 1fr;
             }
 
-            .section-header {
-                flex-wrap: wrap;
+            .product-stage {
+                min-height: 560px;
             }
 
-            .cta-section {
-                padding: 40px 24px;
+            .workflow-copy {
+                position: static;
             }
 
-            .cta-buttons {
-                flex-direction: column;
+            .command-inner,
+            .safety-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
-            .cta-btn {
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .story-card {
+                min-height: auto;
+                border-right: 0;
+                border-bottom: 1px solid var(--feature-line);
+            }
+
+            .story-card:last-child {
+                border-bottom: 0;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .features-page,
+            .features-hero,
+            .hero-grid,
+            .hero-copy {
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            .features-shell {
+                width: min(100% - 32px, 1180px);
+            }
+
+            .nav-container {
+                padding-left: 16px;
+                padding-right: 16px;
+                gap: 10px;
+                max-width: 100%;
                 width: 100%;
+            }
+
+            .navbar .nav-container > div:last-child {
+                display: none !important;
+            }
+
+            .mobile-local-menu {
+                display: flex;
+            }
+
+            .features-hero {
+                min-height: auto;
+                padding: 92px 0 40px;
+            }
+
+            .hero-copy h1 {
+                font-size: 38px;
+                max-width: 330px;
+                overflow-wrap: normal;
+            }
+
+            .hero-copy p {
+                font-size: 16px;
+                max-width: 340px;
+            }
+
+            .hero-actions,
+            .proof-row,
+            .command-inner,
+            .safety-grid,
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-actions {
+                display: grid;
+                width: 100%;
+                max-width: 340px;
+            }
+
+            .feature-button {
+                width: 100%;
+            }
+
+            .product-stage {
+                min-height: 560px;
+                overflow: hidden;
+            }
+
+            .pet-orbit {
+                width: min(320px, 92vw);
+                inset: 16px 0 auto auto;
+            }
+
+            .listing-panel,
+            .chat-panel,
+            .moderation-panel {
+                width: min(310px, calc(100vw - 48px));
+            }
+
+            .listing-panel {
+                top: 42px;
+            }
+
+            .chat-panel {
+                top: 326px;
+                right: 0;
+            }
+
+            .moderation-panel {
+                left: 0;
+                bottom: 0;
+            }
+
+            .feature-section {
+                padding: 72px 0;
+            }
+
+            .story-card,
+            .plans-board,
+            .analytics-view {
+                padding: 22px;
+            }
+
+            .workflow-row,
+            .moderation-row,
+            .insight-row {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow-tag,
+            .moderation-score {
+                justify-self: start;
+            }
+
+            .toolkit-body {
+                grid-template-columns: 1fr;
+            }
+
+            .toolkit-sidebar {
+                border-right: 0;
+                border-bottom: 1px solid var(--feature-line);
+            }
+
+            .board-header {
+                height: auto;
+                min-height: 68px;
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 18px;
+            }
+
+            .board-tabs {
+                flex-wrap: wrap;
             }
         }
     </style>
 </head>
 <body>
-    <canvas id="background-canvas"></canvas>
+    <div class="features-page">
+        <nav class="navbar" id="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo">
+                    <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true"><path d="M8 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm10-3a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm8 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM16 28c-4 0-7.5-2-9.5-5a1 1 0 0 1 .3-1.4c1.8-1.2 4-1.8 6.2-1.8h6c2.2 0 4.4.6 6.2 1.8a1 1 0 0 1 .3 1.4C23.5 26 20 28 16 28Zm-4-14a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm14 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" fill="currentColor"/></svg>
+                    <span>GS-Petto</span>
+                    <button class="mobile-local-menu" id="features-mobile-menu" aria-label="Open menu" type="button">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v2H4V7Zm0 4h16v2H4v-2Zm0 4h16v2H4v-2Z" fill="currentColor"/></svg>
+                    </button>
+                </a>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <span class="logo-paw">🐾</span>
-                <span class="logo-name">Petto</span>
-            </div>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link">🏠 Home</a>
-                <a href="browse.html" class="nav-link">🔍 Browse</a>
-                <a href="post-ad.html" class="nav-link">📝 Post Ad</a>
-                <a href="login.html" class="nav-link login-btn">🔐 Login</a>
-            </div>
-            <div class="mobile-menu-toggle">☰</div>
-        </div>
-    </nav>
+                <div class="nav-links" id="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="browse.html" class="nav-link">Discover</a>
+                    <a href="adoption.html" class="nav-link">Adopt</a>
+                    <a href="post-ad.html" class="nav-link">Sell</a>
+                    <a href="features.html" class="nav-link active">Features</a>
+                    <a href="login.html" class="nav-cta">Sign In</a>
+                </div>
 
-    <div class="features-container">
-        <!-- Hero -->
-        <div class="features-hero">
-            <h1 class="features-title">✨ Petto Features</h1>
-            <p class="features-subtitle">A complete pet marketplace with OLX-scale features for buying, selling, and adopting pets</p>
-        </div>
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Open menu">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" fill="currentColor"/></svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
 
-        <!-- Feature Section 1: User Accounts -->
-        <div class="feature-section">
-            <div class="section-header">
-                <div class="section-number">1</div>
-                <div class="section-title">👤 User Accounts & Security</div>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <div class="feature-name">Phone Verification</div>
-                    <div class="feature-description">Secure OTP-based phone number verification with SMS delivery</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📧</div>
-                    <div class="feature-name">Email Login</div>
-                    <div class="feature-description">Traditional email and password authentication</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔐</div>
-                    <div class="feature-name">Social Login</div>
-                    <div class="feature-description">Quick sign-up via Google and Apple accounts</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✓</div>
-                    <div class="feature-name">Verification Badge</div>
-                    <div class="feature-description">Earn trust with verified account badge</div>
-                </div>
-            </div>
-        </div>
+        <main>
+            <section class="features-hero">
+                <div class="features-shell hero-grid">
+                    <div class="hero-copy">
+                        <h1>Everything Petto can do</h1>
+                        <p>A complete marketplace system for verified pet listings, safer conversations, adoption workflows, seller growth, and platform moderation.</p>
+                        <div class="hero-actions">
+                            <a class="feature-button primary" href="browse.html">
+                                Explore pets
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.3 5.3 19 11h-16v2h16l-5.7 5.7 1.4 1.4L22.8 12l-8.1-8.1-1.4 1.4Z" fill="currentColor"/></svg>
+                            </a>
+                            <a class="feature-button secondary" href="post-ad.html">
+                                Post a listing
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5Z" fill="currentColor"/></svg>
+                            </a>
+                        </div>
+                        <div class="proof-row">
+                            <div class="proof-item">
+                                <strong>12</strong>
+                                <span>marketplace systems in one product</span>
+                            </div>
+                            <div class="proof-item">
+                                <strong>3</strong>
+                                <span>plans for casual, pro, and business sellers</span>
+                            </div>
+                            <div class="proof-item">
+                                <strong>24/7</strong>
+                                <span>trust, reports, and moderation readiness</span>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- Feature Section 2: Posting Ads -->
-        <div class="feature-section">
-            <div class="section-header">
-                <div class="section-number">2</div>
-                <div class="section-title">📝 Posting Ads & Content Management</div>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🧙</div>
-                    <div class="feature-name">Multi-Step Wizard</div>
-                    <div class="feature-description">Guided 4-step ad creation process for easy listing</div>
+                    <div class="product-stage" aria-label="Petto product interface preview">
+                        <div class="pet-orbit">
+                            <img src="images/hero-puppy.png" alt="Golden retriever puppy">
+                        </div>
+                        <div class="app-panel listing-panel">
+                            <div class="listing-card">
+                                <img src="images/cat-persian.png" alt="Persian cat listing">
+                                <div>
+                                    <h3>Luna is verified</h3>
+                                    <p>Health record, seller ID, photos, and adoption fit checked before publishing.</p>
+                                    <div class="status-line" aria-hidden="true"><span></span><span></span><span></span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-panel chat-panel">
+                            <h3>Safer conversation</h3>
+                            <div class="message in">Can I see vaccination details?</div>
+                            <div class="message out">Shared in the listing. Meet-up slot added.</div>
+                        </div>
+                        <div class="app-panel moderation-panel">
+                            <h3>Trust console</h3>
+                            <p>Review signals help admins keep marketplace quality high.</p>
+                            <div class="moderation-row">
+                                <div class="mini-icon">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="m12 2 8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4Zm0 2.2L6 7.2V12c0 3.8 2.4 7.1 6 7.8 3.6-.7 6-4 6-7.8V7.2l-6-3Z" fill="currentColor"/></svg>
+                                </div>
+                                <div>
+                                    <strong>Listing risk</strong>
+                                    <span>Low, all checks passed</span>
+                                </div>
+                                <div class="moderation-score">98%</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🐾</div>
-                    <div class="feature-name">Pet Details</div>
-                    <div class="feature-description">Comprehensive pet information collection (type, breed, age, health)</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <div class="feature-name">Price Management</div>
-                    <div class="feature-description">Set prices, enable negotiations, manage special offers</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <div class="feature-name">Ad Management</div>
-                    <div class="feature-description">Renew, edit, deactivate, and manage all your listings</div>
-                </div>
-            </div>
-        </div>
+            </section>
 
-        <!-- Feature Section 3: Media -->
-        <div class="feature-section">
-            <div class="section-header">
-                <div class="section-number">3</div>
-                <div class="section-title">🖼️ Image & Media Management</div>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📸</div>
-                    <div class="feature-name">Photo Upload</div>
-                    <div class="feature-description">Upload and organize multiple pet photos</div>
+            <section class="feature-command-strip">
+                <div class="features-shell command-inner">
+                    <div class="command-item">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 6v6c0 5.1 3.8 9.4 9 10 5.2-.6 9-4.9 9-10V6l-9-4Zm0 2.2 7 3.1V12c0 4-2.9 7.3-7 7.9C7.9 19.3 5 16 5 12V7.3l7-3.1Z" fill="currentColor"/></svg>
+                        <div><strong>Identity</strong><span>OTP, email, social, badges</span></div>
+                    </div>
+                    <div class="command-item">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h10l4 4v14H5V3Zm2 2v14h10V8h-3V5H7Zm2 6h6v2H9v-2Zm0 4h6v2H9v-2Z" fill="currentColor"/></svg>
+                        <div><strong>Listings</strong><span>Photos, pricing, renewals</span></div>
+                    </div>
+                    <div class="command-item">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4a6 6 0 0 1 4.7 9.7l4.8 4.8-1.4 1.4-4.8-4.8A6 6 0 1 1 10 4Zm0 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z" fill="currentColor"/></svg>
+                        <div><strong>Discovery</strong><span>Search, filters, maps, saves</span></div>
+                    </div>
+                    <div class="command-item">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v12H7l-3 3V4Zm2 2v8.2l.2-.2H18V6H6Z" fill="currentColor"/></svg>
+                        <div><strong>Messaging</strong><span>Chat, sharing, read status</span></div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎥</div>
-                    <div class="feature-name">Video Support <span class="feature-badge pro">PRO</span></div>
-                    <div class="feature-description">Add videos to showcase your pet in action</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✏️</div>
-                    <div class="feature-name">Photo Editor</div>
-                    <div class="feature-description">Crop, rotate, and enhance your pet photos</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🖱️</div>
-                    <div class="feature-name">Drag & Drop</div>
-                    <div class="feature-description">Easy drag-and-drop interface for uploads</div>
-                </div>
-            </div>
-        </div>
+            </section>
 
-        <!-- Feature Section 4: Search & Discovery -->
-        <div class="feature-section">
-            <div class="section-header">
-                <div class="section-number">4</div>
-                <div class="section-title">🔍 Search, Filter & Discovery</div>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🔎</div>
-                    <div class="feature-name">Advanced Search</div>
-                    <div class="feature-description">Search by pet name, breed, location, price range</div>
+            <section class="feature-section">
+                <div class="features-shell">
+                    <div class="section-heading">
+                        <h2>Built around the moments that matter</h2>
+                        <p>Petto turns a risky classified journey into a guided marketplace experience, from account verification to the first message and the final handoff.</p>
+                    </div>
+                    <div class="story-grid">
+                        <article class="story-card">
+                            <div>
+                                <div class="feature-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5Z" fill="currentColor"/></svg></div>
+                                <h3>Trust & identity</h3>
+                                <p>Phone OTP, email login, social login, verified badges, seller ratings, written reviews, and trust badges help every profile feel accountable.</p>
+                            </div>
+                            <div class="feature-list">
+                                <span>Verification badge</span>
+                                <span>Good Seller and Top Rated status</span>
+                                <span>Block and report controls</span>
+                            </div>
+                        </article>
+                        <article class="story-card">
+                            <div>
+                                <div class="feature-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4V5Zm2 2v10h12V7H6Zm2 2h4v4H8V9Zm6 0h2v2h-2V9Zm0 4h2v2h-2v-2Z" fill="currentColor"/></svg></div>
+                                <h3>Listing studio</h3>
+                                <p>A guided posting flow captures breed, age, health, price, photos, videos, documents, negotiability, and ad status without overwhelming sellers.</p>
+                            </div>
+                            <div class="feature-list">
+                                <span>4-step listing wizard</span>
+                                <span>Photo editor and drag upload</span>
+                                <span>Edit, renew, deactivate, boost</span>
+                            </div>
+                        </article>
+                        <article class="story-card">
+                            <div>
+                                <div class="feature-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a8 8 0 0 1 8 8c0 5.5-8 12-8 12S4 15.5 4 10a8 8 0 0 1 8-8Zm0 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"/></svg></div>
+                                <h3>Discovery engine</h3>
+                                <p>Buyers can find the right companion by breed, location, price, type, age, gender, seller rating, newest listings, favorites, and saved searches.</p>
+                            </div>
+                            <div class="feature-list">
+                                <span>Smart filters and sorting</span>
+                                <span>Map and area preference</span>
+                                <span>Price drop and search alerts</span>
+                            </div>
+                        </article>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <div class="feature-name">Smart Filters</div>
-                    <div class="feature-description">Filter by type, age, gender, price, seller rating</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📍</div>
-                    <div class="feature-name">Location Search</div>
-                    <div class="feature-description">Find pets near you with location-based filtering</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⭐</div>
-                    <div class="feature-name">Smart Sorting</div>
-                    <div class="feature-description">Sort by newest, price, popularity, or rating</div>
-                </div>
-            </div>
-        </div>
+            </section>
 
-        <!-- Feature Section 5: Chat -->
-        <div class="feature-section">
-            <div class="section-header">
-                <div class="section-number">5</div>
-                <div class="section-title">💬 In-App Chat & Messaging</div>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <div class="feature-name">Real-Time Chat</div>
-                    <div class="feature-description">Instant messaging with buyers and sellers</div>
+            <section class="feature-section workflow-section">
+                <div class="features-shell workflow-grid">
+                    <div class="section-heading workflow-copy">
+                        <h2>From discovery to deal, the path is clear</h2>
+                        <p>Each workflow gives users the next best action without hiding the serious details: identity, health proof, conversation context, and safety signals.</p>
+                    </div>
+                    <div class="workflow-stack">
+                        <article class="workflow-row">
+                            <div class="workflow-number">01</div>
+                            <div>
+                                <h3>Create or verify an account</h3>
+                                <p>Users can sign up by phone, email, Google, or Apple, then earn verification indicators that build marketplace confidence.</p>
+                            </div>
+                            <span class="workflow-tag">Security</span>
+                        </article>
+                        <article class="workflow-row">
+                            <div class="workflow-number">02</div>
+                            <div>
+                                <h3>Publish a complete pet profile</h3>
+                                <p>The listing wizard guides media, breed data, health records, pricing, negotiations, and special offers into one clear profile.</p>
+                            </div>
+                            <span class="workflow-tag">Posting</span>
+                        </article>
+                        <article class="workflow-row">
+                            <div class="workflow-number">03</div>
+                            <div>
+                                <h3>Match with the right family</h3>
+                                <p>Advanced search, saved lists, map filters, and notifications help people return to the pets and sellers they care about.</p>
+                            </div>
+                            <span class="workflow-tag">Discovery</span>
+                        </article>
+                        <article class="workflow-row">
+                            <div class="workflow-number">04</div>
+                            <div>
+                                <h3>Chat with context</h3>
+                                <p>In-app messages support files, photos, read status, and blocking so conversations stay organized and safer.</p>
+                            </div>
+                            <span class="workflow-tag">Chat</span>
+                        </article>
+                        <article class="workflow-row">
+                            <div class="workflow-number">05</div>
+                            <div>
+                                <h3>Measure, moderate, and grow</h3>
+                                <p>Seller analytics, premium plans, boosts, moderation queues, user management, and admin revenue insights keep the platform scalable.</p>
+                            </div>
+                            <span class="workflow-tag">Scale</span>
+                        </article>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📎</div>
-                    <div class="feature-name">File Sharing</div>
-                    <div class="feature-description">Share photos and documents in conversations</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👀</div>
-                    <div class="feature-name">Read Status</div>
-                    <div class="feature-description">See when messages are read</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚫</div>
-                    <div class="feature-name">Block Users</div>
-                    <div class="feature-description">Block problematic buyers or sellers</div>
-                </div>
-            </div>
-        </div>
+            </section>
 
-        <!-- Feature Section 6-10 in compact view -->
-        <div class="feature-section">
-            <div class="section-header">
-                <div class="section-number">6-10</div>
-                <div class="section-title">📍 Location • ❤️ Favorites • 🔔 Notifications • 📊 Analytics • 💰 Monetization</div>
-            </div>
-            <div class="two-column">
-                <div class="feature-card">
-                    <div class="feature-icon">📍</div>
-                    <div class="feature-name">Location & Maps</div>
-                    <div class="feature-description">View pets on map, filter by area, set location preferences</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">❤️</div>
-                    <div class="feature-name">Favorites & Saved</div>
-                    <div class="feature-description">Save favorite pets and searches for later</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔔</div>
-                    <div class="feature-name">Smart Notifications</div>
-                    <div class="feature-description">Alerts for messages, inquiries, price drops, ad expiry</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <div class="feature-name">Seller Analytics</div>
-                    <div class="feature-description">Track views, inquiries, conversion rates, top performers</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <div class="feature-name">Premium Plans</div>
-                    <div class="feature-description">Free, Pro, and Business subscription tiers</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <div class="feature-name">Boost Features</div>
-                    <div class="feature-description">Boost to top, featured badge, extra photos, video</div>
-                </div>
-            </div>
-        </div>
+            <section class="feature-section">
+                <div class="features-shell">
+                    <div class="section-heading">
+                        <h2>Seller growth without clutter</h2>
+                        <p>Professional sellers get performance visibility and monetization tools while casual users still get a calm, simple experience.</p>
+                    </div>
+                    <div class="toolkit-grid">
+                        <div class="toolkit-board">
+                            <div class="board-header">
+                                <div class="board-title">Seller dashboard</div>
+                                <div class="board-tabs"><span>Overview</span><span>Listings</span><span>Messages</span></div>
+                            </div>
+                            <div class="toolkit-body">
+                                <aside class="toolkit-sidebar" aria-label="Seller dashboard navigation">
+                                    <div class="sidebar-link active">Analytics <span>12</span></div>
+                                    <div class="sidebar-link">Active ads <span>8</span></div>
+                                    <div class="sidebar-link">Boosts <span>3</span></div>
+                                    <div class="sidebar-link">Reviews <span>4.9</span></div>
+                                    <div class="sidebar-link">Documents <span>21</span></div>
+                                </aside>
+                                <div class="analytics-view">
+                                    <div class="metric-grid">
+                                        <div class="metric"><span>Views</span><strong>18.4k</strong></div>
+                                        <div class="metric"><span>Inquiries</span><strong>642</strong></div>
+                                        <div class="metric"><span>Conversion</span><strong>12%</strong></div>
+                                    </div>
+                                    <div class="chart" aria-label="Seller analytics chart">
+                                        <span style="height:38%"></span><span style="height:58%"></span><span style="height:44%"></span><span style="height:72%"></span><span style="height:63%"></span><span style="height:88%"></span><span style="height:76%"></span>
+                                    </div>
+                                    <div class="insight-list">
+                                        <div class="insight-row">
+                                            <img src="images/husky-puppy.png" alt="Husky puppy">
+                                            <div><strong>Husky puppy listing</strong><span>Top performer by saved searches</span></div>
+                                            <span>+38%</span>
+                                        </div>
+                                        <div class="insight-row">
+                                            <img src="images/cat-persian.png" alt="Persian cat">
+                                            <div><strong>Persian cat listing</strong><span>Featured boost expires tomorrow</span></div>
+                                            <span>Renew</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        <!-- Feature Section 11-12 -->
-        <div class="feature-section">
-            <div class="section-header">
-                <div class="section-number">11-12</div>
-                <div class="section-title">🛡️ Safety & Trust • 👑 Admin Panel</div>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⭐</div>
-                    <div class="feature-name">Rating System</div>
-                    <div class="feature-description">5-star ratings with written reviews</div>
+                        <div class="plans-board">
+                            <div class="plan-card">
+                                <div class="plan-top"><h3>Free</h3><div class="price">₹0</div></div>
+                                <p>For pet parents and occasional listings with trusted basics.</p>
+                                <div class="plan-features"><span>5 ads</span><span>10 photos</span><span>Basic analytics</span></div>
+                            </div>
+                            <div class="plan-card">
+                                <div class="plan-top"><h3>Pro</h3><div class="price">₹999/mo</div></div>
+                                <p>For active sellers who need video, badges, boosts, and better support.</p>
+                                <div class="plan-features"><span>50 ads</span><span>20+ photos</span><span>Video</span><span>Boosts</span></div>
+                            </div>
+                            <div class="plan-card">
+                                <div class="plan-top"><h3>Business</h3><div class="price">₹4,999/mo</div></div>
+                                <p>For breeders, shelters, and pet businesses with high listing volume.</p>
+                                <div class="plan-features"><span>Unlimited ads</span><span>Full analytics</span><span>Dedicated manager</span></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏅</div>
-                    <div class="feature-name">Trust Badges</div>
-                    <div class="feature-description">Verified, Good Seller, and Top Rated badges</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📋</div>
-                    <div class="feature-name">Ad Moderation</div>
-                    <div class="feature-description">Review and approve pet listings for quality</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚨</div>
-                    <div class="feature-name">Report System</div>
-                    <div class="feature-description">Report fraudulent or problematic listings</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <div class="feature-name">User Management</div>
-                    <div class="feature-description">Admin tools to verify, approve, or suspend users</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📈</div>
-                    <div class="feature-name">Admin Analytics</div>
-                    <div class="feature-description">Platform insights, user trends, revenue data</div>
-                </div>
-            </div>
-        </div>
+            </section>
 
-        <!-- Pet-Specific Features -->
-        <div class="feature-section">
-            <div class="section-header">
-                <div class="section-number">🐾</div>
-                <div class="section-title">Pet-Specific Features</div>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🐶</div>
-                    <div class="feature-name">Multi-Pet Support</div>
-                    <div class="feature-description">Dogs, cats, birds, rabbits, fish, and more</div>
+            <section class="feature-section safety-band">
+                <div class="features-shell">
+                    <div class="section-heading">
+                        <h2>Safety is a system, not a label</h2>
+                        <p>Petto combines moderation, reports, badges, records, and admin controls so trust can be earned and reviewed continuously.</p>
+                    </div>
+                    <div class="safety-grid">
+                        <article class="safety-item">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5.2 3.4 9.5 8 11 4.6-1.5 8-5.8 8-11V5l-8-3Zm0 2.2 6 2.3V11c0 4-2.4 7.3-6 8.8C8.4 18.3 6 15 6 11V6.5l6-2.3Z" fill="currentColor"/></svg>
+                            <h3>Ad moderation</h3>
+                            <p>Review queues and approval states keep low-quality listings away from buyers.</p>
+                        </article>
+                        <article class="safety-item">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 17h2v2h-2v-2Zm0-12h2v10h-2V5Zm1-3 10 19H2L12 2Zm0 4.2L5.3 19h13.4L12 6.2Z" fill="currentColor"/></svg>
+                            <h3>Reports</h3>
+                            <p>Users can flag fraud, unsafe behavior, duplicate content, or problematic conversations.</p>
+                        </article>
+                        <article class="safety-item">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a5 5 0 0 1 5 5v2h2v11H5V10h2V8a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v2h6V8a3 3 0 0 0-3-3Zm-5 7v7h10v-7H7Z" fill="currentColor"/></svg>
+                            <h3>Access control</h3>
+                            <p>Admins can verify, approve, suspend, and manage users from one platform panel.</p>
+                        </article>
+                        <article class="safety-item">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v18H5V3Zm2 2v14h10V5H7Zm2 2h6v2H9V7Zm0 4h6v2H9v-2Zm0 4h4v2H9v-2Z" fill="currentColor"/></svg>
+                            <h3>Health records</h3>
+                            <p>Vaccination certificates and pet details make each listing more transparent.</p>
+                        </article>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🧬</div>
-                    <div class="feature-name">Breed Database</div>
-                    <div class="feature-description">Comprehensive breed information and characteristics</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💉</div>
-                    <div class="feature-name">Health Tracking</div>
-                    <div class="feature-description">Vaccination certificates and health records</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">❤️</div>
-                    <div class="feature-name">Adoption Program</div>
-                    <div class="feature-description">Partner with NGOs for pet adoption</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <div class="feature-name">Pet Safety Tips</div>
-                    <div class="feature-description">Guides for pet care, health, and safety</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
-                    <div class="feature-name">Success Stories</div>
-                    <div class="feature-description">Adoption testimonials and pet success stories</div>
-                </div>
-            </div>
-        </div>
+            </section>
 
-        <!-- Subscription Comparison -->
-        <div class="feature-section">
-            <div class="section-title" style="margin-bottom: 24px;">💎 Subscription Plans Comparison</div>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Free</th>
-                        <th>Pro</th>
-                        <th>Business</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Ads per month</td>
-                        <td>5</td>
-                        <td>50</td>
-                        <td>Unlimited</td>
-                    </tr>
-                    <tr>
-                        <td>Price</td>
-                        <td class="checkmark">Free</td>
-                        <td>₹999/mo</td>
-                        <td>₹4,999/mo</td>
-                    </tr>
-                    <tr>
-                        <td>Photos per ad</td>
-                        <td>10</td>
-                        <td>20+</td>
-                        <td>Unlimited</td>
-                    </tr>
-                    <tr>
-                        <td>Video upload</td>
-                        <td>—</td>
-                        <td class="checkmark">✓</td>
-                        <td class="checkmark">✓</td>
-                    </tr>
-                    <tr>
-                        <td>Verified badge</td>
-                        <td>—</td>
-                        <td class="checkmark">✓</td>
-                        <td class="checkmark">✓</td>
-                    </tr>
-                    <tr>
-                        <td>Priority support</td>
-                        <td>—</td>
-                        <td class="checkmark">✓</td>
-                        <td class="checkmark">✓</td>
-                    </tr>
-                    <tr>
-                        <td>Analytics</td>
-                        <td>Basic</td>
-                        <td>Advanced</td>
-                        <td>Full</td>
-                    </tr>
-                    <tr>
-                        <td>Boost to top</td>
-                        <td>—</td>
-                        <td class="checkmark">✓</td>
-                        <td class="checkmark">✓</td>
-                    </tr>
-                    <tr>
-                        <td>Featured badge</td>
-                        <td>—</td>
-                        <td class="checkmark">✓</td>
-                        <td class="checkmark">✓</td>
-                    </tr>
-                    <tr>
-                        <td>Dedicated manager</td>
-                        <td>—</td>
-                        <td>—</td>
-                        <td class="checkmark">✓</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- CTA Section -->
-        <div class="cta-section">
-            <h2 class="cta-title">Ready to Get Started?</h2>
-            <p class="cta-description">Join thousands of pet lovers buying, selling, and adopting on Petto</p>
-            <div class="cta-buttons">
-                <button class="cta-btn primary" onclick="window.location.href='browse.html'">Explore Pets 🔍</button>
-                <button class="cta-btn primary" onclick="window.location.href='post-ad.html'">Post Your Pet 📝</button>
-                <button class="cta-btn secondary" onclick="window.location.href='adoption.html'">Adopt ❤️</button>
-            </div>
-        </div>
+            <section class="final-cta">
+                <div class="features-shell final-cta-inner">
+                    <h2>Launch the marketplace people can trust</h2>
+                    <p>GS-Petto has the building blocks for discovery, adoption, selling, chat, payments-ready plans, and operational control.</p>
+                    <div class="hero-actions">
+                        <a class="feature-button primary" href="browse.html">Explore pets</a>
+                        <a class="feature-button secondary" href="post-ad.html">Post a listing</a>
+                        <a class="feature-button secondary" href="adoption.html">Adopt today</a>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="js/canvas-background.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById('features-mobile-menu')?.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById('nav-links')?.classList.toggle('open');
+        });
+    </script>
 </body>
 </html>
