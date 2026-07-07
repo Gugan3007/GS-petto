@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔔 Notifications - Petto</title>
+    <title> Notifications - Petto</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/product-ui.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
     <style>
@@ -323,23 +324,23 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <span class="logo-paw">🐾</span>
+                <span class="logo-paw"></span>
                 <span class="logo-name">Petto</span>
             </div>
             <div class="nav-links">
-                <a href="index.html" class="nav-link">🏠 Home</a>
-                <a href="browse.html" class="nav-link">🔍 Browse</a>
-                <a href="profile.html" class="nav-link">👤 Profile</a>
-                <a href="chat.html" class="nav-link">💬 Messages</a>
-                <a href="#logout" class="nav-link login-btn" onclick="alert('Logged out!'); window.location.href='index.html';">🚪 Logout</a>
+                <a href="index.html" class="nav-link"> Home</a>
+                <a href="browse.html" class="nav-link"> Browse</a>
+                <a href="profile.html" class="nav-link"> Profile</a>
+                <a href="chat.html" class="nav-link"> Messages</a>
+                <a href="#logout" class="nav-link login-btn" onclick="alert('Logged out!'); window.location.href='index.html';"> Logout</a>
             </div>
-            <div class="mobile-menu-toggle">☰</div>
+            <div class="mobile-menu-toggle"> </div>
         </div>
     </nav>
 
     <div class="notifications-container">
         <div class="notifications-header">
-            <h1 class="notifications-title">🔔 Notifications</h1>
+            <h1 class="notifications-title"> Notifications</h1>
             <div class="notifications-actions">
                 <button class="btn-action" onclick="markAllRead()">Mark all as read</button>
                 <button class="btn-action" onclick="clearAll()">Clear all</button>
@@ -348,17 +349,17 @@
 
         <div class="notifications-filters">
             <button class="filter-btn active" onclick="filterNotifications('all')">All</button>
-            <button class="filter-btn" onclick="filterNotifications('message')">💬 Messages</button>
-            <button class="filter-btn" onclick="filterNotifications('inquiry')">❓ Inquiries</button>
-            <button class="filter-btn" onclick="filterNotifications('review')">⭐ Reviews</button>
-            <button class="filter-btn" onclick="filterNotifications('offer')">💰 Offers</button>
-            <button class="filter-btn" onclick="filterNotifications('alert')">⚠️ Alerts</button>
+            <button class="filter-btn" onclick="filterNotifications('message')"> Messages</button>
+            <button class="filter-btn" onclick="filterNotifications('inquiry')">  Inquiries</button>
+            <button class="filter-btn" onclick="filterNotifications('review')">  Reviews</button>
+            <button class="filter-btn" onclick="filterNotifications('offer')"> Offers</button>
+            <button class="filter-btn" onclick="filterNotifications('alert')">  Alerts</button>
         </div>
 
         <div class="notifications-list" id="notificationsList">
             <!-- Message Notification -->
             <div class="notification-item unread" data-type="message">
-                <div class="notification-icon">💬</div>
+                <div class="notification-icon"></div>
                 <div class="notification-content">
                     <div class="notification-title">New message from Priya Sharma</div>
                     <div class="notification-description">Is Max still available for adoption?</div>
@@ -374,7 +375,7 @@
 
             <!-- Inquiry Notification -->
             <div class="notification-item unread" data-type="inquiry">
-                <div class="notification-icon">❓</div>
+                <div class="notification-icon"> </div>
                 <div class="notification-content">
                     <div class="notification-title">New inquiry on your ad "Max - Golden Retriever"</div>
                     <div class="notification-description">Arjun Verma asked about health certificates and vaccination status</div>
@@ -390,10 +391,10 @@
 
             <!-- Review Notification -->
             <div class="notification-item" data-type="review">
-                <div class="notification-icon">⭐</div>
+                <div class="notification-icon"> </div>
                 <div class="notification-content">
                     <div class="notification-title">Positive review from Kumar Patel</div>
-                    <div class="notification-description">5⭐ "Great seller! Max is healthy and friendly. Highly recommend!"</div>
+                    <div class="notification-description">5  "Great seller! Max is healthy and friendly. Highly recommend!"</div>
                     <div class="notification-meta">
                         <div class="notification-time">1 hour ago</div>
                         <div class="notification-actions">
@@ -405,10 +406,10 @@
 
             <!-- Price Drop Notification -->
             <div class="notification-item" data-type="alert">
-                <div class="notification-icon">🔔</div>
+                <div class="notification-icon"></div>
                 <div class="notification-content">
                     <div class="notification-title">Price drop alert for "Bella - Persian Cat"</div>
-                    <div class="notification-description">A cat similar to your saved pet dropped in price: ₹14,000 → ₹12,500</div>
+                    <div class="notification-description">A cat similar to your saved pet dropped in price:  14,000    12,500</div>
                     <div class="notification-meta">
                         <div class="notification-time">3 hours ago</div>
                         <div class="notification-actions">
@@ -420,10 +421,10 @@
 
             <!-- Purchase Offer -->
             <div class="notification-item" data-type="offer">
-                <div class="notification-icon">💰</div>
+                <div class="notification-icon"></div>
                 <div class="notification-content">
                     <div class="notification-title">Offer received for "Max - Golden Retriever"</div>
-                    <div class="notification-description">Neha Patel offered ₹23,000 for your pet (Asking: ₹25,000)</div>
+                    <div class="notification-description">Neha Patel offered  23,000 for your pet (Asking:  25,000)</div>
                     <div class="notification-meta">
                         <div class="notification-time">5 hours ago</div>
                         <div class="notification-actions">
@@ -436,7 +437,7 @@
 
             <!-- Ad Expiring Soon -->
             <div class="notification-item" data-type="alert">
-                <div class="notification-icon">⚠️</div>
+                <div class="notification-icon"> </div>
                 <div class="notification-content">
                     <div class="notification-title">Ad expiring soon: "Bella - Persian Cat"</div>
                     <div class="notification-description">Your ad will expire in 3 days. Renew it to keep it visible</div>
@@ -451,10 +452,10 @@
 
             <!-- Favorite Pet Available -->
             <div class="notification-item" data-type="alert">
-                <div class="notification-icon">❤️</div>
+                <div class="notification-icon"> </div>
                 <div class="notification-content">
                     <div class="notification-title">A pet similar to your favorites is now available</div>
-                    <div class="notification-description">"Rocky - Labrador Mix" just listed in your area - ₹20,000</div>
+                    <div class="notification-description">"Rocky - Labrador Mix" just listed in your area -  20,000</div>
                     <div class="notification-meta">
                         <div class="notification-time">2 days ago</div>
                         <div class="notification-actions">
@@ -466,9 +467,9 @@
 
             <!-- Trust Badge -->
             <div class="notification-item" data-type="alert">
-                <div class="notification-icon">✓</div>
+                <div class="notification-icon"> </div>
                 <div class="notification-content">
-                    <div class="notification-title">You've earned the "Good Seller" badge! 🏅</div>
+                    <div class="notification-title">You've earned the "Good Seller" badge! </div>
                     <div class="notification-description">Your consistent positive reviews qualify you for special seller benefits</div>
                     <div class="notification-meta">
                         <div class="notification-time">3 days ago</div>
@@ -482,11 +483,11 @@
 
         <!-- Notification Preferences -->
         <div class="preferences-section">
-            <h3 class="preferences-title">🔧 Notification Preferences</h3>
+            <h3 class="preferences-title"> Notification Preferences</h3>
             
             <div class="preference-item">
                 <div>
-                    <div class="preference-label">📨 Email Notifications</div>
+                    <div class="preference-label"> Email Notifications</div>
                     <div class="preference-description">Receive email alerts for important updates</div>
                 </div>
                 <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
@@ -494,7 +495,7 @@
 
             <div class="preference-item">
                 <div>
-                    <div class="preference-label">📱 Push Notifications</div>
+                    <div class="preference-label"> Push Notifications</div>
                     <div class="preference-description">Get alerts on your phone in real-time</div>
                 </div>
                 <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
@@ -502,7 +503,7 @@
 
             <div class="preference-item">
                 <div>
-                    <div class="preference-label">💬 Message Notifications</div>
+                    <div class="preference-label"> Message Notifications</div>
                     <div class="preference-description">Get notified when you receive new messages</div>
                 </div>
                 <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
@@ -510,7 +511,7 @@
 
             <div class="preference-item">
                 <div>
-                    <div class="preference-label">❓ Inquiry Notifications</div>
+                    <div class="preference-label">  Inquiry Notifications</div>
                     <div class="preference-description">Get notified when someone inquires about your ads</div>
                 </div>
                 <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
@@ -518,7 +519,7 @@
 
             <div class="preference-item">
                 <div>
-                    <div class="preference-label">🔖 Price Drop Alerts</div>
+                    <div class="preference-label"> Price Drop Alerts</div>
                     <div class="preference-description">Be alerted when saved pets' prices drop</div>
                 </div>
                 <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
@@ -526,7 +527,7 @@
 
             <div class="preference-item">
                 <div>
-                    <div class="preference-label">⭐ Review Notifications</div>
+                    <div class="preference-label">  Review Notifications</div>
                     <div class="preference-description">Get notified about new reviews and ratings</div>
                 </div>
                 <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
@@ -563,7 +564,7 @@
             if (confirm('Are you sure you want to clear all notifications?')) {
                 document.getElementById('notificationsList').innerHTML = `
                     <div class="empty-state">
-                        <div class="empty-icon">🔔</div>
+                        <div class="empty-icon"></div>
                         <div class="empty-title">No notifications</div>
                         <div class="empty-description">You're all caught up! Check back later for updates</div>
                     </div>
@@ -575,5 +576,6 @@
             element.classList.toggle('active');
         }
     </script>
+    <script src="js/interactions.js"></script>
 </body>
 </html>

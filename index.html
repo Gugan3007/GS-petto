@@ -1,303 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GS-Petto — Premium Pet Marketplace</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="GS-Petto is a trusted marketplace for verified pet listings, adoption, and safer conversations.">
+    <title>GS-Petto | Trusted Pet Marketplace</title>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/cinematic.css">
-    <link rel="stylesheet" href="css/advanced-effects.css">
     <link rel="stylesheet" href="css/responsive.css">
-
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <style>
-        /* Robust Splash Screen Fallback */
-        .splash-screen {
-            position: fixed;
-            inset: 0;
-            background: #000;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        /* Auto-hide splash screen after 3s if JS fails */
-        @keyframes autoHideSplash {
-            0% {
-                opacity: 1;
-                visibility: visible;
-            }
-
-            90% {
-                opacity: 1;
-                visibility: visible;
-            }
-
-            100% {
-                opacity: 0;
-                visibility: hidden;
-            }
-        }
-
-        .splash-screen.auto-hide {
-            animation: autoHideSplash 2.5s forwards;
-            pointer-events: none;
-        }
-
-        .splash-content {
-            text-align: center;
-        }
-
-        .splash-logo {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 900;
-            font-size: 48px;
-            color: #fff;
-            margin-bottom: 20px;
-            letter-spacing: -0.03em;
-        }
-
-        .loading-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 0 auto;
-        }
-
-        .loading-progress {
-            width: 0%;
-            height: 100%;
-            background: #10B981;
-            animation: progress 2s ease-in-out forwards;
-        }
-
-        @keyframes progress {
-            to {
-                width: 100%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/product-ui.css">
+    <link rel="stylesheet" href="css/home.css">
 </head>
-
-<body class="safe-mode">
-    <canvas id="background-canvas"></canvas>
-
-    <!-- Splash Screen -->
-    <div class="splash-screen auto-hide" id="splashScreen">
-        <div class="splash-content">
-            <h1 class="splash-logo">GS-Petto</h1>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation -->
+<body class="home-page">
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <svg viewBox="0 0 24 24" width="32" height="32">
-                    <path
-                        d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4L10 14.2l7.6-7.6L19 8l-9 9z"
-                        fill="currentColor" />
-                </svg>
+            <a href="index.html" class="nav-logo" aria-label="GS-Petto home">
+                <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true"><path d="M8 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm10-3a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm8 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM16 28c-4 0-7.5-2-9.5-5a1 1 0 0 1 .3-1.4c1.8-1.2 4-1.8 6.2-1.8h6c2.2 0 4.4.6 6.2 1.8a1 1 0 0 1 .3 1.4C23.5 26 20 28 16 28Zm-4-14a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm14 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" fill="currentColor"/></svg>
                 <span>GS-Petto</span>
             </a>
-            <div class="nav-links">
+
+            <div class="nav-links" id="nav-links">
                 <a href="index.html" class="nav-link active">Home</a>
                 <a href="browse.html" class="nav-link">Discover</a>
                 <a href="adoption.html" class="nav-link">Adopt</a>
                 <a href="post-ad.html" class="nav-link">Sell</a>
+                <a href="features.html" class="nav-link">Features</a>
                 <a href="login.html" class="nav-cta">Sign In</a>
             </div>
-            <div class="mobile-menu-toggle">
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+
+            <div style="display:flex;align-items:center;gap:8px;">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"></button>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Open menu"></button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="hero-section">
-        <div class="hero-content">
-            <div class="hero-badge wobble">✨ #1 Verified Pet Marketplace</div>
-            <h1 class="hero-title">Find Your Perfect <br><span class="gradient-text">Soulmate</span> Today.</h1>
-            <p class="hero-subtitle">Connect with trusted breeders, shelters, and pet lovers. <br>Safe, secure, and full
-                of love.</p>
-
-            <div class="hero-search-container glass-strong">
-                <div class="search-box">
-                    <span class="search-icon">🔍</span>
-                    <input type="text" placeholder="Search 'Golden Retriever' or 'Persian Cat'..." id="heroSearch">
-                </div>
-                <button class="btn-search">Find Pet</button>
-            </div>
-
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-num">50k+</span>
-                    <span class="stat-label">Happy Pets</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-num">12k+</span>
-                    <span class="stat-label">Adoptions</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-num">4.9★</span>
-                    <span class="stat-label">User Rating</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="hero-visual">
-            <div class="pet-blob">
-                <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=1000&auto=format&fit=crop"
-                    alt="Happy Dog" class="hero-img floating" style="border-radius:30px;">
-                <div class="floating-card glass" style="top: 20%; left: -20px;">
-                    <span>🐶</span> Best Friends
-                </div>
-                <div class="floating-card glass" style="bottom: 15%; right: -20px;">
-                    <span>❤️</span> 100% Love
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Categories -->
-    <section class="section categories">
-        <div class="container">
-            <h2 class="section-title" data-scroll>Browse by Category</h2>
-            <div class="category-grid">
-                <a href="browse.html?type=dog" class="category-card tilt-card">
-                    <span class="cat-emoji">🐕</span>
-                    <h3>Dogs</h3>
-                    <p>Loyal companions</p>
-                </a>
-                <a href="browse.html?type=cat" class="category-card tilt-card">
-                    <span class="cat-emoji">🐈</span>
-                    <h3>Cats</h3>
-                    <p>Independent souls</p>
-                </a>
-                <a href="browse.html?type=bird" class="category-card tilt-card">
-                    <span class="cat-emoji">🦜</span>
-                    <h3>Birds</h3>
-                    <p>Colorful friends</p>
-                </a>
-                <a href="browse.html?type=fish" class="category-card tilt-card">
-                    <span class="cat-emoji">🐠</span>
-                    <h3>Fish</h3>
-                    <p>Aquatic beauty</p>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Pets -->
-    <section class="section featured">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Trending Pets</h2>
-                <a href="browse.html" class="view-all">View All →</a>
-            </div>
-
-            <div class="pet-grid-featured" id="featuredPets">
-                <!-- Populated by JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Adoption Banner -->
-    <section class="adoption-banner section">
-        <div class="container">
-            <div class="adopt-card glass-strong">
-                <div class="adopt-content">
-                    <h2>Don't Shop, <span class="gradient-text-coral">Adopt.</span></h2>
-                    <p>Give a loving home to a pet in need. We partner with 50+ shelters across the country to help you
-                        find your new best friend.</p>
-                    <a href="adoption.html" class="btn-primary-lg">Start Adoption Journey</a>
-                </div>
-                <div class="adopt-image">
-                    <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=800"
-                        alt="Shelter Dog">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3>GS-Petto</h3>
-                    <p>The safest place to buy, sell, and adopt pets online. Verified breeders, secure payments, and a
-                        community of animal lovers.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <a href="browse.html">Browse Pets</a>
-                    <a href="post-ad.html">Sell a Pet</a>
-                    <a href="adoption.html">Adoption Centers</a>
-                    <a href="blog.html">Pet Care Blog</a>
-                </div>
-                <div class="footer-contact">
-                    <h4>Contact</h4>
-                    <p>support@gspetto.com</p>
-                    <p>+91 98765 43210</p>
-                    <div class="social-icons">
-                        <!-- Social Icons -->
+    <main>
+        <section class="home-hero">
+            <div class="home-shell home-hero-grid">
+                <div class="home-copy">
+                    <h1>Find verified pets without the uncertainty.</h1>
+                    <p>GS-Petto brings listings, adoption, seller verification, health details, and safer conversations into one clean marketplace experience.</p>
+                    <div class="home-actions">
+                        <a class="feature-button primary" href="browse.html">
+                            Explore listings
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.3 5.3 19 11H3v2h16l-5.7 5.7 1.4 1.4 8.1-8.1-8.1-8.1-1.4 1.4Z" fill="currentColor"/></svg>
+                        </a>
+                        <a class="feature-button secondary" href="post-ad.html">
+                            Create listing
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6V5Z" fill="currentColor"/></svg>
+                        </a>
+                    </div>
+                    <div class="home-proof">
+                        <div><strong>50K+</strong><span>families supported through trusted discovery</span></div>
+                        <div><strong>2K+</strong><span>verified sellers and adoption partners</span></div>
+                        <div><strong>10K+</strong><span>pets connected with new homes</span></div>
                     </div>
                 </div>
+
+                <div>
+                    <div class="market-preview">
+                        <div class="preview-toolbar">
+                            <div class="preview-title">Verified marketplace preview</div>
+                            <div class="preview-status">Live trust checks</div>
+                        </div>
+                        <div class="preview-grid">
+                            <article class="preview-card">
+                                <img src="images/hero-puppy.png" alt="Golden retriever puppy">
+                                <div class="preview-card-body">
+                                    <h3>Buddy</h3>
+                                    <p>Health checked golden retriever from a verified seller in Mumbai.</p>
+                                </div>
+                            </article>
+                            <article class="preview-card">
+                                <img src="images/cat-persian.png" alt="Persian cat">
+                                <div class="preview-card-body">
+                                    <h3>Luna</h3>
+                                    <p>Adoption-ready Persian cat with vaccination records and shelter approval.</p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <form class="search-command" action="browse.html">
+                        <label>
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4a6 6 0 0 1 4.7 9.7l4.8 4.8-1.4 1.4-4.8-4.8A6 6 0 1 1 10 4Zm0 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z" fill="currentColor"/></svg>
+                            <input name="q" type="search" placeholder="Search breed, location, or adoption status" aria-label="Search pets">
+                        </label>
+                        <button class="feature-button primary" type="submit">Search</button>
+                    </form>
+                </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 GS-Petto. Designed with ❤️ by GS.</p>
+        </section>
+
+        <section class="home-section">
+            <div class="home-shell">
+                <div class="section-head">
+                    <h2>Curated listings that feel clear from the first click.</h2>
+                    <p>Every card is built for quick comparison: image quality, source, location, health context, and intent.</p>
+                </div>
+                <div class="listing-row">
+                    <a href="pet-details.html" class="home-listing">
+                        <img src="images/hero-puppy.png" alt="Golden retriever listing">
+                        <div class="home-listing-body">
+                            <h3>Buddy</h3>
+                            <p>Golden Retriever, 3 months, verified seller, vaccination details available.</p>
+                            <div class="listing-meta"><span>Mumbai</span><span>INR 25,000</span></div>
+                        </div>
+                    </a>
+                    <a href="adoption.html" class="home-listing">
+                        <img src="images/cat-persian.png" alt="Persian cat adoption listing">
+                        <div class="home-listing-body">
+                            <h3>Luna</h3>
+                            <p>Persian cat, adoption partner verified, ready for a careful home.</p>
+                            <div class="listing-meta"><span>Delhi</span><span>Adoption</span></div>
+                        </div>
+                    </a>
+                    <a href="pet-details.html" class="home-listing">
+                        <img src="images/husky-puppy.png" alt="Husky puppy listing">
+                        <div class="home-listing-body">
+                            <h3>Max</h3>
+                            <p>Siberian Husky, 3 months, clean ownership records and seller profile.</p>
+                            <div class="listing-meta"><span>Bangalore</span><span>INR 35,000</span></div>
+                        </div>
+                    </a>
+                </div>
             </div>
+        </section>
+
+        <section class="home-section trust-band">
+            <div class="home-shell">
+                <div class="section-head">
+                    <h2>Trust is designed into the flow.</h2>
+                    <p>GS-Petto is built around verification, moderation, health context, and conversations that stay attached to the listing.</p>
+                </div>
+                <div class="trust-grid">
+                    <article class="trust-item">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5.2 3.4 9.5 8 11 4.6-1.5 8-5.8 8-11V5l-8-3Zm0 2.2 6 2.3V11c0 4-2.4 7.3-6 8.8C8.4 18.3 6 15 6 11V6.5l6-2.3Z" fill="currentColor"/></svg>
+                        <h3>Verified accounts</h3>
+                        <p>Phone, email, and seller profile checks reduce uncertainty before users engage.</p>
+                    </article>
+                    <article class="trust-item">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v18H5V3Zm2 2v14h10V5H7Zm2 3h6v2H9V8Zm0 4h6v2H9v-2Zm0 4h4v2H9v-2Z" fill="currentColor"/></svg>
+                        <h3>Health context</h3>
+                        <p>Vaccination, age, breed, and adoption details stay close to each listing.</p>
+                    </article>
+                    <article class="trust-item">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v12H7l-3 3V4Zm2 2v8.2l.2-.2H18V6H6Z" fill="currentColor"/></svg>
+                        <h3>Safer chat</h3>
+                        <p>Conversations include listing context, documents, and clear user controls.</p>
+                    </article>
+                    <article class="trust-item">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16v2H4v-2Zm1-8h3v6H5v-6Zm5-6h3v12h-3V5Zm5 3h3v9h-3V8Z" fill="currentColor"/></svg>
+                        <h3>Seller tools</h3>
+                        <p>Analytics, boosts, and plans help serious sellers operate professionally.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="home-footer">
+        <div class="home-shell home-footer-inner">
+            <span>GS-Petto</span>
+            <span>Trusted pet marketplace and adoption platform</span>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="js/data.js"></script>
-    <script src="js/utilities.js"></script>
-    <script src="js/canvas-background.js"></script>
-    <script src="js/animations.js"></script>
     <script src="js/main.js"></script>
-    <script>
-        // Force splash screen removal if JS main.js fails
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('splashScreen');
-                if (splash) {
-                    splash.style.opacity = '0';
-                    setTimeout(() => splash.remove(), 500);
-                }
-            }, 2500);
-        });
-    </script>
+    <script src="js/interactions.js"></script>
 </body>
-
 </html>

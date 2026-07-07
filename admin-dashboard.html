@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🛡️ Admin Dashboard - Petto</title>
+    <title>  Admin Dashboard - Petto</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/product-ui.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
     <style>
@@ -392,55 +393,55 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <span class="logo-paw">🐾</span>
+                <span class="logo-paw"></span>
                 <span class="logo-name">Petto Admin</span>
             </div>
             <div class="nav-links">
-                <a href="index.html" class="nav-link">🏠 Home</a>
-                <a href="#logout" class="nav-link login-btn" onclick="alert('Admin logged out!'); window.location.href='index.html';">🚪 Logout</a>
+                <a href="index.html" class="nav-link"> Home</a>
+                <a href="#logout" class="nav-link login-btn" onclick="alert('Admin logged out!'); window.location.href='index.html';"> Logout</a>
             </div>
         </div>
     </nav>
 
     <div class="admin-container">
         <div class="admin-header">
-            <h1 class="admin-title">🛡️ Admin Dashboard</h1>
+            <h1 class="admin-title">  Admin Dashboard</h1>
         </div>
 
         <!-- Stats -->
         <div class="admin-stats">
             <div class="stat-card">
-                <div class="stat-icon">👥</div>
+                <div class="stat-icon"> </div>
                 <div class="stat-value">2,847</div>
                 <div class="stat-label">Total Users</div>
-                <div class="stat-trend">↑ 12% from last month</div>
+                <div class="stat-trend">  12% from last month</div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon">📝</div>
+                <div class="stat-icon"></div>
                 <div class="stat-value">5,432</div>
                 <div class="stat-label">Active Ads</div>
-                <div class="stat-trend">↑ 8% from last month</div>
+                <div class="stat-trend">  8% from last month</div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon">⚠️</div>
+                <div class="stat-icon"> </div>
                 <div class="stat-value">24</div>
                 <div class="stat-label">Pending Reviews</div>
-                <div class="stat-trend">↓ 3% from last month</div>
+                <div class="stat-trend">  3% from last month</div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon">📊</div>
-                <div class="stat-value">₹42.5L</div>
+                <div class="stat-icon"></div>
+                <div class="stat-value"> 42.5L</div>
                 <div class="stat-label">Transaction Volume</div>
-                <div class="stat-trend">↑ 25% from last month</div>
+                <div class="stat-trend">  25% from last month</div>
             </div>
         </div>
 
         <!-- Tabs -->
         <div class="admin-tabs">
-            <button class="tab-btn active" onclick="switchTab('users')">👥 Users</button>
-            <button class="tab-btn" onclick="switchTab('ads')">📝 Ads Moderation</button>
-            <button class="tab-btn" onclick="switchTab('reports')">⚠️ Reports</button>
-            <button class="tab-btn" onclick="switchTab('analytics')">📊 Analytics</button>
+            <button class="tab-btn active" onclick="switchTab('users')">  Users</button>
+            <button class="tab-btn" onclick="switchTab('ads')"> Ads Moderation</button>
+            <button class="tab-btn" onclick="switchTab('reports')">  Reports</button>
+            <button class="tab-btn" onclick="switchTab('analytics')"> Analytics</button>
         </div>
 
         <!-- Users Tab -->
@@ -463,15 +464,15 @@
                         <tr>
                             <td>
                                 <div style="display: flex; gap: 8px; align-items: center;">
-                                    <div class="user-avatar">👤</div>
+                                    <div class="user-avatar"></div>
                                     <span>Rahul Sharma</span>
                                 </div>
                             </td>
                             <td>rahul@example.com</td>
                             <td>Jan 15, 2024</td>
-                            <td><span class="status-badge status-verified">✓ Verified</span></td>
+                            <td><span class="status-badge status-verified">  Verified</span></td>
                             <td>12</td>
-                            <td>4.8⭐ (342)</td>
+                            <td>4.8  (342)</td>
                             <td>
                                 <div class="action-buttons">
                                     <button class="action-btn">View</button>
@@ -482,15 +483,15 @@
                         <tr>
                             <td>
                                 <div style="display: flex; gap: 8px; align-items: center;">
-                                    <div class="user-avatar">👩</div>
+                                    <div class="user-avatar"></div>
                                     <span>Priya Verma</span>
                                 </div>
                             </td>
                             <td>priya@example.com</td>
                             <td>Feb 20, 2024</td>
-                            <td><span class="status-badge status-pending">⏳ Pending</span></td>
+                            <td><span class="status-badge status-pending">  Pending</span></td>
                             <td>0</td>
-                            <td>—</td>
+                            <td> </td>
                             <td>
                                 <div class="action-buttons">
                                     <button class="action-btn">Approve</button>
@@ -501,15 +502,15 @@
                         <tr>
                             <td>
                                 <div style="display: flex; gap: 8px; align-items: center;">
-                                    <div class="user-avatar">👨</div>
+                                    <div class="user-avatar"></div>
                                     <span>Amit Patel</span>
                                 </div>
                             </td>
                             <td>amit@example.com</td>
                             <td>Dec 10, 2023</td>
-                            <td><span class="status-badge status-suspended">⛔ Suspended</span></td>
+                            <td><span class="status-badge status-suspended">  Suspended</span></td>
                             <td>8</td>
-                            <td>2.1⭐ (12)</td>
+                            <td>2.1  (12)</td>
                             <td>
                                 <div class="action-buttons">
                                     <button class="action-btn">Review</button>
@@ -520,15 +521,15 @@
                         <tr>
                             <td>
                                 <div style="display: flex; gap: 8px; align-items: center;">
-                                    <div class="user-avatar">👩</div>
+                                    <div class="user-avatar"></div>
                                     <span>Neha Singh</span>
                                 </div>
                             </td>
                             <td>neha@example.com</td>
                             <td>Jan 5, 2024</td>
-                            <td><span class="status-badge status-verified">✓ Verified</span></td>
+                            <td><span class="status-badge status-verified">  Verified</span></td>
                             <td>5</td>
-                            <td>4.5⭐ (89)</td>
+                            <td>4.5  (89)</td>
                             <td>
                                 <div class="action-buttons">
                                     <button class="action-btn">View</button>
@@ -547,11 +548,11 @@
                 <div class="card-title">Pending Ads Review (24 items)</div>
                 <div class="moderation-queue">
                     <div class="moderation-card">
-                        <div class="mod-image">🐶</div>
+                        <div class="mod-image"></div>
                         <div class="mod-info">
                             <div class="mod-title">Max - Golden Retriever</div>
                             <div class="mod-seller">by Rahul Sharma</div>
-                            <div class="mod-reason">🚩 Price seems high</div>
+                            <div class="mod-reason"> Price seems high</div>
                             <div class="mod-actions">
                                 <button class="mod-action-btn approve" onclick="alert('Ad approved!')">Approve</button>
                                 <button class="mod-action-btn reject" onclick="alert('Ad rejected!')">Reject</button>
@@ -560,11 +561,11 @@
                     </div>
 
                     <div class="moderation-card">
-                        <div class="mod-image">🐱</div>
+                        <div class="mod-image"></div>
                         <div class="mod-info">
                             <div class="mod-title">Bella - Persian Cat</div>
                             <div class="mod-seller">by Priya Singh</div>
-                            <div class="mod-reason">⚠️ Unclear photos</div>
+                            <div class="mod-reason">  Unclear photos</div>
                             <div class="mod-actions">
                                 <button class="mod-action-btn approve" onclick="alert('Ad approved!')">Approve</button>
                                 <button class="mod-action-btn review" onclick="alert('Sent for review!')">Request Changes</button>
@@ -573,11 +574,11 @@
                     </div>
 
                     <div class="moderation-card">
-                        <div class="mod-image">🦜</div>
+                        <div class="mod-image"></div>
                         <div class="mod-info">
                             <div class="mod-title">Charlie - Macaw</div>
                             <div class="mod-seller">by Arjun Verma</div>
-                            <div class="mod-reason">📋 Missing health cert</div>
+                            <div class="mod-reason"> Missing health cert</div>
                             <div class="mod-actions">
                                 <button class="mod-action-btn approve" onclick="alert('Ad approved!')">Approve</button>
                                 <button class="mod-action-btn reject" onclick="alert('Ad rejected!')">Reject</button>
@@ -586,11 +587,11 @@
                     </div>
 
                     <div class="moderation-card">
-                        <div class="mod-image">🐰</div>
+                        <div class="mod-image"></div>
                         <div class="mod-info">
                             <div class="mod-title">Fluffy - Rabbit</div>
                             <div class="mod-seller">by Neha Patel</div>
-                            <div class="mod-reason">✓ Ready for approval</div>
+                            <div class="mod-reason">  Ready for approval</div>
                             <div class="mod-actions">
                                 <button class="mod-action-btn approve" onclick="alert('Ad approved!')">Approve</button>
                                 <button class="mod-action-btn reject" onclick="alert('Ad rejected!')">Reject</button>
@@ -626,7 +627,7 @@
                             <td>Amit Patel</td>
                             <td>Non-delivery of pet after payment</td>
                             <td>Feb 18, 2024</td>
-                            <td><span class="status-badge status-pending">⏳ Investigating</span></td>
+                            <td><span class="status-badge status-pending">  Investigating</span></td>
                             <td>
                                 <button class="action-btn" onclick="alert('Report details viewed')">View</button>
                             </td>
@@ -638,7 +639,7 @@
                             <td>Unknown Seller</td>
                             <td>Photos are misleading/old pictures</td>
                             <td>Feb 17, 2024</td>
-                            <td><span class="status-badge status-verified">✓ Resolved</span></td>
+                            <td><span class="status-badge status-verified">  Resolved</span></td>
                             <td>
                                 <button class="action-btn" onclick="alert('Report details viewed')">View</button>
                             </td>
@@ -650,7 +651,7 @@
                             <td>Spam Account</td>
                             <td>Ad contains explicit content</td>
                             <td>Feb 16, 2024</td>
-                            <td><span class="status-badge status-suspended">⛔ Action Taken</span></td>
+                            <td><span class="status-badge status-suspended">  Action Taken</span></td>
                             <td>
                                 <button class="action-btn" onclick="alert('Report details viewed')">View</button>
                             </td>
@@ -664,19 +665,19 @@
         <div class="tab-content" id="analytics">
             <div class="analytics-grid">
                 <div class="chart-card">
-                    <div class="chart-title">📈 Monthly Active Users</div>
+                    <div class="chart-title"> Monthly Active Users</div>
                     <div class="chart-placeholder">Chart: User Growth Trend</div>
                 </div>
                 <div class="chart-card">
-                    <div class="chart-title">📊 Ads Posted by Category</div>
+                    <div class="chart-title"> Ads Posted by Category</div>
                     <div class="chart-placeholder">Chart: Category Distribution</div>
                 </div>
                 <div class="chart-card">
-                    <div class="chart-title">💰 Revenue by Month</div>
+                    <div class="chart-title"> Revenue by Month</div>
                     <div class="chart-placeholder">Chart: Revenue Trend</div>
                 </div>
                 <div class="chart-card">
-                    <div class="chart-title">⭐ Platform Rating</div>
+                    <div class="chart-title">  Platform Rating</div>
                     <div class="chart-placeholder">Chart: Rating Distribution</div>
                 </div>
             </div>
@@ -700,5 +701,6 @@
             event.target.classList.add('active');
         }
     </script>
+    <script src="js/interactions.js"></script>
 </body>
 </html>

@@ -1,8 +1,8 @@
 /* ========================================
-   GS-PETTO — Animations & Micro-interactions
+   GS-PETTO   Animations & Micro-interactions
    ======================================== */
 
-/* ── HEARTBEAT PULSE (CTA buttons) ── */
+/*    HEARTBEAT PULSE (CTA buttons)    */
 @keyframes heartbeat {
 
     0%,
@@ -27,7 +27,7 @@
     }
 }
 
-/* ── STAGGER FADE IN UP ── */
+/*    STAGGER FADE IN UP    */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -65,7 +65,7 @@
     animation-delay: 0.65s;
 }
 
-/* ── FADE IN ── */
+/*    FADE IN    */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -80,7 +80,7 @@
     animation: fadeIn 0.6s var(--ease-smooth) forwards;
 }
 
-/* ── SLIDE IN VARIATIONS ── */
+/*    SLIDE IN VARIATIONS    */
 @keyframes slideInRight {
     from {
         opacity: 0;
@@ -117,7 +117,7 @@
     }
 }
 
-/* ── SCALE POP IN ── */
+/*    SCALE POP IN    */
 @keyframes popIn {
     0% {
         opacity: 0;
@@ -148,7 +148,7 @@
     }
 }
 
-/* ── HOLOGRAPHIC SHIMMER (Verified Badge) ── */
+/*    HOLOGRAPHIC SHIMMER (Verified Badge)    */
 @keyframes holographicShimmer {
     0% {
         left: -100%;
@@ -163,7 +163,7 @@
     }
 }
 
-/* ── DOG CHASING TAIL LOADER ── */
+/*    DOG CHASING TAIL LOADER    */
 @keyframes chaseTail {
     0% {
         transform: rotate(0deg) translateX(18px);
@@ -235,7 +235,7 @@
     }
 }
 
-/* ── CONFETTI FALL ── */
+/*    CONFETTI FALL    */
 @keyframes confettiFall {
     0% {
         opacity: 1;
@@ -248,7 +248,7 @@
     }
 }
 
-/* ── FLOAT ANIMATION ── */
+/*    FLOAT ANIMATION    */
 @keyframes float {
 
     0%,
@@ -265,7 +265,7 @@
     animation: float 3s ease-in-out infinite;
 }
 
-/* ── ELASTIC OVERSCROLL ── */
+/*    ELASTIC OVERSCROLL    */
 @keyframes elasticBounce {
     0% {
         transform: scaleY(1);
@@ -288,7 +288,7 @@
     }
 }
 
-/* ── SMOOTH REVEAL ON SCROLL ── */
+/*    SMOOTH REVEAL ON SCROLL    */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -338,7 +338,7 @@
     transition-delay: 0.3s;
 }
 
-/* ── WIGGLE (for icons) ── */
+/*    WIGGLE (for icons)    */
 @keyframes wiggle {
 
     0%,
@@ -355,7 +355,7 @@
     }
 }
 
-/* ── GRADIENT SHIFT (hero bg) ── */
+/*    GRADIENT SHIFT (hero bg)    */
 @keyframes gradientShift {
 
     0%,
@@ -373,13 +373,13 @@
     animation: gradientShift 8s ease infinite;
 }
 
-/* ── CARD TILT (subtle 3D on hover) ── */
+/*    CARD TILT (subtle 3D on hover)    */
 .tilt-card {
     transition: transform var(--duration-base) var(--ease-smooth);
     transform-style: preserve-3d;
 }
 
-/* ── AR CAMERA OVERLAY ── */
+/*    AR CAMERA OVERLAY    */
 @keyframes scanLine {
     0% {
         top: 0;
@@ -399,7 +399,7 @@
     animation: scanLine 2s linear infinite;
 }
 
-/* ── TYPING DOTS ── */
+/*    TYPING DOTS    */
 .typing-dots {
     display: inline-flex;
     gap: 4px;
@@ -434,7 +434,7 @@
     }
 }
 
-/* ── DARK MODE TRANSITION ── */
+/*    DARK MODE TRANSITION    */
 .theme-transitioning * {
     transition: background var(--duration-slow) var(--ease-smooth),
         color var(--duration-slow) var(--ease-smooth),
@@ -442,7 +442,7 @@
         box-shadow var(--duration-slow) var(--ease-smooth) !important;
 }
 
-/* ── REDUCED MOTION ── */
+/*    REDUCED MOTION    */
 @media (prefers-reduced-motion: reduce) {
 
     *,

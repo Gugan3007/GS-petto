@@ -1,12 +1,12 @@
-# 🚀 Quick Start Guide - Petto
+#  Quick Start Guide - Petto
 
-## Welcome to Petto! 🐾
+## Welcome to Petto! 
 
 This guide will help you get started with your pet marketplace in just a few minutes.
 
 ---
 
-## ⚡ Quick Setup (3 Steps)
+##    Quick Setup (3 Steps)
 
 ### Step 1: Install Dependencies
 ```bash
@@ -26,32 +26,32 @@ npx http-server -p 8080 -o
 The website should automatically open at:
 - `http://localhost:8080` (or the port shown in terminal)
 
-**That's it!** 🎉
+**That's it!** 
 
 ---
 
-## 📂 File Structure Overview
+##  File Structure Overview
 
 ```
 gs-petto/
-├── index.html           ← Main homepage (START HERE)
-├── browse.html          ← Pet browsing with filters
-├── adoption.html        ← Adoption section
-├── showcase.html        ← Feature showcase
-├── css/
-│   ├── styles.css       ← Main styles
-│   ├── animations.css   ← All animations
-│   └── responsive.css   ← Mobile styles
-└── js/
-    ├── main.js          ← Core functionality
-    ├── animations.js    ← GSAP animations
-    ├── canvas-background.js ← Particle effects
-    └── data.js          ← Sample pet data
+    index.html             Main homepage (START HERE)
+    browse.html            Pet browsing with filters
+    adoption.html          Adoption section
+    showcase.html          Feature showcase
+    css/
+        styles.css         Main styles
+        animations.css     All animations
+        responsive.css     Mobile styles
+    js/
+        main.js            Core functionality
+        animations.js      GSAP animations
+        canvas-background.js   Particle effects
+        data.js            Sample pet data
 ```
 
 ---
 
-## 🎨 Pages to Explore
+##  Pages to Explore
 
 1. **Homepage** (`index.html`)
    - Splash screen animation
@@ -77,31 +77,31 @@ gs-petto/
 
 ---
 
-## 🎯 What to Test
+##  What to Test
 
-### Animations ✨
+### Animations  
 - Watch the splash screen (refresh to see again)
 - Scroll to see cards animate in
 - Hover over category cards
 - Hover over pet cards
 - Check the floating background particles
 
-### Interactions 🖱️
+### Interactions 
 - Click category cards
-- Click favorite hearts (❤️)
+- Click favorite hearts ( )
 - Open login modal
 - Try mobile menu (resize window)
 - Use search bar
 - Test responsive design
 
-### Favorites System 💝
+### Favorites System 
 - Click heart icons on pet cards
 - Favorites persist on page reload
 - Check browser localStorage
 
 ---
 
-## 🛠️ Customization Tips
+##  Customization Tips
 
 ### Change Colors
 Edit `css/styles.css`, look for `:root` variables:
@@ -128,7 +128,7 @@ Edit `css/animations.css` for CSS animations
 
 ---
 
-## 📱 Responsive Testing
+##  Responsive Testing
 
 Test on different screen sizes:
 - **Desktop**: 1920px, 1440px, 1280px
@@ -142,7 +142,7 @@ Or use browser DevTools:
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Server Port Already in Use?
 ```bash
@@ -161,7 +161,7 @@ npx http-server -p 3001 -o    # Or try 3001
 
 ---
 
-## 🎨 Design Guidelines
+##  Design Guidelines
 
 ### Kid-Friendly Features
 - Large, readable text
@@ -178,7 +178,7 @@ npx http-server -p 3001 -o    # Or try 3001
 
 ---
 
-## 🚀 Next Steps
+##  Next Steps
 
 ### For Development
 1. Add backend API (Node.js/Express)
@@ -197,7 +197,7 @@ npx http-server -p 3001 -o    # Or try 3001
 
 ---
 
-## 📚 Learning Resources
+##  Learning Resources
 
 ### GSAP Animation
 - [GSAP Docs](https://greensock.com/docs/)
@@ -212,7 +212,7 @@ npx http-server -p 3001 -o    # Or try 3001
 
 ---
 
-## 💡 Pro Tips
+##   Pro Tips
 
 1. **Refresh to See Splash**: The splash screen shows once - refresh page to see it again
 
@@ -226,7 +226,7 @@ npx http-server -p 3001 -o    # Or try 3001
 
 ---
 
-## 🎉 Have Fun!
+##  Have Fun!
 
 Petto is built with love for pets and pet lovers. Feel free to:
 - Experiment with colors
@@ -240,6 +240,6 @@ Check the README.md for more details!
 
 ---
 
-**Made with ❤️ by GS**
+**Made with   by GS**
 
-🐾 Happy coding! 🐾
+ Happy coding! 

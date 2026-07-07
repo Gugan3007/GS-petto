@@ -1,250 +1,139 @@
-# 🐾 Petto - Pet Marketplace & Adoption Platform
+# GS-Petto
 
-Created by **GS**
+GS-Petto is a static, product-grade pet marketplace and adoption frontend. It is built with plain HTML, CSS, and vanilla JavaScript so it can run locally with no framework, bundler, or backend.
 
-## 🌟 Overview
+## Product Scope
 
-Petto is a modern, cinematic, and kid-friendly pet marketplace platform where users can buy, sell, and adopt pets. Think OLX but exclusively for pets and pet accessories, with beautiful animations and smooth interactions.
+The app presents a full marketplace surface for:
 
-## ✨ Features
+- Pet discovery and browsing
+- Adoption listings
+- Seller listing creation
+- User profiles
+- Messaging
+- Notifications
+- Seller analytics
+- Admin moderation
+- Product feature education
 
-### Core Features
-- 🐶 **Pet Listings** - Buy and sell pets with detailed information
-- ❤️ **Adoption Section** - Free pet adoption with NGO partnerships
-- 🔍 **Advanced Filters** - Search by breed, price, age, location, and more
-- 💚 **Good Heart Badges** - Special recognition for adoption listings
-- ⭐ **Favorites System** - Save your favorite pets
-- 📱 **Fully Responsive** - Works on mobile, tablet, and desktop
+The UI has been tightened toward a professional consumer marketplace standard: restrained color, consistent typography, accessible focus states, SVG/CSS icon treatment, responsive layouts, and subtle motion.
 
-### UI/UX Highlights
-- 🎨 Clean, minimal, premium design with soft pastel colors
-- 🎬 Cinematic splash screen with logo animation
-- 🌊 Smooth page transitions and micro-interactions
-- 🐾 Animated background with floating paws and particles
-- ✨ GSAP-powered animations throughout
-- 🎯 Kid-friendly visuals and large, readable elements
+## Run Locally
 
-## 🚀 Getting Started
-
-### Installation
-
-1. Clone or download this repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Run the development server (premium setup):
-   ```bash
-   npm run start
-   # Alt:
-   npm run serve
-   npm run server:3100
-   ```
-
-4. Open your browser and visit:
-   ```
-   http://127.0.0.1:3100
-   ```
-
-### No Build Required!
-This is a pure HTML/CSS/JavaScript project. You can also simply open `index.html` in any modern browser.
-
-## 📁 Project Structure
-
+```bash
+npm install
+npm run serve
 ```
+
+Open:
+
+```text
+http://127.0.0.1:3100
+```
+
+Build check:
+
+```bash
+npm run build
+```
+
+## Project Structure
+
+```text
 gs-petto/
-├── index.html              # Main homepage
-├── browse.html            # Browse all pets with filters
-├── adoption.html          # Adoption-specific page
-├── package.json           # Dependencies
-├── css/
-│   ├── styles.css         # Main styles
-│   ├── animations.css     # Animation definitions
-│   ├── responsive.css     # Mobile/tablet responsive styles
-│   ├── cinematic.css      # Premium cinematic UI (new)
-│   └── advanced-effects.css # Depth, lighting, utilities (new)
-├── js/
-│   ├── main.js           # Core functionality
-│   ├── animations.js     # Legacy animations
-│   ├── canvas-background.js  # Animated background
-│   ├── data.js           # Sample pet data
-│   ├── scroll-storytelling.js # GSAP storytelling (new)
-│   ├── microinteractions.js  # Premium microinteractions (new)
-│   └── utilities.js      # Helper utilities (new)
-└── README.md
+--------- index.html
+--------- browse.html
+--------- adoption.html
+--------- features.html
+--------- post-ad.html
+--------- login.html
+--------- profile.html
+--------- chat.html
+--------- notifications.html
+--------- seller-dashboard.html
+--------- admin-dashboard.html
+--------- sitemap.html
+--------- css/
+---   --------- design-system.css
+---   --------- components.css
+---   --------- product-ui.css
+---   --------- features.css
+---   --------- responsive.css
+---   --------- animations.css
+--------- js/
+---   --------- main.js
+---   --------- interactions.js
+---   --------- animations.js
+---   --------- utilities.js
+---   --------- swipe.js
+---   --------- data.js
+--------- images/
 ```
 
-## 🎨 Design System
+## Design Tokens
 
-### Colors
-- **Primary**: `#FF6B9D` (Pink)
-- **Secondary**: `#4ECDC4` (Teal)
-- **Accent**: `#FFE66D` (Yellow)
-- **Success**: `#95E1D3` (Mint)
-- **Adoption**: `#F38181` (Coral)
+Primary product tokens live in `css/design-system.css`:
 
-### Fonts
-- **Primary**: Fredoka (headings)
-- **Secondary**: Poppins (body text)
+```css
+--ink: #10242b;
+--muted: #627177;
+--line: rgba(16, 36, 43, 0.10);
+--paper: #fffaf8;
+--mint: #e8f6f2;
+--coral: #ff6f61;
+--teal: #004e64;
+--gold: #e9a93f;
+--radius-sm: 6px;
+--radius-md: 8px;
+--radius-lg: 16px;
+```
 
-### Animations
-- GSAP for complex animations
-- CSS keyframes for simple effects
-- Canvas API for background particles
+Typography:
 
-## 🔧 Technologies Used
+- Headings: `Outfit`
+- Body: `Inter`
+- Type scale: 12, 14, 16, 18, 24, 32, 40, 56, 64, 72, 88
 
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Animations**: GSAP 3.12.5, CSS Animations
-- **Canvas**: HTML5 Canvas for particle effects
-- **Icons**: Emoji-based (universal & accessible)
-- **Storage**: LocalStorage for favorites and user data
+Color intent:
 
-## 📱 Pages
+- Teal is used for trust, primary action, and system confidence.
+- Coral is used for highlight, active states, and high-emphasis calls to action.
+- Mint is used for soft support surfaces.
+- Gold is reserved for premium or rating emphasis.
 
-1. **Homepage** (`index.html`)
-   - Hero section with animated pets
-   - Category browsing
-   - Featured pets
-   - Adoption banner
+## Shared Interaction System
 
-2. **Browse** (`browse.html`)
-   - Advanced filtering sidebar
-   - All pet listings
-   - Sort functionality
+The shared interaction layer lives in:
 
-3. **Adoption** (`adoption.html`)
-   - Free adoption listings
-   - How adoption works
-   - Success stories
-   - NGO partnerships
+- `css/product-ui.css`
+- `js/interactions.js`
 
-## 🎯 Key Features Implemented (Cinematic)
+It provides:
 
-- Dark-first premium theme with Emerald accent
-- Cinematic hero section (glow, grain, scroll indicator)
-- Premium buttons, cards, and navbar depth
-- Featured horizontal strip with scroll snapping
-- GSAP ScrollTrigger storytelling and parallax
-- Emoji-free professional SVG iconography sitewide
+- Desktop-only cursor ring with eased pointer tracking
+- Button hover, active, and focus-visible states
+- Card lift and image scale transitions
+- SVG/CSS icon replacement for legacy text icons
+- Scroll reveal with IntersectionObserver
+- Count-up animation for numeric stats
+- Smooth mobile menu and navigation feedback
+- Reduced-motion fallbacks through `prefers-reduced-motion`
 
-## 🔜 Features to Implement Next
+## Page-Specific Styling
 
-### Phase 2 (Backend Required)
-- User authentication (Email, Phone, Google)
-- User dashboard and profile
-- Post/edit/delete pet ads
-- In-app chat between buyers and sellers
-- Image upload system
-- Payment integration
-- Admin dashboard
-- Report and verify listings
-- Location-based search
+`features.html` uses `css/features.css` for its product showcase layout. Shared tokens still come from `design-system.css`, while cross-page motion and polish come from `product-ui.css`.
 
-### Phase 3 (Advanced)
-- Mobile apps (React Native/Flutter)
-- Push notifications
-- Advanced AI-based recommendations
-- Video uploads for pets
-- Virtual pet tours
-- Appointment booking system
+## Accessibility Notes
 
-## 🌐 Browser Support
+- Icon-only buttons use `aria-label`.
+- Focus-visible rings are provided globally.
+- Motion is reduced when the user requests reduced motion.
+- Layouts are constrained to avoid horizontal scrolling from mobile to desktop.
 
-- ✅ Chrome (latest)
-- ✅ Firefox (latest)
-- ✅ Safari (latest)
-- ✅ Edge (latest)
-- ✅ Mobile browsers
+## Development Notes
 
-## 📝 Code Standards
-
-- Clean, readable code with comments
-- Modular JavaScript structure
-- Semantic HTML5
-- Accessible design (ARIA labels, keyboard navigation)
-- Performance optimized (lazy loading, debouncing)
-
-## 🎪 Animations & Effects
-
-### Splash Screen
-- Logo entrance with rotation
-- Text fade-in with stagger
-- Loading bar animation
-- Auto-dismiss after 3 seconds
-
-### Page Animations
-- Navbar slide-in
-- Hero content stagger
-- Floating pet emojis
-- Category cards entrance
-- Scroll-triggered animations
-- Parallax effects
-
-### Interactive Effects
-- Button hover glow
-- Card lift on hover
-- Icon wiggle animations
-- Smooth modal transitions
-- Ripple effects on clicks
-
-## 🔒 Security & Safety
-
-Current features:
-- Input sanitization
-- XSS prevention
-- Safe localStorage usage
-
-Future implementation:
-- User verification system
-- Secure payment gateway
-- Report abuse functionality
-- Seller verification badges
-
-## 🤝 Contributing
-
-This is a personal project by GS. If you'd like to contribute or use this as a template:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📄 License
-
-MIT License - Feel free to use for learning or personal projects.
-
-## 👨‍💻 Author
-
-**GS** - Creator of Petto
-
-## 🙏 Acknowledgments
-
-- GSAP for amazing animation library
-- Unsplash for pet images
-- Google Fonts for typography
-- Emoji icons for universal accessibility
-
-## 📞 Support
-
-For questions or support:
-- Open an issue on GitHub
-- Contact: [Your contact info]
-
----
-
-**Made with ❤️ for pets and pet lovers everywhere!** 🐾
-
-## 🎨 Screenshot Preview
-
-The website features:
-- 🎬 Cinematic splash screen
-- 🌊 Smooth animations
-- 🐾 Floating particle background
-- 📱 Mobile-first responsive design
-- 💝 Kid-friendly interface
-- ⚡ Fast and optimized performance
-
-**Visit the live site to see the magic!** ✨
+- Keep the stack plain HTML, CSS, and JavaScript.
+- Use shared tokens instead of page-specific color values.
+- Use SVG or CSS-mask icons, not emoji.
+- Keep page-specific CSS in its own file when it becomes substantial.
+- Do not add dependencies unless the product genuinely needs them.

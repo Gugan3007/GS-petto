@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description"
+        content="Meet Buddy   a verified Golden Retriever puppy looking for a loving home on GS-Petto.">
+    <title>Buddy   Golden Retriever   GS-Petto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/product-ui.css">
+    <style>
+        .detail-page {
+            padding-bottom: 100px;
+        }
+
+        .detail-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            background: var(--glass-bg-strong);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-header .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .detail-header .share-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        .detail-header h4 {
+            font-size: 16px;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .detail-header.scrolled h4 {
+            opacity: 1;
+        }
+
+        .gallery-strip {
+            display: flex;
+            gap: 12px;
+            padding: 0 20px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            margin-top: 16px;
+        }
+
+        .gallery-strip::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-strip img {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s, transform 0.2s;
+            flex-shrink: 0;
+        }
+
+        .gallery-strip img:hover,
+        .gallery-strip img.active {
+            border-color: var(--coral);
+            transform: scale(1.05);
+        }
+
+        .seller-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .seller-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gradient-coral);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .seller-info {
+            flex: 1;
+        }
+
+        .seller-name {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .seller-rating {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .ar-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: calc(100% - 40px);
+            margin: 0 20px;
+            padding: 14px;
+            border-radius: 16px;
+            background: rgba(155, 89, 182, 0.08);
+            border: 1px solid rgba(155, 89, 182, 0.2);
+            color: #9B59B6;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .ar-btn:hover {
+            background: rgba(155, 89, 182, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .detail-section {
+            padding: 0 20px;
+            margin-top: 24px;
+        }
+
+        .detail-section h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .detail-section p {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* AR Modal */
+        .ar-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: #000;
+            display: none;
+            flex-direction: column;
+        }
+
+        .ar-modal.open {
+            display: flex;
+        }
+
+        .ar-modal .ar-viewport {
+            flex: 1;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .ar-modal .ar-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .ar-modal .ar-corners {
+            position: absolute;
+            inset: 40px;
+            border: 2px solid rgba(255, 111, 97, 0.4);
+            border-radius: 20px;
+        }
+
+        .ar-modal .ar-label {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            padding: 10px 24px;
+            border-radius: 20px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .ar-modal .ar-pet-3d {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 20px 60px rgba(255, 111, 97, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="detail-page">
+        <!--     HEADER     -->
+        <header class="detail-header" id="detail-header">
+            <a href="browse.html" class="back-btn" aria-label="Go back">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20v-2z" fill="currentColor" />
+                </svg>
+            </a>
+            <h4>Buddy</h4>
+            <button class="share-btn" aria-label="Share">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path
+                        d="M18 16.1c-.8 0-1.4.3-2 .8l-7.1-4.2c.1-.2.1-.5.1-.7s0-.5-.1-.7L16 7.2c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3c0 .2 0 .5.1.7L8 9.8C7.5 9.3 6.8 9 6 9c-1.7 0-3 1.3-3 3s1.3 3 3 3c.8 0 1.5-.3 2-.8l7.1 4.2c-.1.2-.1.4-.1.6 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9-1.2-2.9-2.8-2.9z"
+                        fill="currentColor" />
+                </svg>
+            </button>
+        </header>
+
+        <!--     PARALLAX HERO     -->
+        <div class="parallax-hero" id="parallax-hero">
+            <img src="images/hero-puppy.png" alt="Buddy the Golden Retriever" id="hero-img">
+            <div class="parallax-hero-overlay"></div>
+        </div>
+
+        <!--     GALLERY     -->
+        <div class="gallery-strip">
+            <img src="images/hero-puppy.png" alt="Photo 1" class="active">
+            <img src="images/hero-puppy.png" alt="Photo 2">
+            <img src="images/hero-puppy.png" alt="Photo 3">
+            <img src="images/cat-persian.png" alt="Photo 4">
+        </div>
+
+        <!--     NAME & BADGE     -->
+        <div style="padding: 20px 20px 0;">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+                <div>
+                    <h1 style="font-size:32px;margin-bottom:4px;">Buddy</h1>
+                    <p style="font-size:15px;color:var(--text-secondary);">Golden Retriever   Male</p>
+                </div>
+                <button class="pet-card-fav" style="width:48px;height:48px;font-size:24px;"
+                    aria-label="Favorite">   </button>
+            </div>
+            <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+                <span class="badge badge-verified">  Verified Breeder</span>
+                <span class="badge badge-premium">  Premium Listing</span>
+            </div>
+        </div>
+
+        <!--     BENTO STATS     -->
+        <div class="bento-grid" style="margin-top:16px;">
+            <div class="bento-item">
+                <span class="bento-icon"></span>
+                <div class="bento-label">Age</div>
+                <div class="bento-value">3 Months</div>
+            </div>
+            <div class="bento-item">
+                <span class="bento-icon"></span>
+                <div class="bento-label">Breed</div>
+                <div class="bento-value">Golden Retriever</div>
+            </div>
+            <div class="bento-item">
+                <span class="bento-icon"></span>
+                <div class="bento-label">Distance</div>
+                <div class="bento-value">2.5 km</div>
+            </div>
+            <div class="bento-item">
+                <span class="bento-icon"></span>
+                <div class="bento-label">Vaccination</div>
+                <div class="bento-value" style="color:#27AE60;">Up to Date</div>
+            </div>
+        </div>
+
+        <!--     AR PREVIEW BUTTON     -->
+        <div style="margin-top:20px;">
+            <button class="ar-btn" id="ar-btn">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path
+                        d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H4V4h16v16zm-6.5-3.5L12 14l-1.5 2.5L8 13l-4 6h16l-6.5-9.5z"
+                        fill="currentColor" />
+                </svg>
+                  View in My Room (AR Preview)
+            </button>
+        </div>
+
+        <!--     SELLER CARD     -->
+        <div class="seller-card">
+            <div class="seller-avatar">R</div>
+            <div class="seller-info">
+                <div class="seller-name">Ravi's Kennel</div>
+                <div class="seller-rating">  4.9 (127 reviews)   Mumbai</div>
+            </div>
+            <a href="#" class="btn btn-ghost btn-sm">Contact</a>
+        </div>
+
+        <!--     ABOUT     -->
+        <div class="detail-section">
+            <h3>About Buddy</h3>
+            <p>Buddy is a playful and energetic Golden Retriever puppy who loves meeting new people. He's been raised in
+                a loving home environment with children and other pets. He's great with kids, fully vaccinated, and
+                comes with a health certificate from a registered veterinarian.</p>
+            <p style="margin-top:12px;">He knows basic commands like sit, stay, and come. He's crate-trained and
+                house-broken. Buddy is looking for an active family who can give him plenty of exercise and playtime.
+            </p>
+        </div>
+
+        <!--     MORE DETAILS     -->
+        <div class="detail-section">
+            <h3>Details</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;">
+                <div style="padding:12px;background:var(--bg-warm);border-radius:12px;">
+                    <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;">
+                        Weight</div>
+                    <div style="font-weight:700;margin-top:4px;">5.2 kg</div>
+                </div>
+                <div style="padding:12px;background:var(--bg-warm);border-radius:12px;">
+                    <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;">
+                        Color</div>
+                    <div style="font-weight:700;margin-top:4px;">Golden</div>
+                </div>
+                <div style="padding:12px;background:var(--bg-warm);border-radius:12px;">
+                    <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;">
+                        Microchipped</div>
+                    <div style="font-weight:700;margin-top:4px;color:#27AE60;">Yes</div>
+                </div>
+                <div style="padding:12px;background:var(--bg-warm);border-radius:12px;">
+                    <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;">
+                        Neutered</div>
+                    <div style="font-weight:700;margin-top:4px;">No</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="height:24px;"></div>
+    </div>
+
+    <!--     STICKY BOTTOM CTA     -->
+    <div class="sticky-cta-bar" id="sticky-cta">
+        <div style="flex:1;">
+            <div style="font-size:12px;color:var(--text-muted);">Price</div>
+            <div style="font-size:22px;font-weight:900;font-family:var(--font-heading);color:var(--teal);"> 25,000</div>
+        </div>
+        <button class="btn btn-adopt"> Adopt Me</button>
+        <button class="btn btn-offer"> Make Offer</button>
+    </div>
+
+    <!--     AR MODAL     -->
+    <div class="ar-modal" id="ar-modal">
+        <div class="ar-viewport">
+            <button class="ar-close" id="ar-close" aria-label="Close AR"> </button>
+            <div class="ar-corners"></div>
+            <div class="ar-scan-line"></div>
+            <img src="images/hero-puppy.png" alt="AR Preview of Buddy" class="ar-pet-3d">
+            <div class="ar-label"> Point your camera at the floor</div>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav-items">
+            <a href="index.html" class="bottom-nav-item"><svg viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="currentColor" />
+                </svg><span>Home</span></a>
+            <a href="browse.html" class="bottom-nav-item active"><svg viewBox="0 0 24 24">
+                    <path
+                        d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14Z"
+                        fill="currentColor" />
+                </svg><span>Discover</span></a>
+            <a href="post-ad.html" class="bottom-nav-item">
+                <div
+                    style="width:44px;height:44px;border-radius:50%;background:var(--gradient-coral);display:flex;align-items:center;justify-content:center;margin-top:-16px;box-shadow:var(--shadow-coral);">
+                    <svg viewBox="0 0 24 24" style="width:22px;height:22px;">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#fff" />
+                    </svg></div><span>Sell</span>
+            </a>
+            <a href="adoption.html" class="bottom-nav-item"><svg viewBox="0 0 24 24">
+                    <path
+                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                        fill="currentColor" />
+                </svg><span>Adopt</span></a>
+            <a href="profile.html" class="bottom-nav-item"><svg viewBox="0 0 24 24">
+                    <path
+                        d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                        fill="currentColor" />
+                </svg><span>Profile</span></a>
+        </div>
+    </nav>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/interactions.js"></script>
+    <script>
+        // Parallax effect
+        const heroImg = document.getElementById('hero-img');
+        const detailHeader = document.getElementById('detail-header');
+
+        if (heroImg && window.gsap) {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.to(heroImg, {
+                scale: 1.15,
+                filter: 'blur(6px)',
+                scrollTrigger: {
+                    trigger: '.parallax-hero',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            });
+        }
+
+        // Header title show on scroll
+        window.addEventListener('scroll', () => {
+            if (detailHeader) {
+                detailHeader.classList.toggle('scrolled', window.scrollY > 300);
+            }
+        });
+
+        // Gallery image swap
+        document.querySelectorAll('.gallery-strip img').forEach(img => {
+            img.addEventListener('click', () => {
+                document.querySelectorAll('.gallery-strip img').forEach(i => i.classList.remove('active'));
+                img.classList.add('active');
+                heroImg.src = img.src;
+            });
+        });
+
+        // AR Modal
+        const arBtn = document.getElementById('ar-btn');
+        const arModal = document.getElementById('ar-modal');
+        const arClose = document.getElementById('ar-close');
+
+        if (arBtn && arModal) {
+            arBtn.addEventListener('click', () => arModal.classList.add('open'));
+            arClose.addEventListener('click', () => arModal.classList.remove('open'));
+        }
+
+        // Fav button
+        document.querySelectorAll('.pet-card-fav').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                btn.classList.toggle('liked');
+                btn.textContent = btn.classList.contains('liked') ? '   ' : '   ';
+            });
+        });
+    </script>
+</body>
+
+</html>

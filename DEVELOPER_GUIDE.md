@@ -121,35 +121,35 @@ The goal was to make the app feel premium, trustworthy, and unique while still b
 
 ```text
 gs-petto/
-├── index.html              # Homepage
-├── browse.html             # Browse pets
-├── adoption.html           # Adoption page
-├── features.html           # Premium features showcase
-├── post-ad.html            # Post listing flow
-├── login.html              # Login page
-├── profile.html            # User profile
-├── chat.html               # Messaging UI
-├── notifications.html      # Notifications
-├── seller-dashboard.html   # Seller analytics dashboard
-├── admin-dashboard.html    # Admin tools
-├── sitemap.html            # Site navigation
-├── css/
-│   ├── design-system.css   # Theme tokens, base typography, global styles
-│   ├── components.css      # Shared nav, cards, buttons, layout components
-│   ├── responsive.css      # Responsive rules
-│   └── animations.css      # Animation helpers
-├── js/
-│   ├── main.js             # Shared UI interactions
-│   ├── animations.js       # Animation logic
-│   ├── utilities.js        # Helpers
-│   ├── swipe.js            # Swipe interactions
-│   └── data.js             # Sample data
-├── images/
-│   ├── hero-puppy.png
-│   ├── cat-persian.png
-│   └── husky-puppy.png
-├── package.json
-└── README.md
+    index.html              # Homepage
+    browse.html             # Browse pets
+    adoption.html           # Adoption page
+    features.html           # Premium features showcase
+    post-ad.html            # Post listing flow
+    login.html              # Login page
+    profile.html            # User profile
+    chat.html               # Messaging UI
+    notifications.html      # Notifications
+    seller-dashboard.html   # Seller analytics dashboard
+    admin-dashboard.html    # Admin tools
+    sitemap.html            # Site navigation
+    css/
+        design-system.css   # Theme tokens, base typography, global styles
+        components.css      # Shared nav, cards, buttons, layout components
+        responsive.css      # Responsive rules
+        animations.css      # Animation helpers
+    js/
+        main.js             # Shared UI interactions
+        animations.js       # Animation logic
+        utilities.js        # Helpers
+        swipe.js            # Swipe interactions
+        data.js             # Sample data
+    images/
+        hero-puppy.png
+        cat-persian.png
+        husky-puppy.png
+    package.json
+    README.md
 ```
 
 ## Design System

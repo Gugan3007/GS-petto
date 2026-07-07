@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        body {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #FF6B9D, #4ECDC4);
-        }
-        .emoji {
-            font-size: 200px;
-        }
-    </style>
-</head>
-<body>
-    <div class="emoji">🐾</div>
-</body>
-</html>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#fffaf8"/>
+  <path d="M17 22a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm15-5a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm15 5a6 6 0 1 0 0-12 6 6 0 0 0 0 12ZM32 58c-8 0-15-4-19-10a2 2 0 0 1 .6-2.8C17.2 42.8 21.6 41.6 26 41.6h12c4.4 0 8.8 1.2 12.4 3.6a2 2 0 0 1 .6 2.8C47 54 40 58 32 58ZM23 35a6 6 0 1 0-12 0 6 6 0 0 0 12 0Zm30 0a6 6 0 1 0-12 0 6 6 0 0 0 12 0Z" fill="#ff6f61"/>
+</svg>

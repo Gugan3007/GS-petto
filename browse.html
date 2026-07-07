@@ -3,504 +3,295 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Browse Pets — GS-Petto</title>
-
-    <!-- Fonts -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description"
+        content="Browse and discover pets on GS-Petto. Swipe, search, and find your perfect companion.">
+    <title>Discover Pets   GS-Petto</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/cinematic.css">
-    <link rel="stylesheet" href="css/advanced-effects.css">
     <link rel="stylesheet" href="css/responsive.css">
-
-    <style>
-        /* Force Dark Theme & High Contrast */
-        body {
-            background-color: var(--bg-dark, #0A0A0A);
-            color: #fff;
-        }
-
-        /* ── Browse Page Layout ── */
-        .browse-page {
-            display: flex;
-            min-height: 100vh;
-            padding-top: 80px;
-        }
-
-        /* ── Sidebar [FIXED CONTRAST] ── */
-        .filter-sidebar {
-            width: 280px;
-            background: rgba(20, 20, 20, 0.95);
-            /* Dark solid background fallback */
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 32px 24px;
-            position: fixed;
-            top: 80px;
-            bottom: 0;
-            left: 0;
-            overflow-y: auto;
-            z-index: 100;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @supports (backdrop-filter: blur(12px)) {
-            .filter-sidebar {
-                background: rgba(20, 20, 20, 0.8);
-                backdrop-filter: blur(12px);
-            }
-        }
-
-        .filter-group {
-            margin-bottom: 32px;
-            animation: slideInLeft 0.5s ease-out backwards;
-        }
-
-        .filter-group:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .filter-group:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .filter-group:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .filter-group:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .filter-title {
-            font-family: var(--font-heading);
-            font-size: 16px;
-            font-weight: 700;
-            color: #fff;
-            /* Force white text */
-            margin-bottom: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .filter-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        /* Checkbox Style */
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            color: rgba(255, 255, 255, 0.7);
-            /* Force light grey text */
-            font-size: 14px;
-            transition: color 0.2s ease;
-        }
-
-        .checkbox-label:hover {
-            color: #fff;
-        }
-
-        .checkbox-custom {
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-
-        input[type="checkbox"] {
-            display: none;
-        }
-
-        input[type="checkbox"]:checked+.checkbox-custom {
-            background: #10B981;
-            border-color: #10B981;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-        }
-
-        input[type="checkbox"]:checked+.checkbox-custom::after {
-            content: '✓';
-            color: #fff;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .checkbox-label span {
-            flex: 1;
-        }
-
-        .count-badge {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* Range Slider */
-        .price-range-inputs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .price-input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 8px;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 13px;
-        }
-
-        /* ── Main Content ── */
-        .browse-content {
-            margin-left: 280px;
-            flex: 1;
-            padding: 40px;
-            width: calc(100% - 280px);
-        }
-
-        .browse-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 32px;
-            animation: fadeInDown 0.6s ease-out;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .browse-header h1 {
-            color: #fff;
-        }
-
-        .result-count {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 14px;
-        }
-
-        .sort-select {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-family: var(--font-body);
-            cursor: pointer;
-            outline: none;
-        }
-
-        .sort-select option {
-            background: #1a1a1a;
-            color: #fff;
-        }
-
-        /* Pet Grid */
-        .pet-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        /* Empty State */
-        .empty-grid-msg {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 60px;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 18px;
-        }
-
-        /* Mobile Filter Toggle */
-        .mobile-filter-btn {
-            display: none;
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: #10B981;
-            color: #fff;
-            padding: 14px 24px;
-            border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            z-index: 200;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        @media (max-width: 1024px) {
-            .filter-sidebar {
-                transform: translateX(-100%);
-                width: 100%;
-                z-index: 1000;
-                padding-top: 100px;
-                background: #0A0A0A;
-            }
-
-            .filter-sidebar.active {
-                transform: translateX(0);
-            }
-
-            .browse-content {
-                margin-left: 0;
-                width: 100%;
-                padding: 24px;
-            }
-
-            .mobile-filter-btn {
-                display: flex;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/product-ui.css">
 </head>
 
 <body>
-    <canvas id="background-canvas"></canvas>
 
-    <!-- Navigation -->
+    <!--     NAV     -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
-                <svg viewBox="0 0 24 24" width="32" height="32">
+                <svg viewBox="0 0 32 32" width="32" height="32">
                     <path
-                        d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4L10 14.2l7.6-7.6L19 8l-9 9z"
+                        d="M8 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm10-3a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm8 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM16 28c-4 0-7.5-2-9.5-5a1 1 0 0 1 .3-1.4c1.8-1.2 4-1.8 6.2-1.8h6c2.2 0 4.4.6 6.2 1.8a1 1 0 0 1 .3 1.4C23.5 26 20 28 16 28Zm-4-14a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm14 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                         fill="currentColor" />
                 </svg>
                 <span>GS-Petto</span>
             </a>
-            <div class="nav-links">
+            <div class="nav-links" id="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="browse.html" class="nav-link active">Discover</a>
                 <a href="adoption.html" class="nav-link">Adopt</a>
                 <a href="post-ad.html" class="nav-link">Sell</a>
                 <a href="login.html" class="nav-cta">Sign In</a>
             </div>
-            <div class="mobile-menu-toggle">
-                <svg viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" fill="currentColor" />
-                </svg>
+            <div style="display:flex;align-items:center;gap:8px;">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"> </button>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Open menu">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" fill="currentColor" />
+                    </svg>
+                </button>
             </div>
         </div>
     </nav>
 
-    <div class="browse-page">
-        <!-- Sidebar -->
-        <aside class="filter-sidebar" id="sidebar">
-            <div class="filter-group">
-                <div class="filter-title">Pet Type</div>
-                <div class="filter-options">
-                    <label class="checkbox-label">
-                        <input type="checkbox" checked>
-                        <div class="checkbox-custom"></div>
-                        <span>Dogs</span>
-                        <span class="count-badge">124</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox">
-                        <div class="checkbox-custom"></div>
-                        <span>Cats</span>
-                        <span class="count-badge">85</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox">
-                        <div class="checkbox-custom"></div>
-                        <span>Birds</span>
-                        <span class="count-badge">32</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox">
-                        <div class="checkbox-custom"></div>
-                        <span>Fish</span>
-                        <span class="count-badge">18</span>
-                    </label>
-                </div>
-            </div>
+    <!--     SEARCH     -->
+    <div style="padding: 16px 24px;">
+        <div class="search-pill" id="search-pill">
+            <svg viewBox="0 0 24 24">
+                <path
+                    d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14Z"
+                    fill="currentColor" />
+            </svg>
+            <input type="text" placeholder="Search by breed, location, or name..." aria-label="Search pets">
+            <button class="voice-btn" aria-label="Voice search">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3Zm5-3c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2Z"
+                        fill="currentColor" />
+                </svg>
+            </button>
+        </div>
+    </div>
 
-            <div class="filter-group">
-                <div class="filter-title">Price Range</div>
-                <div class="price-range-inputs">
-                    <input type="number" class="price-input" placeholder="Min" value="0">
-                    <input type="number" class="price-input" placeholder="Max" value="50000">
+    <!--     FILTER TABS     -->
+    <div class="container" style="margin-bottom:24px;">
+        <div style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:4px 0;">
+            <button class="btn btn-coral btn-sm" style="white-space:nowrap;">All Pets</button>
+            <button class="btn btn-ghost btn-sm" style="white-space:nowrap;"> Dogs</button>
+            <button class="btn btn-ghost btn-sm" style="white-space:nowrap;"> Cats</button>
+            <button class="btn btn-ghost btn-sm" style="white-space:nowrap;"> Birds</button>
+            <button class="btn btn-ghost btn-sm" style="white-space:nowrap;"> Aquatic</button>
+            <button class="btn btn-ghost btn-sm" style="white-space:nowrap;"> Small Pets</button>
+            <button class="btn btn-ghost btn-sm" style="white-space:nowrap;">    For Adoption</button>
+        </div>
+    </div>
+
+    <!--     GS-SWIPE   TINDER CARDS     -->
+    <section class="section" style="padding-top:0; text-align:center;">
+        <div class="container">
+            <h2 style="font-size:24px; margin-bottom:4px;">GS-Swipe  </h2>
+            <p style="color:var(--text-muted); font-size:14px; margin-bottom:24px;">Swipe right to love, left to pass
+            </p>
+        </div>
+
+        <div class="swipe-container" id="swipe-container">
+            <!-- Card stack (back to front) -->
+            <div class="swipe-card" data-id="3" style="transform: scale(0.9) translateY(16px); opacity:0.5;">
+                <img src="images/hero-puppy.png" alt="Rocky">
+                <div class="swipe-card-info">
+                    <h3>Rocky</h3>
+                    <p>Labrador   6 months   Bangalore</p>
                 </div>
-                <div
-                    style="height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; position: relative; margin-top: 10px;">
-                    <div
-                        style="position: absolute; left: 0; right: 40%; top: 0; bottom: 0; background: #10B981; border-radius: 2px;">
+                <div class="swipe-overlay like">LOVE</div>
+                <div class="swipe-overlay nope">NOPE</div>
+            </div>
+            <div class="swipe-card" data-id="2" style="transform: scale(0.95) translateY(8px); opacity:0.7;">
+                <img src="images/cat-persian.png" alt="Luna">
+                <div class="swipe-card-info">
+                    <h3>Luna</h3>
+                    <p>Persian   1 year   Delhi</p>
+                </div>
+                <div class="swipe-overlay like">LOVE</div>
+                <div class="swipe-overlay nope">NOPE</div>
+            </div>
+            <div class="swipe-card" data-id="1" style="z-index:3;">
+                <img src="images/husky-puppy.png" alt="Max">
+                <div class="swipe-card-info">
+                    <h3>Max</h3>
+                    <p>Siberian Husky   3 months   Mumbai</p>
+                </div>
+                <div class="swipe-overlay like">LOVE</div>
+                <div class="swipe-overlay nope">NOPE</div>
+            </div>
+        </div>
+
+        <div class="swipe-actions">
+            <button class="swipe-btn pass" id="swipe-pass" aria-label="Pass"> </button>
+            <button class="swipe-btn love" id="swipe-love" aria-label="Love">   </button>
+        </div>
+    </section>
+
+    <!--     BROWSE   MASONRY GRID     -->
+    <section class="section" style="background: var(--bg-warm);">
+        <div class="container">
+            <h2 class="section-title">All Listings</h2>
+        </div>
+        <div class="masonry-grid reveal-stagger" id="browse-grid">
+            <a href="pet-details.html" class="pet-card">
+                <img src="images/hero-puppy.png" alt="Buddy" class="pet-card-image">
+                <div class="pet-card-body">
+                    <div class="pet-card-header">
+                        <div>
+                            <div class="pet-card-name">Buddy</div>
+                            <div class="pet-card-breed">Golden Retriever   Male</div>
+                        </div>
+                        <button class="pet-card-fav" aria-label="Favorite">   </button>
                     </div>
+                    <div class="pet-card-meta"><span> 3 months</span><span> Mumbai</span></div>
+                    <div class="pet-card-price"><span class="price"> 25,000</span><span class="badge badge-verified"> 
+                            Verified</span></div>
                 </div>
-            </div>
-
-            <div class="filter-group">
-                <div class="filter-title">Age</div>
-                <div class="filter-options">
-                    <label class="checkbox-label">
-                        <input type="checkbox">
-                        <div class="checkbox-custom"></div>
-                        <span>Puppy / Kitten</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" checked>
-                        <div class="checkbox-custom"></div>
-                        <span>Young</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox">
-                        <div class="checkbox-custom"></div>
-                        <span>Adult</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox">
-                        <div class="checkbox-custom"></div>
-                        <span>Senior</span>
-                    </label>
+            </a>
+            <a href="pet-details.html" class="pet-card">
+                <img src="images/cat-persian.png" alt="Luna" class="pet-card-image">
+                <div class="pet-card-body">
+                    <div class="pet-card-header">
+                        <div>
+                            <div class="pet-card-name">Luna</div>
+                            <div class="pet-card-breed">Persian Cat   Female</div>
+                        </div>
+                        <button class="pet-card-fav" aria-label="Favorite">   </button>
+                    </div>
+                    <div class="pet-card-meta"><span> 1 year</span><span> Delhi</span></div>
+                    <div class="pet-card-price"><span class="badge badge-free">Free to Good Home</span></div>
                 </div>
-            </div>
-
-            <div class="filter-group">
-                <div class="filter-title">Seller Type</div>
-                <div class="filter-options">
-                    <label class="checkbox-label">
-                        <input type="checkbox" checked>
-                        <div class="checkbox-custom"></div>
-                        <span>Breeder</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox">
-                        <div class="checkbox-custom"></div>
-                        <span>Pet Shop</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox">
-                        <div class="checkbox-custom"></div>
-                        <span>Individual</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox">
-                        <div class="checkbox-custom"></div>
-                        <span>Shelter</span>
-                    </label>
+            </a>
+            <a href="pet-details.html" class="pet-card">
+                <img src="images/husky-puppy.png" alt="Max" class="pet-card-image">
+                <div class="pet-card-body">
+                    <div class="pet-card-header">
+                        <div>
+                            <div class="pet-card-name">Max</div>
+                            <div class="pet-card-breed">Siberian Husky   Male</div>
+                        </div>
+                        <button class="pet-card-fav" aria-label="Favorite">   </button>
+                    </div>
+                    <div class="pet-card-meta"><span> 3 months</span><span> Mumbai</span></div>
+                    <div class="pet-card-price"><span class="price"> 45,000</span><span class="badge badge-premium"> 
+                            Premium</span></div>
                 </div>
-            </div>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="browse-content">
-            <div class="browse-header">
-                <div>
-                    <h1 style="font-family: var(--font-heading); font-size: 32px; margin-bottom: 8px;">Find Your
-                        Companion</h1>
-                    <span class="result-count">Showing 245 pets in Mumbai</span>
+            </a>
+            <a href="pet-details.html" class="pet-card">
+                <img src="images/hero-puppy.png" alt="Simba" class="pet-card-image">
+                <div class="pet-card-body">
+                    <div class="pet-card-header">
+                        <div>
+                            <div class="pet-card-name">Simba</div>
+                            <div class="pet-card-breed">Pomeranian   Male</div>
+                        </div>
+                        <button class="pet-card-fav" aria-label="Favorite">   </button>
+                    </div>
+                    <div class="pet-card-meta"><span> 4 months</span><span> Pune</span></div>
+                    <div class="pet-card-price"><span class="price"> 30,000</span><span class="badge badge-verified"> 
+                            Verified</span></div>
                 </div>
-                <select class="sort-select">
-                    <option>Newest Listed</option>
-                    <option>Price: Low to High</option>
-                    <option>Price: High to Low</option>
-                    <option>Nearest to Me</option>
-                </select>
+            </a>
+            <a href="pet-details.html" class="pet-card">
+                <img src="images/cat-persian.png" alt="Cleo" class="pet-card-image">
+                <div class="pet-card-body">
+                    <div class="pet-card-header">
+                        <div>
+                            <div class="pet-card-name">Cleo</div>
+                            <div class="pet-card-breed">Ragdoll   Female</div>
+                        </div>
+                        <button class="pet-card-fav" aria-label="Favorite">   </button>
+                    </div>
+                    <div class="pet-card-meta"><span> 8 months</span><span> Hyderabad</span></div>
+                    <div class="pet-card-price"><span class="badge badge-free">Free to Good Home</span></div>
+                </div>
+            </a>
+            <a href="pet-details.html" class="pet-card">
+                <img src="images/husky-puppy.png" alt="Alaska" class="pet-card-image">
+                <div class="pet-card-body">
+                    <div class="pet-card-header">
+                        <div>
+                            <div class="pet-card-name">Alaska</div>
+                            <div class="pet-card-breed">Alaskan Malamute   Female</div>
+                        </div>
+                        <button class="pet-card-fav" aria-label="Favorite">   </button>
+                    </div>
+                    <div class="pet-card-meta"><span> 5 months</span><span> Goa</span></div>
+                    <div class="pet-card-price"><span class="price"> 55,000</span><span class="badge badge-verified"> 
+                            Verified</span></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!--     FOOTER     -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3> GS-Petto</h3>
+                <p>India's most trusted pet marketplace.</p>
             </div>
-
-            <div class="pet-grid" id="petGrid">
-                <!-- Javascript will populate this -->
-                <div class="empty-grid-msg">Loading pets...</div>
+            <div class="footer-col">
+                <h4>Platform</h4><a href="browse.html">Browse</a><a href="adoption.html">Adopt</a><a
+                    href="post-ad.html">Sell</a>
             </div>
-        </main>
-    </div>
+            <div class="footer-col">
+                <h4>Company</h4><a href="#">About</a><a href="#">Safety</a><a href="#">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4><a href="#">Terms</a><a href="#">Privacy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p> 2026 GS-Petto. All rights reserved.</p>
+            <div class="footer-social"><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2c2.7 0 3 0 4.1.1 1 .1 1.5.2 2.1.4.6.2 1 .5 1.5 1 .4.4.7.9 1 1.5.2.5.3 1.1.4 2.1 0 1 .1 1.4.1 4.1s0 3-.1 4.1c-.1 1-.2 1.5-.4 2.1-.2.6-.5 1-1 1.5-.4.4-.9.7-1.5 1-.5.2-1.1.3-2.1.4-1 0-1.4.1-4.1.1s-3 0-4.1-.1c-1-.1-1.5-.2-2.1-.4-.6-.2-1-.5-1.5-1-.4-.4-.7-.9-1-1.5-.2-.5-.3-1.1-.4-2.1C2 15 2 14.7 2 12s0-3 .1-4.1c.1-1 .2-1.5.4-2.1.2-.6.5-1 1-1.5.4-.4.9-.7 1.5-1C5.5 3.1 6.1 3 7.1 2.9 8 3 8.3 2 12 2Zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm5.2-9.2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Z"
+                            fill="currentColor" />
+                    </svg></a></div>
+        </div>
+    </footer>
 
-    <div class="mobile-filter-btn" onclick="document.getElementById('sidebar').classList.toggle('active')">
-        <svg viewBox="0 0 24 24" width="20" height="20">
-            <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="currentColor" />
-        </svg>
-        Filters
-    </div>
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav-items">
+            <a href="index.html" class="bottom-nav-item"><svg viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="currentColor" />
+                </svg><span>Home</span></a>
+            <a href="browse.html" class="bottom-nav-item active"><svg viewBox="0 0 24 24">
+                    <path
+                        d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14Z"
+                        fill="currentColor" />
+                </svg><span>Discover</span></a>
+            <a href="post-ad.html" class="bottom-nav-item">
+                <div
+                    style="width:44px;height:44px;border-radius:50%;background:var(--gradient-coral);display:flex;align-items:center;justify-content:center;margin-top:-16px;box-shadow:var(--shadow-coral);">
+                    <svg viewBox="0 0 24 24" style="width:22px;height:22px;">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#fff" />
+                    </svg></div><span>Sell</span>
+            </a>
+            <a href="adoption.html" class="bottom-nav-item"><svg viewBox="0 0 24 24">
+                    <path
+                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                        fill="currentColor" />
+                </svg><span>Adopt</span></a>
+            <a href="profile.html" class="bottom-nav-item"><svg viewBox="0 0 24 24">
+                    <path
+                        d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                        fill="currentColor" />
+                </svg><span>Profile</span></a>
+        </div>
+    </nav>
 
-    <!-- Scripts -->
+    <div class="confetti-container" id="confetti-container"></div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/data.js"></script>
-    <script src="js/canvas-background.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/swipe.js"></script>
     <script src="js/main.js"></script>
-    <script>
-        // Force card loading
-        document.addEventListener('DOMContentLoaded', () => {
-            // Slight stagger for cards (assuming main.js populates them)
-            setTimeout(() => {
-                const cards = document.querySelectorAll('.pet-card');
-                if (cards.length > 0) {
-                    gsap.from(cards, {
-                        opacity: 0,
-                        y: 30,
-                        duration: 0.6,
-                        stagger: 0.1,
-                        ease: 'power2.out',
-                        scrollTrigger: {
-                            trigger: '.pet-grid',
-                            start: 'top 80%'
-                        }
-                    });
-                } else {
-                    // If main.js failed, load mock data
-                    const grid = document.getElementById('petGrid');
-                    grid.innerHTML = '';
-                    // Simple mock card generator if JS fails
-                    for (let i = 0; i < 6; i++) {
-                        const card = document.createElement('div');
-                        card.className = 'pet-card tilt-card glass';
-                        card.style.padding = '20px';
-                        card.style.borderRadius = '20px';
-                        card.innerHTML = `
-                            <div style="height:200px; background:#333; border-radius:16px; margin-bottom:12px;"></div>
-                            <h3 style="color:#fff;">Cute Doggo ${i + 1}</h3>
-                            <p style="color:#aaa;">Golden Retriever • 2mo</p>
-                            <div style="margin-top:12px; font-weight:bold; color:#10B981;">₹ 15,000</div>
-                         `;
-                        grid.appendChild(card);
-                    }
-                }
-            }, 500);
-        });
-    </script>
+    <script src="js/interactions.js"></script>
 </body>
 
 </html>

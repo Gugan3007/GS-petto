@@ -93,14 +93,14 @@ const PerformanceMetrics = {
     measure(name) {
         if (!this.start[name]) return null;
         const duration = performance.now() - this.start[name];
-        console.log(`⏱️  ${name}: ${duration.toFixed(2)}ms`);
+        console.log(`   ${name}: ${duration.toFixed(2)}ms`);
         return duration;
     },
     
     logMetrics() {
         const perfData = performance.getEntriesByType('navigation')[0];
         if (perfData) {
-            console.group('📊 Performance Metrics');
+            console.group(' Performance Metrics');
             console.log(`DNS: ${perfData.domainLookupEnd - perfData.domainLookupStart}ms`);
             console.log(`TCP: ${perfData.connectEnd - perfData.connectStart}ms`);
             console.log(`TTFB: ${perfData.responseStart - perfData.requestStart}ms`);
@@ -430,9 +430,9 @@ const ValidationUtils = {
 /**
  * Initialize and log utilities availability
  */
-console.log('✓ Utility libraries loaded:');
-console.log('  • BrowserDetect, PerformanceMetrics, RAFQueue');
-console.log('  • StorageManager, URLUtils, ColorUtils');
-console.log('  • ArrayUtils, StringUtils, ObjectUtils');
-console.log('  • CookieUtils, ValidationUtils');
-console.log('  • debounce(), throttle(), isInViewport()');
+console.log('  Utility libraries loaded:');
+console.log('    BrowserDetect, PerformanceMetrics, RAFQueue');
+console.log('    StorageManager, URLUtils, ColorUtils');
+console.log('    ArrayUtils, StringUtils, ObjectUtils');
+console.log('    CookieUtils, ValidationUtils');
+console.log('    debounce(), throttle(), isInViewport()');

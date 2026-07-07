@@ -1,393 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="List your pet for sale or adoption on GS-Petto — the verified pet marketplace.">
-    <title>List a Pet — GS-Petto</title>
-
-    <!-- Fonts -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Sell your pet or list for adoption on GS-Petto. Easy step-by-step wizard.">
+    <title>List a Pet   GS-Petto</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Stylesheets -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/cinematic.css">
-    <link rel="stylesheet" href="css/advanced-effects.css">
     <link rel="stylesheet" href="css/responsive.css">
-
+    <link rel="stylesheet" href="css/product-ui.css">
     <style>
-        /* ── Post-Ad Page Styles ── */
         .post-page {
-            min-height: 100vh;
-            padding-top: 80px;
+            padding: 24px 0 120px;
         }
 
-        .post-container {
-            max-width: 780px;
-            margin: 0 auto;
-            padding: 40px 24px 80px;
-        }
-
-        /* ── Header ── */
-        .post-header {
-            text-align: center;
-            margin-bottom: 48px;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .post-header h1 {
-            font-family: var(--font-heading, 'Outfit', sans-serif);
-            font-size: clamp(28px, 5vw, 42px);
-            font-weight: 900;
-            color: var(--text-primary);
-            letter-spacing: -0.03em;
-            margin-bottom: 8px;
-        }
-
-        .post-header p {
-            color: var(--text-secondary);
-            font-size: 15px;
-        }
-
-        /* ── Progress Stepper ── */
-        .stepper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0;
-            margin-bottom: 48px;
-            animation: fadeInUp 0.6s ease-out 0.1s both;
-        }
-
-        .stepper-step {
-            display: flex;
-            align-items: center;
-            gap: 0;
-        }
-
-        .step-circle {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            font-weight: 700;
-            border: 2px solid var(--border-strong, rgba(0,0,0,0.1));
-            background: transparent;
-            color: var(--text-muted);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            cursor: pointer;
-        }
-
-        .step-circle.active {
-            background: var(--coral, #FF6F61);
-            border-color: var(--coral, #FF6F61);
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(255, 111, 97, 0.35);
-            transform: scale(1.1);
-        }
-
-        .step-circle.completed {
-            background: var(--teal, #004E64);
-            border-color: var(--teal, #004E64);
-            color: #fff;
-            box-shadow: 0 4px 16px rgba(0, 78, 100, 0.25);
-        }
-
-        .step-circle.completed::after {
-            content: '✓';
-            font-size: 14px;
-        }
-
-        .step-circle.completed span {
-            display: none;
-        }
-
-        .step-line {
-            width: 48px;
-            height: 2px;
-            background: var(--border-strong, rgba(0,0,0,0.1));
-            transition: background 0.4s ease;
-        }
-
-        .step-line.completed {
-            background: var(--teal, #004E64);
-        }
-
-        .step-label {
-            position: absolute;
-            top: 44px;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--text-muted);
-            white-space: nowrap;
-            transition: color 0.3s ease;
-        }
-
-        .step-circle.active .step-label {
-            color: var(--coral, #FF6F61);
-        }
-
-        .step-circle.completed .step-label {
-            color: var(--teal, #004E64);
-        }
-
-        /* ── Form Sections ── */
-        .form-section {
-            background: var(--surface, #fff);
-            border-radius: var(--radius-xl, 24px);
-            padding: 36px;
-            margin-bottom: 28px;
-            border: 1px solid var(--border, rgba(0,0,0,0.06));
-            box-shadow: var(--shadow-md, 0 4px 16px rgba(0,0,0,0.06));
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: sectionSlideIn 0.5s ease-out both;
-        }
-
-        .form-section:nth-child(2) { animation-delay: 0.1s; }
-        .form-section:nth-child(3) { animation-delay: 0.2s; }
-        .form-section:nth-child(4) { animation-delay: 0.3s; }
-        .form-section:nth-child(5) { animation-delay: 0.4s; }
-
-        @keyframes sectionSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(24px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .form-section:hover {
-            box-shadow: var(--shadow-lg, 0 10px 30px rgba(0,0,0,0.08));
-            border-color: var(--border-strong, rgba(0,0,0,0.1));
-        }
-
-        .form-section h2 {
-            font-family: var(--font-heading, 'Outfit', sans-serif);
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: var(--radius-md, 12px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            background: rgba(255, 111, 97, 0.1);
-            flex-shrink: 0;
-        }
-
-        /* ── Form Fields ── */
-        .form-group {
-            margin-bottom: 22px;
-            position: relative;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: 13px;
-            letter-spacing: 0.02em;
-        }
-
-        .form-group label .req {
-            color: var(--coral, #FF6F61);
-            margin-left: 2px;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 13px 16px;
-            background: var(--glass-bg, rgba(255,255,255,0.72));
-            border: 1.5px solid var(--border-strong, rgba(0,0,0,0.1));
-            border-radius: var(--radius-md, 12px);
-            font-size: 15px;
-            color: var(--text-primary);
-            font-family: var(--font-body, 'Inter', sans-serif);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            outline: none;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: var(--coral, #FF6F61);
-            box-shadow: 0 0 0 3px rgba(255, 111, 97, 0.15);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--text-muted);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 110px;
-        }
-
-        .input-row {
+        .type-cards {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
         }
 
-        /* ── Pet Type Selector Cards ── */
-        .pet-type-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 12px;
-            margin-bottom: 8px;
-        }
-
-        .pet-type-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 8px;
-            border-radius: var(--radius-lg, 16px);
-            border: 2px solid var(--border, rgba(0,0,0,0.06));
-            background: var(--glass-bg, rgba(255,255,255,0.72));
-            cursor: pointer;
-            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        .type-card {
+            padding: 32px 20px;
+            border-radius: 20px;
             text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid var(--border);
+            background: var(--surface);
         }
 
-        .pet-type-card:hover {
-            border-color: var(--coral, #FF6F61);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(255, 111, 97, 0.15);
-        }
-
-        .pet-type-card.selected {
-            border-color: var(--coral, #FF6F61);
-            background: rgba(255, 111, 97, 0.08);
-            box-shadow: 0 6px 20px rgba(255, 111, 97, 0.2);
+        .type-card:hover {
+            border-color: var(--coral);
             transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
-        .pet-type-card .pet-emoji {
-            font-size: 28px;
-            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        .type-card.selected {
+            border-color: var(--coral);
+            background: rgba(255, 111, 97, 0.05);
+            box-shadow: var(--shadow-coral);
         }
 
-        .pet-type-card.selected .pet-emoji,
-        .pet-type-card:hover .pet-emoji {
-            transform: scale(1.2) rotate(-5deg);
-        }
-
-        .pet-type-card .pet-type-label {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-
-        .pet-type-card.selected .pet-type-label {
-            color: var(--coral, #FF6F61);
-        }
-
-        /* ── Image Upload ── */
-        .image-upload-zone {
-            border: 2px dashed var(--border-strong, rgba(0,0,0,0.1));
-            border-radius: var(--radius-xl, 24px);
-            padding: 40px 24px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            background: var(--glass-bg, rgba(255,255,255,0.72));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .image-upload-zone::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at center, rgba(255,111,97,0.06) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .image-upload-zone:hover,
-        .image-upload-zone.drag-over {
-            border-color: var(--coral, #FF6F61);
-            background: rgba(255, 111, 97, 0.04);
-        }
-
-        .image-upload-zone:hover::before,
-        .image-upload-zone.drag-over::before {
-            opacity: 1;
-        }
-
-        .upload-icon {
+        .type-card .type-icon {
             font-size: 40px;
             margin-bottom: 12px;
-            display: block;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .image-upload-zone:hover .upload-icon {
-            transform: scale(1.15) translateY(-4px);
+        .type-card .type-name {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 4px;
         }
 
-        .upload-text {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.6;
+        .type-card .type-desc {
+            font-size: 13px;
+            color: var(--text-muted);
         }
 
-        .upload-text strong {
-            color: var(--coral, #FF6F61);
-        }
-
-        .image-preview-grid {
+        .preview-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 12px;
-            margin-top: 20px;
+            margin-top: 16px;
         }
 
         .preview-item {
             position: relative;
-            border-radius: var(--radius-md, 12px);
-            overflow: hidden;
             aspect-ratio: 1;
-            background: var(--border, rgba(0,0,0,0.06));
-            animation: previewPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        @keyframes previewPop {
-            from {
-                opacity: 0;
-                transform: scale(0.7);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--bg-warm);
         }
 
         .preview-item img {
@@ -396,663 +86,432 @@
             object-fit: cover;
         }
 
-        .preview-remove {
+        .preview-item .remove-btn {
             position: absolute;
-            top: 4px;
-            right: 4px;
+            top: 6px;
+            right: 6px;
             width: 24px;
             height: 24px;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
             color: #fff;
             border: none;
-            border-radius: 50%;
+            cursor: pointer;
+            font-size: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .ai-bg-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 12px;
+            background: var(--gradient-premium);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            border: none;
             cursor: pointer;
-            font-size: 12px;
-            opacity: 0;
-            transition: opacity 0.2s ease;
+            margin-top: 12px;
+            transition: all 0.2s;
         }
 
-        .preview-item:hover .preview-remove {
-            opacity: 1;
+        .ai-bg-btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.9;
         }
 
-        /* ── Purpose Toggle ── */
-        .purpose-toggle {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        .price-toggle {
+            display: flex;
             gap: 12px;
+            margin-bottom: 20px;
         }
 
-        .purpose-card {
-            padding: 24px 16px;
-            border-radius: var(--radius-lg, 16px);
-            border: 2px solid var(--border, rgba(0,0,0,0.06));
-            background: var(--glass-bg, rgba(255,255,255,0.72));
-            text-align: center;
+        .price-toggle button {
+            flex: 1;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
             cursor: pointer;
-            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .purpose-card:hover {
-            border-color: var(--coral, #FF6F61);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(255, 111, 97, 0.12);
-        }
-
-        .purpose-card.selected {
-            border-color: var(--coral, #FF6F61);
-            background: rgba(255, 111, 97, 0.06);
-            box-shadow: 0 6px 20px rgba(255, 111, 97, 0.2);
-        }
-
-        .purpose-card .purpose-icon {
-            font-size: 32px;
-            display: block;
-            margin-bottom: 10px;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .purpose-card:hover .purpose-icon,
-        .purpose-card.selected .purpose-icon {
-            transform: scale(1.15);
-        }
-
-        .purpose-card .purpose-title {
-            font-weight: 700;
-            font-size: 15px;
+            border: 2px solid var(--border);
+            background: var(--surface);
             color: var(--text-primary);
-            margin-bottom: 4px;
+            transition: all 0.2s;
         }
 
-        .purpose-card .purpose-desc {
-            font-size: 12px;
+        .price-toggle button.active {
+            border-color: var(--coral);
+            background: rgba(255, 111, 97, 0.06);
+            color: var(--coral);
+        }
+
+        .review-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .review-row .label {
             color: var(--text-muted);
         }
 
-        /* ── Vaccination Toggle ── */
-        .toggle-group {
+        .review-row .value {
+            font-weight: 600;
+        }
+
+        .wizard-nav {
             display: flex;
             gap: 12px;
-        }
-
-        .toggle-chip {
-            padding: 10px 20px;
-            border-radius: var(--radius-full, 9999px);
-            border: 1.5px solid var(--border-strong, rgba(0,0,0,0.1));
-            background: transparent;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            font-family: var(--font-body, 'Inter', sans-serif);
-        }
-
-        .toggle-chip:hover {
-            border-color: var(--coral, #FF6F61);
-            color: var(--coral, #FF6F61);
-        }
-
-        .toggle-chip.selected {
-            background: var(--coral, #FF6F61);
-            border-color: var(--coral, #FF6F61);
-            color: #fff;
-            box-shadow: 0 4px 16px rgba(255, 111, 97, 0.3);
-        }
-
-        /* ── Form Actions ── */
-        .form-actions {
-            display: flex;
-            gap: 14px;
-            justify-content: center;
-            margin-top: 40px;
-            animation: sectionSlideIn 0.5s ease-out 0.5s both;
-        }
-
-        .btn-submit {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 36px;
-            border-radius: var(--radius-full, 9999px);
-            font-size: 15px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-family: var(--font-body, 'Inter', sans-serif);
-        }
-
-        .btn-submit.primary {
-            background: linear-gradient(135deg, #FF6F61 0%, #FF8A7A 100%);
-            color: #fff;
-            box-shadow: 0 8px 24px rgba(255, 111, 97, 0.3);
-        }
-
-        .btn-submit.primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(255, 111, 97, 0.4);
-        }
-
-        .btn-submit.primary:active {
-            transform: scale(0.96);
-        }
-
-        .btn-submit.secondary {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 2px solid var(--border-strong, rgba(0,0,0,0.1));
-        }
-
-        .btn-submit.secondary:hover {
-            border-color: var(--text-secondary);
-            color: var(--text-primary);
-            transform: translateY(-1px);
-        }
-
-        /* ── Validation Indicator ── */
-        .field-valid::after {
-            content: '✓';
-            position: absolute;
-            right: 14px;
-            top: 42px;
-            color: #2ECC71;
-            font-size: 16px;
-            font-weight: 700;
-            animation: checkPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        @keyframes checkPop {
-            from { transform: scale(0); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        /* ── Toast Notification ── */
-        .toast {
-            position: fixed;
-            bottom: 32px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            padding: 14px 28px;
-            border-radius: var(--radius-full, 9999px);
-            font-size: 14px;
-            font-weight: 600;
-            color: #fff;
-            z-index: 10000;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            pointer-events: none;
-        }
-
-        .toast.success {
-            background: linear-gradient(135deg, #2ECC71, #27AE60);
-            box-shadow: 0 8px 32px rgba(46, 204, 113, 0.35);
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-
-        /* ── Responsive ── */
-        @media (max-width: 640px) {
-            .input-row {
-                grid-template-columns: 1fr;
-            }
-
-            .form-section {
-                padding: 24px 20px;
-            }
-
-            .post-container {
-                padding: 24px 16px 60px;
-            }
-
-            .pet-type-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .purpose-toggle {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ── Animations ── */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
+            margin-top: 32px;
         }
     </style>
 </head>
-<body>
-    <canvas id="background-canvas"></canvas>
 
-    <!-- Navigation -->
+<body>
+    <!-- NAV -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
-                <svg viewBox="0 0 24 24" width="32" height="32">
-                    <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4L10 14.2l7.6-7.6L19 8l-9 9z" fill="currentColor"/>
+                <svg viewBox="0 0 32 32" width="32" height="32">
+                    <path
+                        d="M8 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm10-3a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm8 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM16 28c-4 0-7.5-2-9.5-5a1 1 0 0 1 .3-1.4c1.8-1.2 4-1.8 6.2-1.8h6c2.2 0 4.4.6 6.2 1.8a1 1 0 0 1 .3 1.4C23.5 26 20 28 16 28Zm-4-14a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm14 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        fill="currentColor" />
                 </svg>
                 <span>GS-Petto</span>
             </a>
-            <div class="nav-links">
+            <div class="nav-links" id="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="browse.html" class="nav-link">Discover</a>
                 <a href="adoption.html" class="nav-link">Adopt</a>
                 <a href="post-ad.html" class="nav-link active">Sell</a>
                 <a href="login.html" class="nav-cta">Sign In</a>
             </div>
-            <div class="mobile-menu-toggle">
-                <svg viewBox="0 0 24 24" width="24" height="24"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" fill="currentColor"/></svg>
+            <div style="display:flex;align-items:center;gap:8px;">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"> </button>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Menu">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" fill="currentColor" />
+                    </svg>
+                </button>
             </div>
         </div>
     </nav>
 
     <div class="post-page">
-        <div class="post-container">
-            <!-- Header -->
-            <div class="post-header">
-                <h1>List a Pet</h1>
-                <p>It takes less than 2 minutes</p>
+        <div class="container-sm">
+            <div style="text-align:center;margin-bottom:32px;">
+                <h1 style="font-size:32px;margin-bottom:8px;">List a Pet</h1>
+                <p style="color:var(--text-muted);">It takes less than 2 minutes</p>
             </div>
 
-            <!-- Progress Stepper -->
-            <div class="stepper">
-                <div class="stepper-step">
-                    <div class="step-circle active" data-step="1">
-                        <span>1</span>
-                        <div class="step-label">Type</div>
+            <!-- WIZARD PROGRESS -->
+            <div class="wizard-progress" id="wizard-progress">
+                <div class="wizard-dot active" data-step="1"></div>
+                <div class="wizard-line"></div>
+                <div class="wizard-dot" data-step="2"></div>
+                <div class="wizard-line"></div>
+                <div class="wizard-dot" data-step="3"></div>
+                <div class="wizard-line"></div>
+                <div class="wizard-dot" data-step="4"></div>
+                <div class="wizard-line"></div>
+                <div class="wizard-dot" data-step="5"></div>
+            </div>
+
+            <!-- STEP 1: TYPE -->
+            <div class="wizard-step active" id="step-1">
+                <h2 class="wizard-title">What would you like to do?</h2>
+                <p class="wizard-subtitle">Choose the type of listing</p>
+                <div class="type-cards">
+                    <div class="type-card" data-type="sell" onclick="selectType(this)">
+                        <div class="type-icon"></div>
+                        <div class="type-name">Sell a Pet</div>
+                        <div class="type-desc">List with a price tag</div>
+                    </div>
+                    <div class="type-card" data-type="adopt" onclick="selectType(this)">
+                        <div class="type-icon">   </div>
+                        <div class="type-name">Free Adoption</div>
+                        <div class="type-desc">Give a pet a new home</div>
                     </div>
                 </div>
-                <div class="step-line"></div>
-                <div class="stepper-step">
-                    <div class="step-circle" data-step="2">
-                        <span>2</span>
-                        <div class="step-label">Details</div>
-                    </div>
-                </div>
-                <div class="step-line"></div>
-                <div class="stepper-step">
-                    <div class="step-circle" data-step="3">
-                        <span>3</span>
-                        <div class="step-label">Photos</div>
-                    </div>
-                </div>
-                <div class="step-line"></div>
-                <div class="stepper-step">
-                    <div class="step-circle" data-step="4">
-                        <span>4</span>
-                        <div class="step-label">Location</div>
-                    </div>
+                <div class="wizard-nav">
+                    <button class="btn btn-coral btn-lg btn-full" onclick="nextStep()">Continue</button>
                 </div>
             </div>
 
-            <form id="postAdForm" novalidate>
-                <!-- Section 1: Purpose & Pet Type -->
-                <div class="form-section">
-                    <h2><span class="section-icon">🎯</span> What would you like to do?</h2>
-
-                    <div class="purpose-toggle" id="purposeToggle">
-                        <div class="purpose-card selected" data-value="sell" onclick="selectPurpose(this)">
-                            <span class="purpose-icon">💰</span>
-                            <div class="purpose-title">Sell a Pet</div>
-                            <div class="purpose-desc">List with a price tag</div>
-                        </div>
-                        <div class="purpose-card" data-value="adoption" onclick="selectPurpose(this)">
-                            <span class="purpose-icon">🤍</span>
-                            <div class="purpose-title">Free Adoption</div>
-                            <div class="purpose-desc">Give a pet a new home</div>
-                        </div>
+            <!-- STEP 2: PHOTOS -->
+            <div class="wizard-step" id="step-2">
+                <h2 class="wizard-title">Upload Photos</h2>
+                <p class="wizard-subtitle">Great photos get 3x more views</p>
+                <div class="upload-zone" id="upload-zone" onclick="document.getElementById('file-input').click()">
+                    <div class="upload-zone-icon"></div>
+                    <div class="upload-zone-text">
+                        <span class="upload-zone-cta">Click to upload</span> or drag photos here
                     </div>
+                    <div style="font-size:12px;color:var(--text-muted);margin-top:8px;">PNG, JPG up to 10MB</div>
+                </div>
+                <input type="file" id="file-input" multiple accept="image/*" style="display:none;"
+                    onchange="handleUpload(this)">
 
-                    <div style="margin-top: 28px;">
-                        <label style="display:block; margin-bottom:10px; font-weight:600; font-size:13px; color:var(--text-primary); letter-spacing:0.02em;">
-                            Choose Pet Type <span class="req">*</span>
-                        </label>
-                        <div class="pet-type-grid" id="petTypeGrid">
-                            <div class="pet-type-card" data-type="dog" onclick="selectPetType(this)">
-                                <span class="pet-emoji">🐶</span>
-                                <span class="pet-type-label">Dog</span>
-                            </div>
-                            <div class="pet-type-card" data-type="cat" onclick="selectPetType(this)">
-                                <span class="pet-emoji">🐱</span>
-                                <span class="pet-type-label">Cat</span>
-                            </div>
-                            <div class="pet-type-card" data-type="bird" onclick="selectPetType(this)">
-                                <span class="pet-emoji">🦜</span>
-                                <span class="pet-type-label">Bird</span>
-                            </div>
-                            <div class="pet-type-card" data-type="fish" onclick="selectPetType(this)">
-                                <span class="pet-emoji">🐠</span>
-                                <span class="pet-type-label">Fish</span>
-                            </div>
-                            <div class="pet-type-card" data-type="rabbit" onclick="selectPetType(this)">
-                                <span class="pet-emoji">🐰</span>
-                                <span class="pet-type-label">Rabbit</span>
-                            </div>
-                            <div class="pet-type-card" data-type="other" onclick="selectPetType(this)">
-                                <span class="pet-emoji">🐾</span>
-                                <span class="pet-type-label">Other</span>
-                            </div>
-                        </div>
+                <div class="preview-grid" id="preview-grid"></div>
+
+                <button class="ai-bg-btn" id="ai-bg-btn" style="display:none;" onclick="simulateAiBg()">
+                      AI Background Remove
+                </button>
+
+                <div class="wizard-nav">
+                    <button class="btn btn-outline btn-lg" onclick="prevStep()" style="flex:1;">Back</button>
+                    <button class="btn btn-coral btn-lg" onclick="nextStep()" style="flex:2;">Continue</button>
+                </div>
+            </div>
+
+            <!-- STEP 3: DETAILS -->
+            <div class="wizard-step" id="step-3">
+                <h2 class="wizard-title">Pet Details</h2>
+                <p class="wizard-subtitle">Tell us about your pet</p>
+                <div class="form-group">
+                    <label class="form-label">Pet Name</label>
+                    <input type="text" class="form-input" placeholder="e.g. Buddy">
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                    <div class="form-group">
+                        <label class="form-label">Species</label>
+                        <select class="form-input">
+                            <option>Dog</option>
+                            <option>Cat</option>
+                            <option>Bird</option>
+                            <option>Fish</option>
+                            <option>Hamster</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Breed</label>
+                        <input type="text" class="form-input" placeholder="e.g. Golden Retriever">
+                    </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                    <div class="form-group">
+                        <label class="form-label">Age</label>
+                        <input type="text" class="form-input" placeholder="e.g. 3 months">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Gender</label>
+                        <select class="form-input">
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Vaccination Status</label>
+                    <select class="form-input">
+                        <option>Up to Date</option>
+                        <option>Partial</option>
+                        <option>Not Vaccinated</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-input" rows="4"
+                        placeholder="Tell potential owners about your pet's personality, habits, and what makes them special..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Location</label>
+                    <input type="text" class="form-input" placeholder="City, State">
+                </div>
+                <div class="wizard-nav">
+                    <button class="btn btn-outline btn-lg" onclick="prevStep()" style="flex:1;">Back</button>
+                    <button class="btn btn-coral btn-lg" onclick="nextStep()" style="flex:2;">Continue</button>
+                </div>
+            </div>
+
+            <!-- STEP 4: PRICING -->
+            <div class="wizard-step" id="step-4">
+                <h2 class="wizard-title">Set Your Price</h2>
+                <p class="wizard-subtitle" id="pricing-subtitle">How much are you asking?</p>
+
+                <div class="price-toggle" id="price-toggle">
+                    <button class="active" onclick="togglePrice('paid', this)"> Set Price</button>
+                    <button onclick="togglePrice('free', this)">    Free Adoption</button>
+                </div>
+
+                <div id="price-input-wrap">
+                    <div class="form-group">
+                        <label class="form-label">Price ( )</label>
+                        <input type="number" class="form-input" placeholder="25000" id="price-input"
+                            style="font-size:24px;font-weight:700;font-family:var(--font-heading);">
                     </div>
                 </div>
 
-                <!-- Section 2: Pet Details -->
-                <div class="form-section">
-                    <h2><span class="section-icon">📝</span> Pet Details</h2>
-
-                    <div class="form-group">
-                        <label>Pet Name <span class="req">*</span></label>
-                        <input type="text" id="petName" placeholder="e.g., Max, Bella" required>
-                    </div>
-
-                    <div class="input-row">
-                        <div class="form-group">
-                            <label>Breed <span class="req">*</span></label>
-                            <input type="text" id="petBreed" placeholder="e.g., Golden Retriever" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Age <span class="req">*</span></label>
-                            <input type="text" id="petAge" placeholder="e.g., 2 years" required>
-                        </div>
-                    </div>
-
-                    <div class="input-row">
-                        <div class="form-group">
-                            <label>Gender <span class="req">*</span></label>
-                            <select id="petGender" required>
-                                <option value="">Select gender</option>
-                                <option value="male">Male ♂️</option>
-                                <option value="female">Female ♀️</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Color</label>
-                            <input type="text" id="petColor" placeholder="e.g., Golden, White">
-                        </div>
-                    </div>
-
-                    <div class="form-group" id="priceGroup">
-                        <label>Price (₹) <span class="req">*</span></label>
-                        <input type="number" id="petPrice" placeholder="Enter price" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Description <span class="req">*</span></label>
-                        <textarea id="petDesc" placeholder="Describe your pet's personality, behavior, health status..." required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Vaccination Status</label>
-                        <div class="toggle-group" id="vaccToggle">
-                            <button type="button" class="toggle-chip" data-value="yes" onclick="selectToggle(this, 'vaccToggle')">✓ Vaccinated</button>
-                            <button type="button" class="toggle-chip" data-value="no" onclick="selectToggle(this, 'vaccToggle')">✗ Not Vaccinated</button>
-                            <button type="button" class="toggle-chip" data-value="partial" onclick="selectToggle(this, 'vaccToggle')">◐ Partial</button>
-                        </div>
-                    </div>
+                <div id="free-badge-wrap" style="display:none;text-align:center;padding:40px 0;">
+                    <div style="font-size:64px;margin-bottom:16px;">   </div>
+                    <span class="badge badge-free" style="font-size:16px;padding:8px 20px;">Free to Good Home</span>
+                    <p style="margin-top:16px;color:var(--text-muted);font-size:14px;">Your pet will be listed for free
+                        adoption</p>
                 </div>
 
-                <!-- Section 3: Images -->
-                <div class="form-section">
-                    <h2><span class="section-icon">📸</span> Upload Photos</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 13px;">Add at least 1 image (up to 10). First image will be the cover photo.</p>
+                <div class="wizard-nav">
+                    <button class="btn btn-outline btn-lg" onclick="prevStep()" style="flex:1;">Back</button>
+                    <button class="btn btn-coral btn-lg" onclick="nextStep()" style="flex:2;">Continue</button>
+                </div>
+            </div>
 
-                    <div class="image-upload-zone" id="uploadZone" onclick="document.getElementById('imageInput').click()">
-                        <span class="upload-icon">📷</span>
-                        <div class="upload-text">
-                            <strong>Click to upload</strong> or drag & drop<br>
-                            JPG, PNG, WEBP · Max 5MB each
+            <!-- STEP 5: REVIEW -->
+            <div class="wizard-step" id="step-5">
+                <h2 class="wizard-title">Review & Publish</h2>
+                <p class="wizard-subtitle">Almost there! Check everything looks good.</p>
+
+                <div style="background:var(--bg-warm);border-radius:20px;padding:24px;margin-bottom:24px;">
+                    <div style="display:flex;gap:16px;align-items:center;margin-bottom:20px;">
+                        <img src="images/hero-puppy.png" alt="Pet preview"
+                            style="width:80px;height:80px;border-radius:16px;object-fit:cover;">
+                        <div>
+                            <div style="font-weight:700;font-size:18px;">Buddy</div>
+                            <div style="font-size:14px;color:var(--text-muted);">Golden Retriever   Male</div>
                         </div>
                     </div>
-                    <input type="file" id="imageInput" multiple accept="image/*" style="display: none;">
-                    <div class="image-preview-grid" id="imagePreview"></div>
+                    <div class="review-row"><span class="label">Type</span><span class="value">For Sale</span></div>
+                    <div class="review-row"><span class="label">Age</span><span class="value">3 months</span></div>
+                    <div class="review-row"><span class="label">Location</span><span class="value">Mumbai</span></div>
+                    <div class="review-row"><span class="label">Vaccination</span><span class="value"
+                            style="color:#27AE60;">Up to Date</span></div>
+                    <div class="review-row" style="border:none;"><span class="label">Price</span><span class="value"
+                            style="color:var(--teal);font-size:18px;"> 25,000</span></div>
                 </div>
 
-                <!-- Section 4: Location -->
-                <div class="form-section">
-                    <h2><span class="section-icon">📍</span> Location & Contact</h2>
-
-                    <div class="input-row">
-                        <div class="form-group">
-                            <label>City <span class="req">*</span></label>
-                            <input type="text" id="city" placeholder="e.g., Mumbai" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Area / Locality <span class="req">*</span></label>
-                            <input type="text" id="area" placeholder="e.g., Bandra" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Full Address <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
-                        <textarea id="address" placeholder="Complete address for meetup" style="min-height: 70px;"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Contact Number <span class="req">*</span></label>
-                        <input type="tel" id="phone" placeholder="+91 98765 43210" required>
-                    </div>
+                <div class="wizard-nav">
+                    <button class="btn btn-outline btn-lg" onclick="prevStep()" style="flex:1;">Back</button>
+                    <button class="btn btn-coral btn-lg btn-heartbeat" onclick="publishListing()" style="flex:2;">
+                        Publish Listing</button>
                 </div>
+            </div>
 
-                <!-- Actions -->
-                <div class="form-actions">
-                    <button type="button" class="btn-submit secondary">Save as Draft</button>
-                    <button type="submit" class="btn-submit primary">Publish Listing ✨</button>
-                </div>
-            </form>
+            <!-- SUCCESS STATE -->
+            <div class="wizard-step" id="step-success" style="text-align:center;padding:60px 0;">
+                <div style="font-size:80px;margin-bottom:24px;"></div>
+                <h2 style="font-size:28px;margin-bottom:12px;">Listing Published!</h2>
+                <p style="color:var(--text-muted);margin-bottom:32px;">Your pet listing is now live on GS-Petto</p>
+                <a href="browse.html" class="btn btn-coral btn-lg">View Listings</a>
+            </div>
         </div>
     </div>
 
-    <!-- Toast -->
-    <div class="toast success" id="toast">🎉 Your listing has been published!</div>
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav-items">
+            <a href="index.html" class="bottom-nav-item"><svg viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="currentColor" />
+                </svg><span>Home</span></a>
+            <a href="browse.html" class="bottom-nav-item"><svg viewBox="0 0 24 24">
+                    <path
+                        d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14Z"
+                        fill="currentColor" />
+                </svg><span>Discover</span></a>
+            <a href="post-ad.html" class="bottom-nav-item active">
+                <div
+                    style="width:44px;height:44px;border-radius:50%;background:var(--gradient-coral);display:flex;align-items:center;justify-content:center;margin-top:-16px;box-shadow:var(--shadow-coral);">
+                    <svg viewBox="0 0 24 24" style="width:22px;height:22px;">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#fff" />
+                    </svg></div><span>Sell</span>
+            </a>
+            <a href="adoption.html" class="bottom-nav-item"><svg viewBox="0 0 24 24">
+                    <path
+                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                        fill="currentColor" />
+                </svg><span>Adopt</span></a>
+            <a href="profile.html" class="bottom-nav-item"><svg viewBox="0 0 24 24">
+                    <path
+                        d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                        fill="currentColor" />
+                </svg><span>Profile</span></a>
+        </div>
+    </nav>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="js/canvas-background.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/interactions.js"></script>
     <script>
-        // ── State ──
-        let selectedPurpose = 'sell';
-        let selectedPetType = null;
-        let uploadedFiles = [];
+        let currentStep = 1;
+        const totalSteps = 5;
 
-        // ── Pet Type Selection ──
-        function selectPetType(card) {
-            document.querySelectorAll('.pet-type-card').forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
-            selectedPetType = card.dataset.type;
+        function updateWizard() {
+            document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
+            const step = document.getElementById(`step-${currentStep}`);
+            if (step) step.classList.add('active');
 
-            // Bounce animation
-            const emoji = card.querySelector('.pet-emoji');
-            emoji.style.transform = 'scale(1.4) rotate(-10deg)';
-            setTimeout(() => {
-                emoji.style.transform = 'scale(1.2) rotate(-5deg)';
-            }, 200);
-
-            updateStepper(1);
-        }
-
-        // ── Purpose Selection ──
-        function selectPurpose(card) {
-            document.querySelectorAll('.purpose-card').forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
-            selectedPurpose = card.dataset.value;
-
-            const priceGroup = document.getElementById('priceGroup');
-            if (selectedPurpose === 'adoption') {
-                priceGroup.style.display = 'none';
-            } else {
-                priceGroup.style.display = 'block';
-            }
-        }
-
-        // ── Toggle Chips ──
-        function selectToggle(chip, groupId) {
-            document.querySelectorAll(`#${groupId} .toggle-chip`).forEach(c => c.classList.remove('selected'));
-            chip.classList.add('selected');
-        }
-
-        // ── Stepper ──
-        function updateStepper(step) {
-            document.querySelectorAll('.step-circle').forEach((circle, i) => {
-                circle.classList.remove('active', 'completed');
-                if (i < step - 1) circle.classList.add('completed');
-                if (i === step - 1) circle.classList.add('active');
+            document.querySelectorAll('.wizard-dot').forEach((dot, i) => {
+                dot.classList.remove('active', 'completed');
+                if (i + 1 === currentStep) dot.classList.add('active');
+                else if (i + 1 < currentStep) dot.classList.add('completed');
             });
-            document.querySelectorAll('.step-line').forEach((line, i) => {
-                line.classList.toggle('completed', i < step - 1);
+            document.querySelectorAll('.wizard-line').forEach((line, i) => {
+                line.classList.toggle('completed', i + 1 < currentStep);
             });
         }
 
-        // Track scroll to auto-update stepper
-        const sections = document.querySelectorAll('.form-section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const idx = Array.from(sections).indexOf(entry.target);
-                    updateStepper(idx + 1);
-                }
-            });
-        }, { threshold: 0.5 });
-        sections.forEach(s => observer.observe(s));
+        function nextStep() {
+            if (currentStep < totalSteps) { currentStep++; updateWizard(); }
+        }
+        function prevStep() {
+            if (currentStep > 1) { currentStep--; updateWizard(); }
+        }
 
-        // ── Image Upload ──
-        const uploadZone = document.getElementById('uploadZone');
-        const imageInput = document.getElementById('imageInput');
-        const previewGrid = document.getElementById('imagePreview');
+        function selectType(el) {
+            document.querySelectorAll('.type-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+        }
 
-        // Drag and drop
-        ['dragenter', 'dragover'].forEach(evt => {
-            uploadZone.addEventListener(evt, (e) => {
-                e.preventDefault();
-                uploadZone.classList.add('drag-over');
-            });
-        });
-        ['dragleave', 'drop'].forEach(evt => {
-            uploadZone.addEventListener(evt, (e) => {
-                e.preventDefault();
-                uploadZone.classList.remove('drag-over');
-            });
-        });
-        uploadZone.addEventListener('drop', (e) => {
-            const files = Array.from(e.dataTransfer.files);
-            handleFiles(files);
-        });
+        function togglePrice(type, btn) {
+            document.querySelectorAll('.price-toggle button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('price-input-wrap').style.display = type === 'paid' ? 'block' : 'none';
+            document.getElementById('free-badge-wrap').style.display = type === 'free' ? 'block' : 'none';
+        }
 
-        imageInput.addEventListener('change', (e) => {
-            handleFiles(Array.from(e.target.files));
-        });
-
-        function handleFiles(files) {
-            files.forEach(file => {
-                if (!file.type.startsWith('image/')) return;
-                if (uploadedFiles.length >= 10) return;
-
-                uploadedFiles.push(file);
+        function handleUpload(input) {
+            const grid = document.getElementById('preview-grid');
+            const aiBgBtn = document.getElementById('ai-bg-btn');
+            Array.from(input.files).forEach(file => {
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    const item = document.createElement('div');
-                    item.className = 'preview-item';
-                    item.innerHTML = `
-                        <img src="${e.target.result}" alt="Preview">
-                        <button type="button" class="preview-remove" onclick="removeImage(this)">✕</button>
-                    `;
-                    previewGrid.appendChild(item);
+                    const div = document.createElement('div');
+                    div.className = 'preview-item';
+                    div.innerHTML = `<img src="${e.target.result}" alt="Upload"><button class="remove-btn" onclick="this.parentElement.remove()"> </button>`;
+                    grid.appendChild(div);
+                    aiBgBtn.style.display = 'flex';
                 };
                 reader.readAsDataURL(file);
             });
-            updateStepper(3);
         }
 
-        function removeImage(btn) {
-            const item = btn.parentElement;
-            const idx = Array.from(previewGrid.children).indexOf(item);
-            uploadedFiles.splice(idx, 1);
-            item.style.transform = 'scale(0)';
-            item.style.opacity = '0';
-            setTimeout(() => item.remove(), 200);
+        function simulateAiBg() {
+            const imgs = document.querySelectorAll('.preview-item img');
+            const gradients = [
+                'linear-gradient(135deg, #FADADD, #F8E8EE)',
+                'linear-gradient(135deg, #D5F0C1, #E8F5E9)',
+                'linear-gradient(135deg, #D4E3FC, #E8EAF6)',
+                'linear-gradient(135deg, #FFF3CD, #FFF9E6)'
+            ];
+            imgs.forEach((img, i) => {
+                img.style.opacity = '0.9';
+                img.parentElement.style.background = gradients[i % gradients.length];
+            });
+            document.getElementById('ai-bg-btn').textContent = '  Background Removed';
+            document.getElementById('ai-bg-btn').style.opacity = '0.6';
         }
 
-        // ── Real-time Validation ──
-        document.querySelectorAll('#postAdForm input[required], #postAdForm textarea[required], #postAdForm select[required]').forEach(field => {
-            field.addEventListener('input', () => {
-                const group = field.closest('.form-group');
-                if (field.value.trim()) {
-                    group.classList.add('field-valid');
-                } else {
-                    group.classList.remove('field-valid');
-                }
-            });
-            field.addEventListener('change', () => {
-                const group = field.closest('.form-group');
-                if (field.value.trim()) {
-                    group.classList.add('field-valid');
-                } else {
-                    group.classList.remove('field-valid');
-                }
-            });
-        });
-
-        // ── Focus tracking for stepper ──
-        document.querySelectorAll('.form-section').forEach((section, i) => {
-            section.querySelectorAll('input, select, textarea').forEach(field => {
-                field.addEventListener('focus', () => updateStepper(i + 1));
-            });
-        });
-
-        // ── Form Submit ──
-        document.getElementById('postAdForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Simple validation
-            if (!selectedPetType) {
-                alert('Please select a pet type');
-                return;
-            }
-
-            // Show toast
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
-
-            // Reset after delay
-            setTimeout(() => {
-                this.reset();
-                document.querySelectorAll('.pet-type-card, .purpose-card, .toggle-chip').forEach(c => c.classList.remove('selected'));
-                document.querySelector('.purpose-card[data-value="sell"]').classList.add('selected');
-                previewGrid.innerHTML = '';
-                uploadedFiles = [];
-                document.querySelectorAll('.field-valid').forEach(g => g.classList.remove('field-valid'));
-                updateStepper(1);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 1500);
-        });
-
-        // ── Draft Save ──
-        document.querySelector('.btn-submit.secondary').addEventListener('click', () => {
-            alert('✓ Draft saved! You can continue editing later.');
-        });
-
-        // ── GSAP page entrance ──
-        if (typeof gsap !== 'undefined') {
-            gsap.from('.post-header', { opacity: 0, y: 30, duration: 0.6 });
-            gsap.from('.stepper', { opacity: 0, y: 20, duration: 0.5, delay: 0.15 });
+        function publishListing() {
+            currentStep = 'success';
+            document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step-success').classList.add('active');
+            document.querySelector('.wizard-progress').style.display = 'none';
         }
     </script>
 </body>
+
 </html>

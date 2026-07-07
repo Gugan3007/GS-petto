@@ -158,42 +158,42 @@ const petData = {
         {
             id: "dogs",
             name: "Dogs",
-            icon: "🐶",
+            icon: "",
             count: 500,
             breeds: ["Labrador", "Golden Retriever", "German Shepherd", "Beagle", "Pug", "Bulldog", "Husky", "Pomeranian"]
         },
         {
             id: "cats",
             name: "Cats",
-            icon: "🐱",
+            icon: "",
             count: 320,
             breeds: ["Persian", "Siamese", "Maine Coon", "British Shorthair", "Bengal", "Ragdoll", "Sphynx"]
         },
         {
             id: "birds",
             name: "Birds",
-            icon: "🦜",
+            icon: "",
             count: 150,
             breeds: ["Macaw", "Cockatiel", "Budgie", "African Grey", "Lovebirds", "Canary", "Finch"]
         },
         {
             id: "fish",
             name: "Fish",
-            icon: "🐠",
+            icon: "",
             count: 200,
             breeds: ["Goldfish", "Betta", "Guppy", "Angelfish", "Tetra", "Oscar", "Koi", "Clownfish"]
         },
         {
             id: "others",
             name: "Other Pets",
-            icon: "🐾",
+            icon: "",
             count: 80,
             types: ["Hamster", "Rabbit", "Guinea Pig", "Turtle", "Ferret"]
         },
         {
             id: "accessories",
             name: "Accessories",
-            icon: "🧸",
+            icon: "",
             count: 1000,
             items: ["Food", "Toys", "Cages", "Leashes", "Beds", "Grooming"]
         }
@@ -207,21 +207,21 @@ const testimonials = [
         location: "Mumbai",
         text: "Found the perfect puppy for my family! The process was so easy and safe. Highly recommend Petto!",
         rating: 5,
-        image: "👩"
+        image: ""
     },
     {
         name: "Rahul Verma",
         location: "Bangalore",
         text: "Adopted a beautiful cat through Petto. The adoption process was smooth and the team was very helpful.",
         rating: 5,
-        image: "👨"
+        image: ""
     },
     {
         name: "Sneha Patel",
         location: "Delhi",
         text: "Best platform for pet lovers! Found my dream Golden Retriever here. Thank you Petto!",
         rating: 5,
-        image: "👩"
+        image: ""
     }
 ];
 
