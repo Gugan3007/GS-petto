@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+
 /* ========================================
    GS-PETTO   Design System
    "Emotional Tech" / "Soft Glassmorphism"
@@ -10,9 +12,9 @@
 
 :root {
     /* Product-grade core palette */
-    --ink: #10242b;
-    --muted: #627177;
-    --line: rgba(16, 36, 43, 0.10);
+    --ink: #082f3b;
+    --muted: #4f646c;
+    --line: rgba(8, 47, 59, 0.16);
     --paper: #fffaf8;
     --mint: #e8f6f2;
     --coral: #ff6f61;
@@ -37,7 +39,7 @@
 
     --text-primary:    var(--ink);
     --text-secondary:  var(--muted);
-    --text-muted:      #9E9EB0;
+    --text-muted:      #60747c;
     --text-on-coral:   #FFFFFF;
     --text-on-teal:    #FFFFFF;
 
@@ -53,13 +55,13 @@
     /*    Glassmorphism    */
     --glass-bg:        rgba(255, 255, 255, 0.72);
     --glass-bg-strong: rgba(255, 255, 255, 0.88);
-    --glass-border:    rgba(255, 255, 255, 0.5);
+    --glass-border:    rgba(8, 47, 59, 0.16);
     --glass-blur:      16px;
     --glass-blur-lg:   24px;
 
     /*    Borders    */
-    --border:          rgba(0, 0, 0, 0.06);
-    --border-strong:   rgba(0, 0, 0, 0.1);
+    --border:          rgba(8, 47, 59, 0.14);
+    --border-strong:   rgba(8, 47, 59, 0.24);
     --border-coral:    rgba(255, 111, 97, 0.3);
 
     /*    Shadows (Floating Feel)    */
