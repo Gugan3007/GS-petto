@@ -1,18 +1,17 @@
         :root {
-            --feature-ink: #10242b;
-            --feature-muted: #627177;
-            --feature-line: rgba(16, 36, 43, 0.1);
-            --feature-paper: #fffaf8;
-            --feature-mint: #e8f6f2;
-            --feature-coral: #ff6f61;
-            --feature-teal: #004e64;
-            --feature-gold: #e9a93f;
+            --feature-ink: var(--surface-light-text);
+            --feature-muted: var(--surface-light-text-muted);
+            --feature-line: var(--surface-light-border);
+            --feature-paper: var(--surface-light-bg);
+            --feature-mint: var(--surface-light-bg-alt);
+            --feature-coral: var(--accent-coral-text);
+            --feature-teal: var(--surface-dark-bg);
+            --feature-gold: var(--accent-gold);
             --feature-radius: 8px;
         }
 
         body {
-            background:
-                linear-gradient(180deg, #fffaf8 0%, #ffffff 42%, #f6fbfa 100%);
+            background: var(--surface-light-bg);
             color: var(--feature-ink);
         }
 
@@ -257,8 +256,8 @@
 
         .message.out {
             margin-left: auto;
-            background: var(--feature-coral);
-            color: #fff;
+            background: var(--feature-teal);
+            color: var(--surface-dark-text);
         }
 
         .moderation-panel {

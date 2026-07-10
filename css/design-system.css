@@ -11,15 +11,47 @@
    ---------------------------------------- */
 
 :root {
+    /* Dual-tone surface system */
+    --surface-light-bg: #fffaf8;
+    --surface-light-bg-alt: #e8f6f2;
+    --surface-light-surface: #ffffff;
+    --surface-light-text: #10242b;
+    --surface-light-text-muted: #4b585d;
+    --surface-light-border: rgba(16, 36, 43, 0.14);
+
+    --surface-dark-bg: #004e64;
+    --surface-dark-bg-alt: #013847;
+    --surface-dark-surface: #073f4f;
+    --surface-dark-text: #f5faf9;
+    --surface-dark-text-muted: #c8dcdf;
+    --surface-dark-border: rgba(245, 250, 249, 0.18);
+
+    --accent-coral: #ff6f61;
+    --accent-coral-text: #9f2f26;
+    --accent-coral-on-dark: #ff9a8f;
+    --accent-gold: #e9a93f;
+    --success: #147d4f;
+    --success-bg: #e6f6ee;
+    --danger: #b42318;
+    --danger-bg: #fde8e5;
+
     /* Product-grade core palette */
-    --ink: #082f3b;
-    --muted: #4f646c;
-    --line: rgba(8, 47, 59, 0.16);
-    --paper: #fffaf8;
-    --mint: #e8f6f2;
-    --coral: #ff6f61;
-    --teal: #004e64;
-    --gold: #e9a93f;
+    --ink: var(--surface-light-text);
+    --muted: var(--surface-light-text-muted);
+    --line: var(--surface-light-border);
+    --paper: var(--surface-light-bg);
+    --mint: var(--surface-light-bg-alt);
+    --coral: var(--accent-coral);
+    --teal: var(--surface-dark-bg);
+    --gold: var(--accent-gold);
+
+    /* Legacy aliases used by older inline page styles */
+    --primary: var(--surface-dark-bg);
+    --secondary: var(--success);
+    --accent: #7a5200;
+    --black: var(--surface-light-text);
+    --dark-gray: var(--surface-light-text-muted);
+    --light-gray: var(--surface-light-bg-alt);
 
     /*    Color Palette    */
     --coral:           #ff6f61;
@@ -39,7 +71,7 @@
 
     --text-primary:    var(--ink);
     --text-secondary:  var(--muted);
-    --text-muted:      #60747c;
+    --text-muted:      var(--surface-light-text-muted);
     --text-on-coral:   #FFFFFF;
     --text-on-teal:    #FFFFFF;
 
@@ -53,15 +85,15 @@
     --gradient-warm:    linear-gradient(135deg, rgba(255,111,97,0.08) 0%, rgba(155,89,182,0.06) 100%);
 
     /*    Glassmorphism    */
-    --glass-bg:        rgba(255, 255, 255, 0.72);
-    --glass-bg-strong: rgba(255, 255, 255, 0.88);
-    --glass-border:    rgba(8, 47, 59, 0.16);
+    --glass-bg:        rgba(255, 255, 255, 0.9);
+    --glass-bg-strong: rgba(255, 255, 255, 0.96);
+    --glass-border:    var(--surface-light-border);
     --glass-blur:      16px;
     --glass-blur-lg:   24px;
 
     /*    Borders    */
-    --border:          rgba(8, 47, 59, 0.14);
-    --border-strong:   rgba(8, 47, 59, 0.24);
+    --border:          var(--surface-light-border);
+    --border-strong:   rgba(16, 36, 43, 0.24);
     --border-coral:    rgba(255, 111, 97, 0.3);
 
     /*    Shadows (Floating Feel)    */
@@ -127,7 +159,8 @@
     --lh-relaxed:  1.8;
 
     /*    Transitions    */
-    --ease-smooth:  cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-smooth:  var(--ease-standard);
     --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
     --ease-bounce:  cubic-bezier(0.68, -0.55, 0.265, 1.55);
     --duration-fast: 150ms;

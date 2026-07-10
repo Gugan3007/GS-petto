@@ -72,17 +72,27 @@ gs-petto/
 
 ## Design Tokens
 
-Primary product tokens live in `css/design-system.css`:
+Primary product tokens live in `css/design-system.css`. GS-Petto now uses a deliberate dual-tone system:
 
 ```css
---ink: #10242b;
---muted: #627177;
---line: rgba(16, 36, 43, 0.10);
---paper: #fffaf8;
---mint: #e8f6f2;
---coral: #ff6f61;
---teal: #004e64;
---gold: #e9a93f;
+--surface-light-bg: #fffaf8;
+--surface-light-bg-alt: #e8f6f2;
+--surface-light-surface: #ffffff;
+--surface-light-text: #10242b;
+--surface-light-text-muted: #4b585d;
+--surface-light-border: rgba(16, 36, 43, 0.14);
+
+--surface-dark-bg: #004e64;
+--surface-dark-bg-alt: #013847;
+--surface-dark-surface: #073f4f;
+--surface-dark-text: #f5faf9;
+--surface-dark-text-muted: #c8dcdf;
+--surface-dark-border: rgba(245, 250, 249, 0.18);
+
+--accent-coral: #ff6f61;
+--accent-coral-text: #c74337;
+--accent-coral-on-dark: #ff9a8f;
+--accent-gold: #e9a93f;
 --radius-sm: 6px;
 --radius-md: 8px;
 --radius-lg: 16px;
@@ -96,10 +106,11 @@ Typography:
 
 Color intent:
 
-- Teal is used for trust, primary action, and system confidence.
-- Coral is used for highlight, active states, and high-emphasis calls to action.
-- Mint is used for soft support surfaces.
-- Gold is reserved for premium or rating emphasis.
+- Light tone is used for browsing, forms, profiles, listings, and normal content.
+- Dark tone is reserved for trust, safety, premium, footer, and high-emphasis product sections.
+- Coral is an accent. Use `--accent-coral-text` for readable text on light surfaces and `--accent-coral-on-dark` on dark surfaces.
+- New colors must be added as tokens in `css/design-system.css`. Do not introduce hardcoded hex/rgb/hsl colors in page CSS, inline styles, or JS-generated UI.
+- Components that change background must set text, muted text, border, link, and icon color from the same tone. Use `.tone-light` or `.tone-dark` instead of one-off color overrides.
 
 ## Shared Interaction System
 
